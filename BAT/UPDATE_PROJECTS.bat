@@ -201,11 +201,11 @@ rem beginfunction
         echo DEBUG: procedure !FUNCNAME! ...
     )
 
-    call :git_push !DIR_EXAMPLES_PY! || exit /b 1
-    call :git_push !DIR_MobileAPP_PY! || exit /b 1
-    call :git_push !DIR_PATTERN_PY! || exit /b 1
-    call :git_push !DIR_TEST_PY! || exit /b 1
-    call :git_push !DIR_YOUTUBE_PY! || exit /b 1
+    rem call :git_push !DIR_EXAMPLES_PY! || exit /b 1
+    rem call :git_push !DIR_MobileAPP_PY! || exit /b 1
+    rem call :git_push !DIR_PATTERN_PY! || exit /b 1
+    rem call :git_push !DIR_TEST_PY! || exit /b 1
+    rem call :git_push !DIR_YOUTUBE_PY! || exit /b 1
 
     call :git_push !DIR_TESTS_PY! || exit /b 1
     call :git_push !DIR_TOOLS_SRC_PY! || exit /b 1
