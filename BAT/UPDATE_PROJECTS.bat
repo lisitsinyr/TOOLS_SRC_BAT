@@ -1,6 +1,6 @@
 @echo off
 rem -------------------------------------------------------------------
-rem [lyrxxx_]PATTERN.bat
+rem UPDATE_PROJECTS.bat
 rem -------------------------------------------------------------------
 chcp 1251>NUL
 
@@ -79,7 +79,7 @@ rem beginfunction
     rem -------------------------------------------------------------------
     if not defined SCRIPTS_DIR_KIX (
         set SCRIPTS_DIR_KIX=D:\TOOLS\TOOLS_KIX
-        set SCRIPTS_DIR_KIX=D:\PROJECTS_LYR\CHECK_LIST\03_SCRIPT\01_KIX\PROJECTS_KIX\TOOLS_SRC_KIX
+        set SCRIPTS_DIR_KIX=D:\PROJECTS_LYR\CHECK_LIST\03_SCRIPT\01_KIX\PROJECTS_KIX\TOOLS_KIX
     )
     rem echo SCRIPTS_DIR_KIX: !SCRIPTS_DIR_KIX!
 
@@ -96,6 +96,38 @@ rem beginfunction
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    
+    set DIR_EXAMPLES_PY=D:\PROJECTS_LYR\CHECK_LIST\05_DESKTOP\02_Python\PROJECTS_PY\EXAMPLES_PY
+    set DIR_MobileAPP_PY=D:\PROJECTS_LYR\CHECK_LIST\05_DESKTOP\02_Python\PROJECTS_PY\MobileAPP_PY
+    set DIR_PATTERN_PY=D:\PROJECTS_LYR\CHECK_LIST\05_DESKTOP\02_Python\PROJECTS_PY\PATTERN_PY
+    set DIR_TEST_PY=D:\PROJECTS_LYR\CHECK_LIST\05_DESKTOP\02_Python\PROJECTS_PY\TEST_PY
+    set DIR_YOUTUBE_PY=D:\PROJECTS_LYR\CHECK_LIST\05_DESKTOP\02_Python\PROJECTS_PY\YOUTUBE_PY
+
+    set DIR_TESTS_PY=D:\PROJECTS_LYR\CHECK_LIST\05_DESKTOP\02_Python\PROJECTS_PY\TESTS_PY
+    set DIR_TOOLS_SRC_PY=D:\PROJECTS_LYR\CHECK_LIST\05_DESKTOP\02_Python\PROJECTS_PY\TOOLS_SRC_PY
+    set DIR_TOOLS_PY=D:\PROJECTS_LYR\CHECK_LIST\05_DESKTOP\02_Python\TOOLS_PY
+
+    set DIR_TESTS_JAVA=D:\PROJECTS_LYR\CHECK_LIST\05_DESKTOP\03_Java\PROJECTS_JAVA\TESTS_JAVA
+    set DIR_TOOLS_SRC_JAVA=D:\PROJECTS_LYR\CHECK_LIST\05_DESKTOP\03_Java\PROJECTS_JAVA\TOOLS_SRC_JAVA
+    set DIR_TOOLS_JAVA= D:\PROJECTS_LYR\CHECK_LIST\05_DESKTOP\03_Java\TOOLS_JAVA
+
+    set DIR_TOOLS_SRC_SH=D:\PROJECTS_LYR\CHECK_LIST\01_OS\03_UNIX\PROJECTS_UNIX\TOOLS_SRC_SH
+    set DIR_TOOLS_SH=D:\PROJECTS_LYR\CHECK_LIST\01_OS\03_UNIX\TOOLS_SH
+
+    set DIR_TOOLS_SRC_KIX=D:\PROJECTS_LYR\CHECK_LIST\03_SCRIPT\01_KIX\PROJECTS_KIX\TOOLS_SRC_KIX
+    set DIR_TOOLS_KIX=D:\PROJECTS_LYR\CHECK_LIST\03_SCRIPT\01_KIX\TOOLS_KIX
+
+    set DIR_TOOLS_SRC_BAT=D:\PROJECTS_LYR\CHECK_LIST\03_SCRIPT\04_BAT\PROJECTS_BAT\TOOLS_SRC_BAT
+    set DIR_TOOLS_BAT=D:\PROJECTS_LYR\CHECK_LIST\03_SCRIPT\04_BAT\TOOLS_BAT
+
+    set DIR_TOOLS_SRC_GIT=D:\PROJECTS_LYR\CHECK_LIST\07_GIT\PROJECTS_GIT\TOOLS_SRC_GIT
+    set DIR_TOOLS_GIT=D:\PROJECTS_LYR\CHECK_LIST\07_GIT\TOOLS_GIT
+
+    set DIR_TOOLS_BAT_=D:\TOOLS\TOOLS_BAT
+    set DIR_TOOLS_GIT_=D:\TOOLS\TOOLS_GIT
+    set DIR_TOOLS_KIX_=D:\TOOLS\TOOLS_KIX
+    set DIR_TOOLS_PY_=D:\TOOLS\TOOLS_PY
+
 
     exit /b 0
 rem endfunction
@@ -116,7 +148,7 @@ rem beginfunction
     rem -------------------------------------
     set O1=
     set PN_CAPTION=O1
-    call :Read_P O1 "" || exit /b 1
+    call :Read_P O1 O1 || exit /b 1
     rem echo O1:!O1!
     if defined O1 (
         set OPTION=!OPTION! --O1 !O1!
@@ -130,7 +162,7 @@ rem beginfunction
     rem Проверка на обязательные аргументы
     set A1=
     set PN_CAPTION=A1
-    call :Read_P A1 %1 || exit /b 1
+    call :Read_P A1 A1 || exit /b 1
     rem echo A1:!A1!
     if defined A1 (
         set ARGS=!ARGS! !A1!
@@ -169,16 +201,78 @@ rem beginfunction
         echo DEBUG: procedure !FUNCNAME! ...
     )
 
-    rem set APP_KIX_DIR=D:\PROJECTS_LYR\CHECK_LIST\03_SCRIPT\01_KIX\PROJECTS_KIX\TOOLS_KIX\KIX
-    rem set APP_KIX=
+    call :git_push !DIR_EXAMPLES_PY! || exit /b 1
+    call :git_push !DIR_MobileAPP_PY! || exit /b 1
+    call :git_push !DIR_PATTERN_PY! || exit /b 1
+    call :git_push !DIR_TEST_PY! || exit /b 1
+    call :git_push !DIR_YOUTUBE_PY! || exit /b 1
 
-    rem call :SET_KIX || exit /b 1
+    call :git_push !DIR_TESTS_PY! || exit /b 1
+    call :git_push !DIR_TOOLS_SRC_PY! || exit /b 1
+    call :git_push !DIR_TOOLS_PY! || exit /b 1
 
-    rem if exist !APP_KIX_DIR!\!APP_KIX!.kix (
-    rem     echo START !APP_KIX_DIR!\!APP_KIX!.kix ... 
-    rem     kix32.exe !APP_KIX_DIR!\!APP_KIX!.kix "$A1=!A1!"
-    rem )
+    call :git_push !DIR_TESTS_JAVA! || exit /b 1
+    call :git_push !DIR_TOOLS_SRC_JAVA! || exit /b 1
+    call :git_push !DIR_TOOLS_JAVA! || exit /b 1
 
+    call :git_push !DIR_TOOLS_SRC_SH! || exit /b 1
+    call :git_push !DIR_TOOLS_SH! || exit /b 1
+
+    call :git_push !DIR_TOOLS_SRC_KIX! || exit /b 1
+    call :git_push !DIR_TOOLS_KIX! || exit /b 1
+
+    call :git_push !DIR_TOOLS_SRC_BAT! || exit /b 1
+    call :git_push !DIR_TOOLS_BAT! || exit /b 1
+
+    call :git_push !DIR_TOOLS_SRC_GIT! || exit /b 1
+    call :git_push !DIR_TOOLS_GIT! || exit /b 1
+
+    call :git_pull !DIR_TOOLS_BAT_! || exit /b 1
+    call :git_pull !DIR_TOOLS_GIT_! || exit /b 1
+    call :git_pull !DIR_TOOLS_KIX_! || exit /b 1
+    call :git_pull !DIR_TOOLS_PY_! || exit /b 1
+
+    exit /b 0
+rem endfunction
+
+rem =================================================
+rem procedure git_push (ADirectory)
+rem =================================================
+:git_push
+rem beginfunction
+    set FUNCNAME=%0
+    if defined DEBUG (
+        echo DEBUG: procedure !FUNCNAME! ...
+    )
+
+    set LOG_FILE_ADD=1
+    set ADirectory=%~1
+    echo ADirectory:!ADirectory!
+    cd /D !ADirectory!
+
+    call lyrgit_push_main.bat
+    
+    exit /b 0
+rem endfunction
+
+rem =================================================
+rem procedure git_pull (ADirectory)
+rem =================================================
+:git_pull
+rem beginfunction
+    set FUNCNAME=%0
+    if defined DEBUG (
+        echo DEBUG: procedure !FUNCNAME! ...
+    )
+
+    set LOG_FILE_ADD=1
+    set ADirectory=%~1
+    echo ADirectory:!ADirectory!
+    cd /D !ADirectory!
+
+    rem call lyrgit_pull_main.bat
+    git pull    
+    
     exit /b 0
 rem endfunction
 
