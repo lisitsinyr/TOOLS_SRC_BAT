@@ -1,18 +1,6 @@
-﻿01.НАЗВАНИЕ
-    LYRDateTime.bat
+﻿procedure LYRDateTime ()
 
-02.СИНТАКСИС
-rem ФУНКЦИИ
-rem     :LYRDateTime
-rem     :YYYYMMDDHHMMSS
-rem     :DateTime
+function YYYYMMDDHHMMSS () -> YYYYMMDDHHMMSS
 
-:YYYYMMDDHHMMSS
-%LIB_BAT%\LYRDateTime.bat %*
-exit /b 0
-:DateTime
-%LIB_BAT%\LYRDateTime.bat %*
-exit /b 0
-
-03.ОПИСАНИЕ
-    ***
+function DateTime (AFORMAT) -> DateTime
+    AFORMAT
