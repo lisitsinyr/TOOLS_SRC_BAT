@@ -1,37 +1,46 @@
-﻿01.НАЗВАНИЕ
-    LYRFileUtils.bat
+﻿procedure LYRFileUtils ()
 
-02.СИНТАКСИС
-rem ФУНКЦИИ
-rem     :LYRFileUtils
-rem     :ExtractFileDir
-rem     :ExtractFileName
-rem     :ExtractFileNameWithoutExt
-rem     :ExtractFileExt
-rem     :FileAttr
-rem     :CurrentDir
+function ExtractFileDir (AFullFilename) -> ExtractFileDir
+    AFullFilename
 
-:ExtractFileDir
-%LIB_BAT%\LYRFileUtils.bat %*
-exit /b 0
-:FullFileName
-%LIB_BAT%\LYRFileUtils.bat %*
-exit /b 0
-:ExtractFileName
-%LIB_BAT%\LYRFileUtils.bat %*
-exit /b 0
-:ExtractFileNameWithoutExt
-%LIB_BAT%\LYRFileUtils.bat %*
-exit /b 0
-:ExtractFileExt
-%LIB_BAT%\LYRFileUtils.bat %*
-exit /b 0
-:FileAttr
-%LIB_BAT%\LYRFileUtils.bat %*
-exit /b 0
-:CurrentDir
-%LIB_BAT%\LYRFileUtils.bat %*
-exit /b 0
+function FullFileName (AFilename) -> FullFileName
+    AFilename
 
-03.ОПИСАНИЕ
-    ***
+function ExtractFileName (AFilename) -> ExtractFileName
+    AFilename
+
+function ExtractFileNameWithoutExt (AFileName) -> ExtractFileNameWithoutExt
+    AFilename
+
+function ExtractFileExt (AFileName) -> ExtractFileExt
+    AFilename
+
+function FileAttr (AFileName) -> FileAttr
+    AFilename
+    FOLDER
+
+function FileSize (AFileName) -> FileSize
+    AFilename
+
+function CreateDir (ADIRECTORY) -> CreateDir
+    ADIRECTORY
+
+function CreateFile (AFILENAME) -> CreateFile
+    AFILENAME
+
+function CheckFile (FILENAME) -> CheckFile
+    AFILENAME
+
+function CurrentDir () -> CurrentDir
+
+procedure COPY_FILES (DIR_FROM, DIR_TO, MASK, ARG)
+    ADIR_FROM
+    ADIR_TO
+    AMASK
+    AARG
+
+procedure XCOPY_FILES (DIR_FROM, DIR_TO, MASK, ARG)
+    ADIR_FROM
+    ADIR_TO
+    AMASK
+    AARG
