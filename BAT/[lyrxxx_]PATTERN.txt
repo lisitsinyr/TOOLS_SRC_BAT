@@ -1,9 +1,10 @@
-procedure MAIN_INIT (%*)
+procedure MAIN_INIT ()
 
-procedure MAIN_SET (%*)
+procedure MAIN_SET ()
 
 procedure MAIN_CHECK_PARAMETR (%*)
 
+procedure MAIN_FUNC ()
+
 procedure MAIN (%*)
 
-procedure MAIN_FUNC (%*)
