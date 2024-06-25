@@ -1,4 +1,4 @@
-﻿01.НАЗВАНИЕ
+01.НАЗВАНИЕ
     for - Runs a specified command for each file,
     within a set of files
 

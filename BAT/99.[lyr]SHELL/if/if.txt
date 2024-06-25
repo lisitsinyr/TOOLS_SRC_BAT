@@ -1,4 +1,4 @@
-﻿01.НАЗВАНИЕ
+01.НАЗВАНИЕ
     if - Performs conditional processing in batch programs
 
 02.СИНТАКСИС
