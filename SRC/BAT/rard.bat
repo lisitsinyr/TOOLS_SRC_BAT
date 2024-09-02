@@ -1,6 +1,6 @@
 @echo off
 rem -------------------------------------------------------------------
-rem 
+rem rard.bat
 rem -------------------------------------------------------------------
 chcp 1251>NUL
 
@@ -12,18 +12,18 @@ rem -------------------------------------------------------------------
 if not defined SCRIPTS_DIR (
     set SCRIPTS_DIR=D:\PROJECTS_LYR\CHECK_LIST\03_SCRIPT\04_BAT\PROJECTS_BAT\TOOLS_SRC_BAT
 )
+
 rem -------------------------------------------------------------------
 rem LIB_BAT - каталог библиотеки скриптов
 rem -------------------------------------------------------------------
-set LIB_BAT=!SCRIPTS_DIR!\LIB
+set LIB_BAT=!SCRIPTS_DIR!\SRC\LIB
 
 rem -------------------------------------------------------------------
-rem SCRIPTS_DIR_PY - Каталог скриптов PY
+rem SCRIPTS_DIR_KIX - Каталог скриптов KIX
 rem -------------------------------------------------------------------
-if not defined SCRIPTS_DIR_PY (
-    set SCRIPTS_DIR_PY=D:\PROJECTS_LYR\CHECK_LIST\05_DESKTOP\02_Python\PROJECTS_PY\TOOLS_SRC_PY\SRC\SCRIPTS
+if not defined SCRIPTS_DIR_KIX (
+    set SCRIPTS_DIR_KIX=D:\PROJECTS_LYR\CHECK_LIST\03_SCRIPT\01_KIX\PROJECTS_KIX\TOOLS_SRC_KIX
 )
-echo SCRIPTS_DIR_PY:!SCRIPTS_DIR_PY!
 
 rem --------------------------------------------------------------------------------
 rem 
@@ -32,47 +32,51 @@ rem ----------------------------------------------------------------------------
     set BATNAME=%~nx0
     echo Start !BATNAME! ...
 
-    set DEBUG=
-    set /a LOG_FILE_ADD=0
-
     rem Количество аргументов
     call :Read_N %* || exit /b 1
-
     call :SET_LIB %0 || exit /b 1
 
+    rem -------------------------------------------------------------------
+    rem rar - 
+    rem -------------------------------------------------------------------
+    set APP=rar
+    set COMMAND=a
+    set OPTION= -r
+    set ARGS=
+    set APPRUN=
+    
     rem -------------------------------------
     rem OPTION
     rem -------------------------------------
-    set O1=O1
-    set PN_CAPTION=O1
-    call :Read_P O1 O1 || exit /b 1
-    rem echo O1:!O1!
+    set O1=
     if defined O1 (
-        set OPTION=!OPTION! --O1 !O1!
-    ) else (
-        echo INFO: O1 not defined ...
+        set OPTION=!OPTION! !O1!
     )
-    echo OPTION:!OPTION!
-
     rem -------------------------------------
     rem ARGS
     rem -------------------------------------
     rem Проверка на обязательные аргументы
-    set A1=
-    set PN_CAPTION=A1
-    call :Read_P A1 A1 || exit /b 1
-    rem echo A1:!A1!
-    if defined A1 (
-        set ARGS=!ARGS! !A1!
+    set PN_CAPTION=Ввод значения directory
+    set directory=
+    call :Read_P directory %1 || exit /b 1
+    echo directory: !directory!
+    if defined directory (
+        set ARGS=!ARGS! "!directory!".rar "!directory!"
     ) else (
-        echo ERROR: A1 not defined ...
+        echo ERROR: directory not defined ...
+        echo Использование: !BATNAME! папка
         set OK=
     )
-    echo ARGS:!ARGS!
+    
+    if not defined Read_N (
+        set APPRUN=!APP! !COMMAND!!OPTION!!ARGS!
+        exit /b 0
+    ) else (
 
-    rem python "!SCRIPTS_DIR_PY!"\COPYFILE\COPYFILE.py !ARGS!
-
-    call :PressAnyKey || exit /b 1
+        set APPRUN=!APP! !COMMAND!!OPTION!!ARGS!
+    )
+    echo APPRUN: !APPRUN!
+    !APPRUN!
 
     exit /b 0
 :end
@@ -105,9 +109,6 @@ rem =================================================
 rem =================================================
 rem LYRSupport.bat
 rem =================================================
-:PressAnyKey
-%LIB_BAT%\LYRSupport.bat %*
-exit /b 0
 :Read_N
 %LIB_BAT%\LYRSupport.bat %*
 exit /b 0
