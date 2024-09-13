@@ -66,7 +66,7 @@ rem beginfunction
         rem Инициализация проекта PATTERN
         rem -------------------------------------------------------------------
         set PROJECT=TOOLS_SRC_BAT
-        set PROJECTS_DIR=!PROJECTS_LYR_DIR!\CHECK_LIST\SCRIPT\04_BAT\PROJECTS_BAT
+        set PROJECTS_DIR=!PROJECTS_LYR_DIR!\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT
         set PROJECT_DIR=!PROJECTS_DIR!\!PROJECT!
         set LPROJECTSET=!PROJECT_DIR!\!PROJECT!_SET.bat
     
@@ -97,7 +97,7 @@ rem beginfunction
         rem -------------------------------------------------------------------
         rem SCRIPTS_DIR - каталог скриптов
         rem -------------------------------------------------------------------
-        set SCRIPTS_DIR=!PROJECTS_LYR_DIR!\CHECK_LIST\SCRIPT\04_BAT\PROJECTS_BAT\TOOLS_SRC_BAT
+        set SCRIPTS_DIR=!PROJECTS_LYR_DIR!\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT
         rem -------------------------------------------------------------------
         rem LIB_BAT - каталог библиотеки скриптов
         rem -------------------------------------------------------------------
