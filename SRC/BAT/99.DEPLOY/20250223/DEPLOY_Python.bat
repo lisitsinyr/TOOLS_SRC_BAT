@@ -1,6 +1,6 @@
 @echo off
 rem -------------------------------------------------------------------
-rem [lyrxxx_]PATTERN.bat
+rem DEPLOY_PYTHON.bat
 rem -------------------------------------------------------------------
 chcp 1251>NUL
 
@@ -11,7 +11,6 @@ rem
 rem --------------------------------------------------------------------------------
 :begin
     call :MAIN %* || exit /b 1
-
     exit /b 0
 :end
 rem --------------------------------------------------------------------------------
@@ -59,7 +58,7 @@ rem beginfunction
         set SCRIPTS_DIR=D:\TOOLS\TOOLS_BAT
         set SCRIPTS_DIR=!PROJECTS_LYR_DIR!\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT
     )
-    rem echo SCRIPTS_DIR: %SCRIPTS_DIR%
+    rem echo SCRIPTS_DIR: !SCRIPTS_DIR!
     rem -------------------------------------------------------------------
     rem LIB_BAT - каталог библиотеки скриптов
     rem -------------------------------------------------------------------
@@ -86,6 +85,9 @@ rem beginfunction
         echo DEBUG: procedure !FUNCNAME! ...
     )
 
+    set /a LOG_FILE_ADD=1
+
+
     exit /b 0
 rem endfunction
 
@@ -103,48 +105,77 @@ rem beginfunction
     rem -------------------------------------
     rem OPTION
     rem -------------------------------------
-    set OPTION=
-
-    set O1_Name=O1
-    set O1_Caption=O1_Caption
-    set O1_Default=O1_Default
-    set O1=!O1_Default!
-    set PN_CAPTION=!O1_Caption!
-
-    call :Read_P O1 !O1! || exit /b 1
+    set O1=
+    set PN_CAPTION=O1
+    call :Read_P O1 O1 || exit /b 1
     rem echo O1:!O1!
     if defined O1 (
-        set OPTION=!OPTION! -!O1_Name! "!O1!"
+        set OPTION=!OPTION! --O1 !O1!
     ) else (
-        echo INFO: O1 [O1_Name:!O1_Name! O1_Caption:!O1_Caption!] not defined ...
+        echo INFO: O1 not defined ...
     )
-    
     echo OPTION:!OPTION!
 
     rem -------------------------------------
     rem ARGS
     rem -------------------------------------
-    set ARGS=
-
-    set A1_Name=A1
-    set A1_Caption=A1_Caption
-    set A1_Default=A1_Default
-    set A1=!A1_Default!
-    set PN_CAPTION=!A1_Caption!
-    call :Read_P A1 !A1! || exit /b 1
+    rem Проверка на обязательные аргументы
+    set A1=
+    set PN_CAPTION=A1
+    call :Read_P A1 A1 || exit /b 1
     rem echo A1:!A1!
     if defined A1 (
-        set ARGS=!ARGS! "!A1!"
+        set ARGS=!ARGS! !A1!
     ) else (
-        echo ERROR: A1 [A1_Name:!A1_Name! A1_Caption:!A1_Caption!] not defined ... 
+        echo ERROR: A1 not defined ...
         set OK=
-        exit /b 1
     )
-    
     echo ARGS:!ARGS!
 
     exit /b 0
 rem endfunction
+
+
+
+
+
+rem --------------------------------------------------------------------------------
+rem procedure MAIN_05_Python ()
+rem --------------------------------------------------------------------------------
+:MAIN_05_Python
+rem beginfunction
+    set FUNCNAME=%0
+    set FUNCNAME=MAIN_05_Python
+    if defined DEBUG (
+        echo DEBUG: procedure !FUNCNAME! ...
+    )
+
+    echo ===============================
+    echo 05_Python ...
+    echo ===============================
+
+    call :REPO_WORK !DIR_EXAMPLES_PY! 1 || exit /b 1
+
+    call :REPO_WORK !DIR_MobileAPP_PY! 1 || exit /b 1
+    
+    call :REPO_WORK !DIR_PATTERN_PY! 1 || exit /b 1
+    
+    rem call :REPO_WORK !DIR_TEST_PY! 1 || exit /b 1
+    
+    call :REPO_WORK !DIR_YOUTUBE_PY! 1 || exit /b 1
+    
+    call :REPO_WORK !DIR_TESTS_PY! 1 || exit /b 1
+
+    call :REPO_WORK !DIR_TOOLS_SRC_PY! 1 || exit /b 1
+    call :UPDATE_TOOLS_PY || exit /b 1
+
+    call :REPO_WORK !DIR_TOOLS_PY! 0 || exit /b 1
+    call :git_pull !DIR_TOOLS_PY_! || exit /b 1
+
+    exit /b 0
+rem endfunction
+
+
 
 rem --------------------------------------------------------------------------------
 rem procedure MAIN_FUNC ()
@@ -157,8 +188,12 @@ rem beginfunction
         echo DEBUG: procedure !FUNCNAME! ...
     )
 
+    call :MAIN_05_Python %* || exit /b 1
+    rem call :PressAnyKey || exit /b 1
+
     exit /b 0
 rem endfunction
+
 
 rem =================================================
 rem procedure MAIN (%*)
@@ -198,6 +233,8 @@ rem beginfunction
         call :MAIN_FUNC || exit /b 1
     )
     call :StopLogFile || exit /b 1
+
+    rem call :PressAnyKey || exit /b 1
 
     exit /b 0
 rem endfunction
