@@ -10,31 +10,6 @@ setlocal enabledelayedexpansion
     set BATNAME=%~nx0
     echo Старт !BATNAME! ...
 
-    set PROJECT_GROUP=SCRIPT_BAT
-    
-    rem -------------------------------------------------------------------
-    rem PROJECTS_LYR_ROOT - Каталог скриптов
-    rem -------------------------------------------------------------------
-    set PROJECTS_LYR_ROOT=D:
-    rem echo PROJECTS_LYR_ROOT:!PROJECTS_LYR_ROOT!
-
-    rem -------------------------------------------------------------------
-    rem PROJECTS_LYR_DIR - Каталог скриптов
-    rem -------------------------------------------------------------------
-    set PROJECTS_LYR_DIR=!PROJECTS_LYR_ROOT!\PROJECTS_LYR
-
-    rem -------------------------------------------------------------------
-    rem DIR_PYTHON - Каталог
-    rem -------------------------------------------------------------------
-    set DIR_PYTHON=!PROJECTS_LYR_DIR!\CHECK_LIST\DESKTOP\Python\PROJECTS_PY
-    rem echo DIR_PYTHON:!DIR_PYTHON!
-
-    rem -------------------------------------------------------------------
-    rem DIR_PROJECT_ROOT - Каталог
-    rem -------------------------------------------------------------------
-    set DIR_PROJECT_ROOT=!PROJECTS_LYR_DIR!\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT
-    rem echo DIR_PROJECT_ROOT:!DIR_PROJECT_ROOT!
-
     rem -------------------------------------------------------------------
     rem SCRIPTS_DIR - Каталог скриптов
     rem -------------------------------------------------------------------
@@ -56,11 +31,38 @@ setlocal enabledelayedexpansion
         exit /b 1
     )
 
+    set PROJECT_GROUP=BAT
+    
+    rem -------------------------------------------------------------------
+    rem PROJECTS_LYR_ROOT - Каталог скриптов
+    rem -------------------------------------------------------------------
+    set PROJECTS_LYR_ROOT=D:
+    rem echo PROJECTS_LYR_ROOT:!PROJECTS_LYR_ROOT!
+
+    rem -------------------------------------------------------------------
+    rem PROJECTS_LYR_DIR - Каталог скриптов
+    rem -------------------------------------------------------------------
+    set PROJECTS_LYR_DIR=!PROJECTS_LYR_ROOT!\PROJECTS_LYR
+
+    rem -------------------------------------------------------------------
+    rem DIR_PROJECT_ROOT - Каталог группы проектов
+    rem -------------------------------------------------------------------
+    set DIR_PROJECTS_ROOT=!PROJECTS_LYR_DIR!\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT
+    rem echo DIR_PROJECTS_ROOT:!DIR_PROJECTS_ROOT!
+
     set PROJECT_NAME=TOOLS_SRC_BAT
     call :DEPLOY_PROJECT
 
+    rem -------------------------------------------------------------------
+    rem DIR_PROJECT_ROOT - Каталог группы проектов
+    rem -------------------------------------------------------------------
+    set DIR_PROJECTS_ROOT=!PROJECTS_LYR_DIR!\CHECK_LIST\SCRIPT\BAT\TOOLS_BAT
+    rem echo DIR_PROJECTS_ROOT:!DIR_PROJECTS_ROOT!
     set PROJECT_NAME=TOOLS_BAT
     call :DEPLOY_PROJECT
+
+    set DIR_TOOLS_BAT_=D:\TOOLS\TOOLS_BAT
+    call :git_pull !DIR_TOOLS_BAT_! || exit /b 1
 
     exit /b 0
 :end
@@ -76,6 +78,12 @@ exit /b 0
 exit /b 0
 :DEPLOY_PROJECT
 %LIB_BAT%\LYRDEPLOY.bat %*
+exit /b 0
+rem =================================================
+rem LYRSupport.bat
+rem =================================================
+:PressAnyKey
+%LIB_BAT%\LYRSupport.bat %*
 exit /b 0
 
     set DIR_PROJECT_NAME=!DIR_PYTHON!\!PROJECT_NAME!

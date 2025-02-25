@@ -115,7 +115,7 @@ rem beginfunction
     )
 
     set ADirectory=%~1
-    echo ADirectory:!ADirectory!
+    rem echo ADirectory:!ADirectory!
     if not exist !ADirectory!\ (
         echo ERROR: Каталог !ADirectory! не существует ...
         exit /b 1
@@ -184,8 +184,8 @@ rem beginfunction
 
     cd /D "!ADirectory!"
 
-    call lyrgit_pull.bat
-    rem git pull    
+    rem call lyrgit_pull.bat
+    git pull    
 
     exit /b 0
 rem endfunction
@@ -201,8 +201,8 @@ rem beginfunction
         echo DEBUG: procedure !FUNCNAME! ...
     )
 
-    set DIR_PROJECT_NAME=!DIR_PROJECT_ROOT!\!PROJECT_NAME!
-    rem echo DIR_PROJECT_ROOT:!DIR_PROJECT_ROOT!
+    set DIR_PROJECT_NAME=!DIR_PROJECTS_ROOT!\!PROJECT_NAME!
+    echo DIR_PROJECTS_ROOT:!DIR_PROJECTS_ROOT!
 
     cd /D !DIR_PROJECT_NAME!
     rem set APPRUN=!DIR_PROJECT_NAME!\DEPLOY.bat
