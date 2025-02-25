@@ -14,13 +14,13 @@ setlocal enabledelayedexpansion
     rem PROJECTS_LYR_ROOT - Каталог скриптов
     rem -------------------------------------------------------------------
     set PROJECTS_LYR_ROOT=D:
-    echo PROJECTS_LYR_ROOT:!PROJECTS_LYR_ROOT!
+    rem echo PROJECTS_LYR_ROOT:!PROJECTS_LYR_ROOT!
 
     rem -------------------------------------------------------------------
     rem PROJECTS_LYR_DIR - Каталог скриптов
     rem -------------------------------------------------------------------
     set PROJECTS_LYR_DIR=!PROJECTS_LYR_ROOT!\PROJECTS_LYR
-    echo PROJECTS_LYR_DIR:!PROJECTS_LYR_DIR!
+    rem echo PROJECTS_LYR_DIR:!PROJECTS_LYR_DIR!
 
     rem -------------------------------------------------------------------
     rem SCRIPTS_DIR - Каталог скриптов
@@ -43,27 +43,16 @@ setlocal enabledelayedexpansion
         exit /b 1
     )
 
-    set PROJECT_GROUP=BAT
+    set PROJECT_GROUP=Pascal_Delphi
     
     rem -------------------------------------------------------------------
     rem DIR_PROJECT_ROOT - Каталог группы проектов
     rem -------------------------------------------------------------------
     set DIR_PROJECTS_ROOT=!PROJECTS_LYR_DIR!\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT
-    echo DIR_PROJECTS_ROOT:!DIR_PROJECTS_ROOT!
+    rem echo DIR_PROJECTS_ROOT:!DIR_PROJECTS_ROOT!
 
     set PROJECT_NAME=TOOLS_SRC_BAT
-    call :DEPLOY_PROJECT
-
-    rem -------------------------------------------------------------------
-    rem DIR_PROJECT_ROOT - Каталог группы проектов
-    rem -------------------------------------------------------------------
-    set DIR_PROJECTS_ROOT=!PROJECTS_LYR_DIR!\CHECK_LIST\SCRIPT\BAT
-    rem echo DIR_PROJECTS_ROOT:!DIR_PROJECTS_ROOT!
-    set PROJECT_NAME=TOOLS_BAT
-    call :DEPLOY_PROJECT
-
-    set DIR_TOOLS_BAT_=D:\TOOLS\TOOLS_BAT
-    call :git_pull !DIR_TOOLS_BAT_! || exit /b 1
+    rem call :DEPLOY_PROJECT
 
     exit /b 0
 :end
@@ -86,13 +75,3 @@ rem =================================================
 :PressAnyKey
 %LIB_BAT%\LYRSupport.bat %*
 exit /b 0
-
-    set DIR_PROJECT_NAME=!DIR_PYTHON!\!PROJECT_NAME!
-    rem echo DIR_PROJECT_NAME:!DIR_PROJECT_NAME!
-    cd /D !DIR_PROJECT_NAME!
-    rem set APPRUN=!DIR_PROJECT_NAME!\DEPLOY.bat
-    set APPRUN=DEPLOY.bat
-    echo APPRUN:!APPRUN!
-    if exist "!APPRUN!" (
-        call !APPRUN!
-    )
