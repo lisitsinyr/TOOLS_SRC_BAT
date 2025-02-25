@@ -11,6 +11,18 @@ setlocal enabledelayedexpansion
     echo Старт !BATNAME! ...
 
     rem -------------------------------------------------------------------
+    rem PROJECTS_LYR_ROOT - Каталог скриптов
+    rem -------------------------------------------------------------------
+    set PROJECTS_LYR_ROOT=D:
+    echo PROJECTS_LYR_ROOT:!PROJECTS_LYR_ROOT!
+
+    rem -------------------------------------------------------------------
+    rem PROJECTS_LYR_DIR - Каталог скриптов
+    rem -------------------------------------------------------------------
+    set PROJECTS_LYR_DIR=!PROJECTS_LYR_ROOT!\PROJECTS_LYR
+    echo PROJECTS_LYR_DIR:!PROJECTS_LYR_DIR!
+
+    rem -------------------------------------------------------------------
     rem SCRIPTS_DIR - Каталог скриптов
     rem -------------------------------------------------------------------
     if not defined SCRIPTS_DIR (
@@ -34,21 +46,10 @@ setlocal enabledelayedexpansion
     set PROJECT_GROUP=BAT
     
     rem -------------------------------------------------------------------
-    rem PROJECTS_LYR_ROOT - Каталог скриптов
-    rem -------------------------------------------------------------------
-    set PROJECTS_LYR_ROOT=D:
-    rem echo PROJECTS_LYR_ROOT:!PROJECTS_LYR_ROOT!
-
-    rem -------------------------------------------------------------------
-    rem PROJECTS_LYR_DIR - Каталог скриптов
-    rem -------------------------------------------------------------------
-    set PROJECTS_LYR_DIR=!PROJECTS_LYR_ROOT!\PROJECTS_LYR
-
-    rem -------------------------------------------------------------------
     rem DIR_PROJECT_ROOT - Каталог группы проектов
     rem -------------------------------------------------------------------
     set DIR_PROJECTS_ROOT=!PROJECTS_LYR_DIR!\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT
-    rem echo DIR_PROJECTS_ROOT:!DIR_PROJECTS_ROOT!
+    echo DIR_PROJECTS_ROOT:!DIR_PROJECTS_ROOT!
 
     set PROJECT_NAME=TOOLS_SRC_BAT
     call :DEPLOY_PROJECT
@@ -56,7 +57,7 @@ setlocal enabledelayedexpansion
     rem -------------------------------------------------------------------
     rem DIR_PROJECT_ROOT - Каталог группы проектов
     rem -------------------------------------------------------------------
-    set DIR_PROJECTS_ROOT=!PROJECTS_LYR_DIR!\CHECK_LIST\SCRIPT\BAT\TOOLS_BAT
+    set DIR_PROJECTS_ROOT=!PROJECTS_LYR_DIR!\CHECK_LIST\SCRIPT\BAT
     rem echo DIR_PROJECTS_ROOT:!DIR_PROJECTS_ROOT!
     set PROJECT_NAME=TOOLS_BAT
     call :DEPLOY_PROJECT
