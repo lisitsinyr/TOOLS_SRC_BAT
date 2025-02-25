@@ -54,17 +54,6 @@ setlocal enabledelayedexpansion
     set PROJECT_NAME=TOOLS_SRC_KIX
     call :DEPLOY_PROJECT
 
-    rem -------------------------------------------------------------------
-    rem DIR_PROJECT_ROOT - Каталог группы проектов
-    rem -------------------------------------------------------------------
-    set DIR_PROJECTS_ROOT=!PROJECTS_LYR_DIR!\CHECK_LIST\SCRIPT\KIX
-    rem echo DIR_PROJECTS_ROOT:!DIR_PROJECTS_ROOT!
-    set PROJECT_NAME=TOOLS_KIX
-    call :DEPLOY_PROJECT
-
-    set DIR_TOOLS_KIX_=D:\TOOLS\TOOLS_KIX
-    call :git_pull !DIR_TOOLS_KIX_! || exit /b 1
-
     exit /b 0
 :end
 

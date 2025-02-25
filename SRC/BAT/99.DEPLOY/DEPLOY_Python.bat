@@ -95,17 +95,6 @@ setlocal enabledelayedexpansion
     set PROJECT_NAME=YOUTUBE_PY
     call :DEPLOY_PROJECT
 
-    rem -------------------------------------------------------------------
-    rem DIR_PROJECT_ROOT - Каталог группы проектов
-    rem -------------------------------------------------------------------
-    set DIR_PROJECTS_ROOT=!PROJECTS_LYR_DIR!\CHECK_LIST\DESKTOP\Python
-    rem echo DIR_PROJECTS_ROOT:!DIR_PROJECTS_ROOT!
-    set PROJECT_NAME=TOOLS_PY
-    call :DEPLOY_PROJECT
-
-    set DIR_TOOLS_PY_=D:\TOOLS\TOOLS_PY
-    call :git_pull !DIR_TOOLS_PY_! || exit /b 1
-
     exit /b 0
 :end
 rem ===================================================================

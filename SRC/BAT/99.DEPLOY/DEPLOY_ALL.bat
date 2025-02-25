@@ -57,6 +57,28 @@ setlocal enabledelayedexpansion
         call !APPRUN!
     )
 
+    set APPRUN=!SCRIPTS_DIR!\SRC\BAT\99.DEPLOY\DEPLOY_BAT.bat
+    rem set APPRUN=DEPLOY_Python.bat
+    echo APPRUN:!APPRUN!
+    if exist "!APPRUN!" (
+        call !APPRUN!
+    )
+    
+    set APPRUN=!SCRIPTS_DIR!\SRC\BAT\99.DEPLOY\DEPLOY_GIT.bat
+    rem set APPRUN=DEPLOY_Python.bat
+    echo APPRUN:!APPRUN!
+    if exist "!APPRUN!" (
+        call !APPRUN!
+    )
+    
+    set APPRUN=!SCRIPTS_DIR!\SRC\BAT\99.DEPLOY\DEPLOY_KIX.bat
+    rem set APPRUN=DEPLOY_Python.bat
+    echo APPRUN:!APPRUN!
+    if exist "!APPRUN!" (
+        call !APPRUN!
+    )
+    
+
     exit /b 0
 :end
 rem ===================================================================
