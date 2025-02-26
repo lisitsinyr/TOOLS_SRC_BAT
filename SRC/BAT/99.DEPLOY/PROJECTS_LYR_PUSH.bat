@@ -16,31 +16,6 @@ rem ----------------------------------------------------------------------------
 rem --------------------------------------------------------------------------------
 
 rem -----------------------------------------------
-rem procedure MAIN_SetROOT ()
-rem -----------------------------------------------
-:MAIN_SetROOT
-rem beginfunction
-    set FUNCNAME=%0
-    set FUNCNAME=MAIN_SetROOT
-    if defined DEBUG (
-        echo DEBUG: procedure !FUNCNAME! ...
-    )
-
-    set PROJECTS_LYR_ROOT=D:\WORK\WIN
-    set PROJECTS_LYR_ROOT=D:
-    rem echo PROJECTS_LYR_ROOT:!PROJECTS_LYR_ROOT!
-    set PROJECTS_LYR_DIR=!PROJECTS_LYR_ROOT!\PROJECTS_LYR
-    rem echo PROJECTS_LYR_DIR:!PROJECTS_LYR_DIR!
-    if not exist "!PROJECTS_LYR_DIR!"\ (
-        rem echo INFO: Dir "!PROJECTS_LYR_DIR!" not exist ...
-        echo INFO: Create "!PROJECTS_LYR_DIR!" ...
-        mkdir "!PROJECTS_LYR_DIR!"
-    )
-
-    exit /b 0
-rem endfunction
-
-rem -----------------------------------------------
 rem procedure MAIN_INIT ()
 rem -----------------------------------------------
 :MAIN_INIT
@@ -49,6 +24,24 @@ rem beginfunction
     set FUNCNAME=MAIN_INIT
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
+    )
+
+    rem -------------------------------------------------------------------
+    rem PROJECTS_LYR_ROOT - Каталог скриптов
+    rem -------------------------------------------------------------------
+    set PROJECTS_LYR_ROOT=D:\WORK\WIN
+    set PROJECTS_LYR_ROOT=D:
+    rem echo PROJECTS_LYR_ROOT:!PROJECTS_LYR_ROOT!
+
+    rem -------------------------------------------------------------------
+    rem PROJECTS_LYR_DIR - Каталог скриптов
+    rem -------------------------------------------------------------------
+    set PROJECTS_LYR_DIR=!PROJECTS_LYR_ROOT!\PROJECTS_LYR
+    rem echo PROJECTS_LYR_DIR:!PROJECTS_LYR_DIR!
+    if not exist "!PROJECTS_LYR_DIR!"\ (
+        rem echo INFO: Dir "!PROJECTS_LYR_DIR!" not exist ...
+        echo INFO: Create "!PROJECTS_LYR_DIR!" ...
+        mkdir "!PROJECTS_LYR_DIR!"
     )
 
     rem -------------------------------------------------------------------
@@ -829,8 +822,6 @@ rem beginfunction
 
     set DEBUG=
     set /a LOG_FILE_ADD=0
-
-    call :MAIN_SetROOT || exit /b 1
 
     call :MAIN_INIT || exit /b 1
 

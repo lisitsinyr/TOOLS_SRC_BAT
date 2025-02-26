@@ -49,10 +49,34 @@ setlocal enabledelayedexpansion
     rem DIR_PROJECT_ROOT - Каталог группы проектов
     rem -------------------------------------------------------------------
     set DIR_PROJECTS_ROOT=!PROJECTS_LYR_DIR!\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT
+    set DIR_PROJECTS_ROOT=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Pascal_Delphi\Delphi_7\PROJECTS_D7
     rem echo DIR_PROJECTS_ROOT:!DIR_PROJECTS_ROOT!
 
-    set PROJECT_NAME=TOOLS_SRC_BAT
-    rem call :DEPLOY_PROJECT
+    set PROJECT_NAME=LUIS_D7
+    rem call :REPO_WORK !DIR_LUIS_D7! 0 || exit /b 1
+    call :DEPLOY_PROJECT
+
+    set PROJECT_NAME=TOOLS_D7
+    rem call :REPO_WORK !DIR_TOOLS_D7! 0 || exit /b 1
+    call :DEPLOY_PROJECT
+    rem call :UPDATE_TOOLS_D7 || exit /b 1
+
+
+    rem -------------------------------------------------------------------
+    rem DIR_PROJECT_ROOT - Каталог группы проектов
+    rem -------------------------------------------------------------------
+    set DIR_PROJECTS_ROOT=!PROJECTS_LYR_DIR!\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT
+    set DIR_PROJECTS_ROOT=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Pascal_Delphi\Delphi_11\PROJECTS_D11
+    rem echo DIR_PROJECTS_ROOT:!DIR_PROJECTS_ROOT!
+
+    set PROJECT_NAME=LUIS_D11
+    rem call :REPO_WORK !DIR_LUIS_D11! 0 || exit /b 1
+    call :DEPLOY_PROJECT
+ 
+    set PROJECT_NAME=TOOLS_D11
+    rem call :REPO_WORK !DIR_TOOLS_D11! 0 || exit /b 1
+    call :DEPLOY_PROJECT
+    rem call :UPDATE_TOOLS_D11 || exit /b 1
 
     exit /b 0
 :end

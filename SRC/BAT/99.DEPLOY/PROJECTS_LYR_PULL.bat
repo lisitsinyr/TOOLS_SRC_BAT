@@ -28,23 +28,30 @@ rem ----------------------------------------------------------------------------
 rem --------------------------------------------------------------------------------
 
 rem -----------------------------------------------
-rem procedure MAIN_SetROOT ()
+rem procedure MAIN_INIT ()
 rem -----------------------------------------------
-:MAIN_SetROOT
+:MAIN_INIT
 rem beginfunction
     set FUNCNAME=%0
-    set FUNCNAME=MAIN_SetROOT
+    set FUNCNAME=MAIN_INIT
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
 
+    rem -------------------------------------------------------------------
+    rem PROJECTS_LYR_ROOT - Каталог скриптов
+    rem -------------------------------------------------------------------
     set PROJECTS_LYR_ROOT=D:\WORK\WIN
     set PROJECTS_LYR_ROOT=D:
-    echo PROJECTS_LYR_ROOT:!PROJECTS_LYR_ROOT!
+    rem echo PROJECTS_LYR_ROOT:!PROJECTS_LYR_ROOT!
+
+    rem -------------------------------------------------------------------
+    rem PROJECTS_LYR_DIR - Каталог скриптов
+    rem -------------------------------------------------------------------
     set PROJECTS_LYR_DIR=!PROJECTS_LYR_ROOT!\PROJECTS_LYR
-    echo PROJECTS_LYR_DIR:!PROJECTS_LYR_DIR!
+    rem echo PROJECTS_LYR_DIR:!PROJECTS_LYR_DIR!
     if not exist "!PROJECTS_LYR_DIR!"\ (
-        rem echo INFO: Dir "!PROJECTS_LYR_DIR!" not exist...
+        rem echo INFO: Dir "!PROJECTS_LYR_DIR!" not exist ...
         echo INFO: Create "!PROJECTS_LYR_DIR!" ...
         mkdir "!PROJECTS_LYR_DIR!"
     )
@@ -845,7 +852,7 @@ rem beginfunction
     set BATNAME=%~nx0
     echo Start !BATNAME! ...
 
-    call :MAIN_SetROOT || exit /b 1
+    call :MAIN_INIT || exit /b 1
 
     call :MAIN_01_UNIX || exit /b 1
     

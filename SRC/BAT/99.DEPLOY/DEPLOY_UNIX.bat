@@ -54,12 +54,10 @@ setlocal enabledelayedexpansion
     set PROJECT_NAME=TOOLS_SRC_SH
     call :DEPLOY_PROJECT
 
-    rem -------------------------------------------------------------------
-    rem DIR_PROJECT_ROOT - Каталог группы проектов
-    rem -------------------------------------------------------------------
-    set DIR_PROJECTS_ROOT=!PROJECTS_LYR_DIR!\CHECK_LIST\OS\UNIX
-    rem echo DIR_PROJECTS_ROOT:!DIR_PROJECTS_ROOT!
-    set PROJECT_NAME=TOOLS_SH
+    set PROJECT_NAME=COMMANDS_SH
+    call :DEPLOY_PROJECT
+
+    set PROJECT_NAME=INFO_UNIX
     call :DEPLOY_PROJECT
 
     exit /b 0
