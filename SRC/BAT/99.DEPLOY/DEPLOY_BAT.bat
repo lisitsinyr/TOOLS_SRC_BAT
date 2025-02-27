@@ -54,11 +54,17 @@ setlocal enabledelayedexpansion
     set PROJECT_NAME=INFO_BAT
     call :DEPLOY_PROJECT
 
+call :PressAnyKey
+
     set PROJECT_NAME=SCRIPTS_BAT
     call :DEPLOY_PROJECT
 
+call :PressAnyKey
+
     set PROJECT_NAME=TOOLS_SRC_BAT
     call :DEPLOY_PROJECT
+
+call :PressAnyKey
 
     exit /b 0
 :end
