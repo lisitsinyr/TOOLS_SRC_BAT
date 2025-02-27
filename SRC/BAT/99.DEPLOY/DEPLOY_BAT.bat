@@ -56,13 +56,13 @@ setlocal enabledelayedexpansion
 
 rem call :PressAnyKey
 
-rem     set PROJECT_NAME=SCRIPTS_BAT
-rem     call :DEPLOY_PROJECT
+    set PROJECT_NAME=SCRIPTS_BAT
+    call :DEPLOY_PROJECT
 
 rem call :PressAnyKey
 
-rem     set PROJECT_NAME=TOOLS_SRC_BAT
-rem     call :DEPLOY_PROJECT
+    set PROJECT_NAME=TOOLS_SRC_BAT
+    call :DEPLOY_PROJECT
 
 rem call :PressAnyKey
 
