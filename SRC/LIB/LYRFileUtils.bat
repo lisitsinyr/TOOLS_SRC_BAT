@@ -368,13 +368,13 @@ rem beginfunction
     
     for %AARG% %%f in (!AMASK!) do (
         rem echo %%~nf%%~xf
-        copy "%%f" !ADIR_TO!\        >  NUL
+        rem copy "%%f" !ADIR_TO!\        >  NUL
+        copy "%%f" !ADIR_TO!\        
         
-        echo !FUNCNAME! !errorlevel!
+        echo !COPY_FILES! !errorlevel!
         
+        call :CheckErrorlevel !COPY_FILES! !errorlevel! 1
         call :PressAnyKey
-
-        call :CheckErrorlevel !FUNCNAME! !errorlevel! 1
         echo File %%f copied ...     >> %LOG_FULLFILENAME%
     )
 
