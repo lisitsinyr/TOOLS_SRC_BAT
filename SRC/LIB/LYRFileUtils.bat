@@ -371,9 +371,9 @@ rem beginfunction
         rem copy "%%f" !ADIR_TO!\        >  NUL
         copy "%%f" !ADIR_TO!\        
         
-        echo !COPY_FILES! !errorlevel!
+        echo COPY_FILES !errorlevel!
         
-        call :CheckErrorlevel !COPY_FILES! !errorlevel! 1
+        call :CheckErrorlevel COPY_FILES !errorlevel! 1
         call :PressAnyKey
         echo File %%f copied ...     >> %LOG_FULLFILENAME%
     )
