@@ -412,7 +412,7 @@ rem beginfunction
     rem LOG_FILE_ADD - Параметры журнала [0]
     rem -------------------------------------------------------------------
     if not defined LOG_FILE_ADD (
-        set /a LOG_FILE_ADD=1
+        set /a LOG_FILE_ADD=0
     )
     rem echo LOG_FILE_ADD: !LOG_FILE_ADD!
 
@@ -524,6 +524,12 @@ rem =================================================
 rem LYRPY.bat
 rem =================================================
 :LYRPY
+%LIB_BAT%\LYRPY.bat %*
+exit /b 0
+:PY_ENV_START
+%LIB_BAT%\LYRPY.bat %*
+exit /b 0
+:PY_ENV_STOP
 %LIB_BAT%\LYRPY.bat %*
 exit /b 0
 
