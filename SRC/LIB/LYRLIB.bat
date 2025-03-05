@@ -412,7 +412,7 @@ rem beginfunction
     rem LOG_FILE_ADD - Параметры журнала [0]
     rem -------------------------------------------------------------------
     if not defined LOG_FILE_ADD (
-        set /a LOG_FILE_ADD=0
+        set /a LOG_FILE_ADD=1
     )
     rem echo LOG_FILE_ADD: !LOG_FILE_ADD!
 
@@ -507,6 +507,7 @@ rem beginfunction
 
     exit /b 0
 rem endfunction
+rem =================================================
 
 rem =================================================
 rem ФУНКЦИИ LIB
@@ -520,8 +521,34 @@ rem =================================================
 exit /b 0
 
 rem =================================================
+rem LYRPY.bat
+rem =================================================
+:LYRPY
+%LIB_BAT%\LYRPY.bat %*
+exit /b 0
+
+rem =================================================
+rem LYRDEPLOY.bat
+rem =================================================
+:LYRDEPLOY
+%LIB_BAT%\LYRDEPLOY.bat %*
+exit /b 0
+:REPO_WORK
+%LIB_BAT%\LYRDEPLOY.bat %*
+exit /b 0
+:git_pull
+%LIB_BAT%\LYRDEPLOY.bat %*
+exit /b 0
+:DEPLOY_PROJECT
+%LIB_BAT%\LYRDEPLOY.bat %*
+exit /b 0
+
+rem =================================================
 rem LYRLIB.bat
 rem =================================================
+:LYRLIB
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
 :SET_LIB
 %LIB_BAT%\LYRLIB.bat %*
 exit /b 0
@@ -597,9 +624,6 @@ rem =================================================
 :LYRLog
 %LIB_BAT%\LYRLog.bat %*
 exit /b 0
-:FormatStr
-%LIB_BAT%\LYRLog.bat %*
-exit /b 0
 :AddLog
 %LIB_BAT%\LYRLog.bat %*
 exit /b 0
@@ -635,6 +659,9 @@ exit /b 0
 %LIB_BAT%\LYRStrUtils.bat %*
 exit /b 0
 :TrimQuotes
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
+:ListToStr
 %LIB_BAT%\LYRStrUtils.bat %*
 exit /b 0
 
@@ -674,6 +701,9 @@ exit /b 0
 :GetCMD
 %LIB_BAT%\LYRSupport.bat %*
 exit /b 0
+:CheckErrorlevel
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
 
 rem =================================================
 rem LYRParserINI.bat
@@ -692,38 +722,6 @@ exit /b 0
 exit /b 0
 :GetFileParser
 %LIB_BAT%\LYRParserINI.bat %*
-exit /b 0
-
-rem =================================================
-rem LYRDEPLOY.bat
-rem =================================================
-:LYRDEPLOY
-%LIB_BAT%\LYRDEPLOY.bat %*
-exit /b 0
-:DEPLOY_LIB
-%LIB_BAT%\LYRDEPLOY.bat %*
-exit /b 0
-:REPO_WORK
-%LIB_BAT%\LYRDEPLOY.bat %*
-exit /b 0
-:git_pull
-%LIB_BAT%\LYRDEPLOY.bat %*
-exit /b 0
-:DEPLOY_PROJECT
-%LIB_BAT%\LYRDEPLOY.bat %*
-exit /b 0
-
-rem =================================================
-rem LYRPY.bat
-rem =================================================
-:LYRPY
-%LIB_BAT%\LYRPY.bat %*
-exit /b 0
-:PY_ENV_START
-%LIB_BAT%\LYRPY.bat %*
-exit /b 0
-:PY_ENV_STOP
-%LIB_BAT%\LYRPY.bat %*
 exit /b 0
 
 rem =================================================
