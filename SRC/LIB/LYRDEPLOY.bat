@@ -49,12 +49,14 @@ rem beginfunction
     )
 
     set ADirectory=%~1
-    rem echo REPO_WORK:!ADirectory!
+    echo ADirectory:!ADirectory!
 
     if not exist !ADirectory!\ (
         echo ERROR: Каталог !ADirectory! не существует ...
         exit /b 1
     )
+
+    echo PROJECT_NAME:!PROJECT_NAME!
 
     cd /D "!ADirectory!"
 
@@ -64,27 +66,56 @@ rem beginfunction
     rem del *.bat
     rem del *.sh
 
-    set LFileName=D:\PROJECTS_LYR\CHECK_LIST\GIT\PROJECTS_GIT\TOOLS_SRC_GIT\SRC\BAT\A.WORK\lyrgit_push_main.bat
+    del DEPLOY.bat
+
+    call :PressAnyKey
+
+    set LDirectory=D:\PROJECTS_LYR\CHECK_LIST\GIT\PROJECTS_GIT\TOOLS_SRC_GIT\SRC\BAT\A.WORK
+    set LFileName=!LDirectory!\lyrgit_push_main.bat
     rem echo LFileName:!LFileName!
     if exist !LFileName! (
         rem echo COPY:!LFileName!
         copy !LFileName! > NUL
     )
-    set LFileName=D:\PROJECTS_LYR\CHECK_LIST\GIT\PROJECTS_GIT\TOOLS_SRC_GIT\SRC\BAT\A.WORK\lyrgit_pull.bat
+    set LFileName=!LDirectory!\lyrgit_pull.bat
     rem echo LFileName:!LFileName!
     if exist !LFileName! (
         rem echo COPY:!LFileName!
         copy !LFileName! > NUL
     )
 
+    set LDirectory=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\SCRIPTS_BAT\SRC\SCRIPTS_BAT\99.DEPLOY
+    set LFileName=!LDirectory!\DEPLOY_PROJECT.bat
+    if !PROJECT_NAME!==TOOLS_BAT (
+        set LFileName=!LDirectory!\DEPLOY_PROJECT_TOOLS_BAT.bat
+    )    
+    if !PROJECT_NAME!==TOOLS_KIX (
+        set LFileName=!LDirectory!\DEPLOY_PROJECT_TOOLS_KIX.bat
+    )    
+    if !PROJECT_NAME!==TOOLS_PS (
+        set LFileName=!LDirectory!\DEPLOY_PROJECT_TOOLS_PS.bat
+    )    
+    if !PROJECT_NAME!==TOOLS_GIT (
+        set LFileName=!LDirectory!\DEPLOY_PROJECT_TOOLS_GIT.bat
+    )    
+    if !PROJECT_NAME!==TOOLS_PY (
+        set LFileName=!LDirectory!\DEPLOY_PROJECT_TOOLS_PY.bat
+    )    
+    echo LFileName:!LFileName!
+    if exist !LFileName! (
+        rem echo COPY:!LFileName!
+        copy !LFileName! > NUL
+    )
+
     if !APYTHON!==1 (
-        set LFileName=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Python\PROJECTS_PY\PATTERN_PY\PROJECT_PYupdate.bat
+        set LDirectory=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Python\PROJECTS_PY\PATTERN_PY
+        set LFileName=!LDirectory!\PROJECT_PYupdate.bat
         rem echo LFileName: !LFileName!
         if exist !LFileName! (
             rem echo COPY: !LFileName!
             copy !LFileName! > NUL
         )
-        set LFileName=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Python\PROJECTS_PY\PATTERN_PY\pyproject.toml
+        set LFileName=!LDirectory!\pyproject.toml
         rem echo LFileName: !LFileName!
         if exist !LFileName! (
             rem echo COPY: !LFileName!
@@ -148,7 +179,8 @@ rem beginfunction
     cd /D !DIR_PROJECT_NAME!
     rem set APPRUN=!DIR_PROJECT_NAME!\DEPLOY.bat
     set APPRUN=DEPLOY.bat
-    rem echo APPRUN:!APPRUN!
+    set APPRUN=DEPLOY_PROJECT.bat
+    echo APPRUN:!APPRUN!
     if exist "!APPRUN!" (
         call !APPRUN!
     )
