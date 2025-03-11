@@ -140,6 +140,9 @@ rem beginfunction
     if !PROJECT_NAME!==TOOLS_PY (
         set LFileName=!LDirectory!\DEPLOY_PROJECT_TOOLS_PY.bat
     )    
+    if !PROJECT_NAME!==TOOLS_SH (
+        set LFileName=!LDirectory!\DEPLOY_PROJECT_TOOLS_SH.bat
+    )    
     rem echo LFileName:!LFileName!
     if exist !LFileName! (
         rem echo COPY:!LFileName!
