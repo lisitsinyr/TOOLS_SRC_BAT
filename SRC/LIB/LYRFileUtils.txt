@@ -1,46 +1,45 @@
-procedure LYRFileUtils ()
-
-function ExtractFileDir (AFullFilename) -> ExtractFileDir
-    AFullFilename
-
-function FullFileName (AFilename) -> FullFileName
-    AFilename
-
-function ExtractFileName (AFilename) -> ExtractFileName
-    AFilename
-
-function ExtractFileNameWithoutExt (AFileName) -> ExtractFileNameWithoutExt
-    AFilename
-
-function ExtractFileExt (AFileName) -> ExtractFileExt
-    AFilename
-
-function FileAttr (AFileName) -> FileAttr
-    AFilename
-    FOLDER
-
-function FileSize (AFileName) -> FileSize
-    AFilename
-
-function CreateDir (ADIRECTORY) -> CreateDir
-    ADIRECTORY
-
-function CreateFile (AFILENAME) -> CreateFile
-    AFILENAME
-
-function CheckFile (FILENAME) -> CheckFile
-    AFILENAME
-
-function CurrentDir () -> CurrentDir
-
-procedure COPY_FILES (DIR_FROM, DIR_TO, MASK, ARG)
-    ADIR_FROM
-    ADIR_TO
-    AMASK
-    AARG
-
-procedure XCOPY_FILES (DIR_FROM, DIR_TO, MASK, ARG)
-    ADIR_FROM
-    ADIR_TO
-    AMASK
-    AARG
+rem =================================================
+rem LYRFileUtils.bat
+rem =================================================
+:LYRFileUtils
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:ExtractFileDir
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:FullFileName
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:ExtractFileName
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:ExtractFileNameWithoutExt
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:ExtractFileExt
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:FileAttr
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:FileSize
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:CreateDir
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:CreateFile
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:CheckFile
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:CurrentDir
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:COPY_FILES
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:XCOPY_FILES
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0

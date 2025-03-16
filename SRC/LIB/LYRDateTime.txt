@@ -1,6 +1,12 @@
-procedure LYRDateTime ()
-
-function YYYYMMDDHHMMSS () -> YYYYMMDDHHMMSS
-
-function DateTime (AFORMAT) -> DateTime
-    AFORMAT
+rem =================================================
+rem LYRDateTime.bat
+rem =================================================
+:LYRDateTime
+%LIB_BAT%\LYRDateTime.bat %*
+exit /b 0
+:YYYYMMDDHHMMSS
+%LIB_BAT%\LYRDateTime.bat %*
+exit /b 0
+:DateTime
+%LIB_BAT%\LYRDateTime.bat %*
+exit /b 0

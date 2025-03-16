@@ -1,0 +1,18 @@
+rem =================================================
+rem LYRParserINI.bat
+rem =================================================
+:LYRParserINI
+%LIB_BAT%\LYRParserINI.bat %*
+exit /b 0
+:SetINI
+%LIB_BAT%\LYRParserINI.bat %*
+exit /b 0
+:GetINI
+%LIB_BAT%\LYRParserINI.bat %*
+exit /b 0
+:GetINIParametr
+%LIB_BAT%\LYRParserINI.bat %*
+exit /b 0
+:GetFileParser
+%LIB_BAT%\LYRParserINI.bat %*
+exit /b 0

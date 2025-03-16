@@ -1,22 +1,27 @@
-procedure LYRStrUtils ()
-
-function TrimLeft (ASTR) -> TrimLeft
-    ASTR
-
-function TrimRight (ASTR) -> TrimRight
-    ASTR
-
-function Trim (ASTR) -> Trim
-    ASTR
-
-function Left (ASTR, Alen) -> Left
-    ASTR
-    Alen
-
-function  Mid (ASTR, Aposition, Alen) -> Mid
-    ASTR
-    Aposition
-    Alen
-
-function TrimQuotes (ASTR) -> TrimQuotes
-    ASTR
+rem =================================================
+rem LYRStrUtils.bat
+rem =================================================
+:LYRStrUtils
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
+:TrimLeft
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
+:TrimRight
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
+:Trim
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
+:Left
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
+:Mid
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
+:TrimQuotes
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
+:ListToStr
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0

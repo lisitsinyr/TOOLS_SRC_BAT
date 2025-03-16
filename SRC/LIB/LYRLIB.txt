@@ -1,0 +1,27 @@
+rem =================================================
+rem LYRLIB.bat
+rem =================================================
+:LYRLIB
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_LIB
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_POETRY
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_KIX
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_VAR_SCRIPT
+exit /b 0
+:SET_LIB
+:__SET_VAR_DEFAULT
+exit /b 0
+:SET_LIB
+:__SET_VAR_PROJECTS
+exit /b 0
+:SET_LIB
+:__SET_LOG
+exit /b 0
+:SET_LIB
