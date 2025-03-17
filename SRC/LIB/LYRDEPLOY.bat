@@ -523,12 +523,14 @@ rem beginfunction
     rem call :WritePROCESS PROJECT_NAME  : !PROJECT_NAME!
     rem call :WritePROCESS DIR_GROUP_ROOT: !DIR_GROUP_ROOT!
 
-    rem echo PROJECT_GROUP : !PROJECT_GROUP!
+    echo PROJECT_GROUP : !PROJECT_GROUP!
+
     echo PROJECT_NAME  : !PROJECT_NAME!
-    rem echo DIR_GROUP_ROOT: !DIR_GROUP_ROOT!
+    
+    echo DIR_GROUP_ROOT: !DIR_GROUP_ROOT!
 
     set DIR_PROJECT_NAME=!DIR_PROJECTS_ROOT!\!PROJECT_NAME!
-    rem echo DIR_PROJECT_NAME:!DIR_PROJECT_NAME!
+    echo DIR_PROJECT_NAME:!DIR_PROJECT_NAME!
 
     if !PROJECT_NAME!==TOOLS_BAT (
         call :CLEAR_TOOLS_BAT
@@ -576,6 +578,8 @@ rem beginfunction
         rem call :REPO_WORK_TOOLS !DIR_PROJECT_NAME!
         exit /b 0
     )    
+
+    call :PressAnyKey 
 
     call :REPO_WORK !DIR_PROJECT_NAME!
 
