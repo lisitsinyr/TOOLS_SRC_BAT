@@ -6,7 +6,6 @@ chcp 1251>NUL
 
 :begin
     rem Выход из сценария. Дальше - только функции.
-    call :LYRDEPLOY
     exit /b 0
 :end
 
@@ -20,7 +19,7 @@ rem ----------------------------------------------------------------------------
 :LYRDEPLOYTools
 rem beginfunction
     set FUNCNAME=%0
-    set FUNCNAME=LYRConst
+    rem set FUNCNAME=LYRDEPLOYTools
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
@@ -49,22 +48,23 @@ rem beginfunction
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
 
-    call :WritePROCESS FUNCNAME:!FUNCNAME!
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_FROM=!DIR_GROUP_ROOT!\PROJECTS_BAT\SCRIPTS_BAT\SRC\SCRIPTS_BAT
+    set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\SCRIPTS_BAT\SRC\SCRIPTS_BAT
     rem echo LDIR_FROM:!LDIR_FROM!
     set LDIR_TO=!DIR_PROJECT_NAME!\SCRIPTS_BAT
     rem echo LDIR_TO:!LDIR_TO!
 
     set LMASK=*.*
     if exist "!LDIR_TO!" (
-        del /F /S /Q "!LDIR_TO!"\!LMASK! >> %LOG_FULLFILENAME%
+        del /F /S /Q "!LDIR_TO!"\!LMASK!    >> %LOG_FULLFILENAME%
     ) else (                        
-        mkdir "!LDIR_TO!"            >> %LOG_FULLFILENAME% 
+        mkdir "!LDIR_TO!"                   >> %LOG_FULLFILENAME% 
     )
 
     set LMASK=*.*
@@ -73,7 +73,7 @@ rem beginfunction
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_FROM=!DIR_GROUP_ROOT!\PROJECTS_BAT\SCRIPTS_BAT\SRC\SCRIPTS_BAT
+    set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\SCRIPTS_BAT\SRC\SCRIPTS_BAT
     rem echo LDIR_FROM:!LDIR_FROM!
     set LDIR_TO=!DIR_PROJECT_NAME!\BAT
     rem echo LDIR_TO:!LDIR_TO!
@@ -94,13 +94,14 @@ rem beginfunction
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
 
-    call :WritePROCESS FUNCNAME:!FUNCNAME!
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_FROM=!DIR_GROUP_ROOT!\PROJECTS_BAT\TOOLS_SRC_BAT\SRC\BAT
+    set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\SRC\BAT
     rem echo LDIR_FROM:!LDIR_FROM!
     set LDIR_TO=!DIR_PROJECT_NAME!\BAT
     rem echo LDIR_TO:!LDIR_TO!
@@ -111,7 +112,7 @@ rem beginfunction
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_FROM=!DIR_GROUP_ROOT!\PROJECTS_BAT\TOOLS_SRC_BAT\SRC\LIB
+    set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\SRC\LIB
     rem echo LDIR_FROM:!LDIR_FROM!
     set LDIR_TO=!DIR_PROJECT_NAME!\LIB
     rem echo LDIR_TO:!LDIR_TO!
@@ -139,22 +140,23 @@ rem beginfunction
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
 
-    rem call :WritePROCESS FUNCNAME:!FUNCNAME!
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_CLEAR=!DIR_GROUP_ROOT!\TOOLS_BAT\BAT
+    set LDIR_CLEAR=!DIR_PROJECT_NAME!\BAT
     rem echo LDIR_CLEAR:!LDIR_CLEAR!
 
-    call :WritePROCESS Очистка !LDIR_CLEAR! ...
+    rem call :WritePROCESS Очистка !LDIR_CLEAR! ...
 
     set LMASK=*.bat
     if exist "!LDIR_CLEAR!"\ (
         del /F /S /Q "!LDIR_CLEAR!"\!LMASK! >> %LOG_FULLFILENAME% 
     ) else (
-        mkdir "!LDIR_CLEAR!"              >> %LOG_FULLFILENAME%
+        mkdir "!LDIR_CLEAR!"                >> %LOG_FULLFILENAME%
     )
 
     exit /b 0
@@ -166,17 +168,18 @@ rem ----------------------------------------------------------------------------
 :UPDATE_TOOLS_GIT_TOOLS_SRC_GIT
 rem beginfunction
     set FUNCNAME=%0
-    set FUNCNAME=UPDATE_TOOLS_GIT_TOOLS_SRC_GIT
+    rem set FUNCNAME=UPDATE_TOOLS_GIT_TOOLS_SRC_GIT
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
 
     call :WritePROCESS FUNCNAME:!FUNCNAME!
 
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_FROM=!DIR_GROUP_ROOT!\PROJECTS_GIT\TOOLS_SRC_GIT\SRC\BAT
+    set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\GIT\PROJECTS_GIT\TOOLS_SRC_GIT\SRC\BAT
     rem echo LDIR_FROM:!LDIR_FROM!
     set LDIR_TO=!DIR_PROJECT_NAME!\BAT
     rem echo LDIR_TO:!LDIR_TO!
@@ -187,7 +190,7 @@ rem beginfunction
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_FROM=!DIR_GROUP_ROOT!\PROJECTS_GIT\TOOLS_SRC_GIT\SRC\BAT_KIX
+    set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\GIT\PROJECTS_GIT\TOOLS_SRC_GIT\SRC\BAT_KIX
     rem echo LDIR_FROM:!LDIR_FROM!
     set LDIR_TO=!DIR_PROJECT_NAME!\BAT_KIX
     rem echo LDIR_TO:!LDIR_TO!
@@ -208,11 +211,14 @@ rem beginfunction
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
+
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_CLEAR=!DIR_GROUP_ROOT!\TOOLS_GIT\BAT
+    set LDIR_CLEAR=!DIR_PROJECT_NAME!\BAT
     rem echo LDIR_CLEAR:!LDIR_CLEAR!
 
     call :WritePROCESS Очистка !LDIR_CLEAR! ...
@@ -227,7 +233,7 @@ rem beginfunction
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_CLEAR=!DIR_GROUP_ROOT!\TOOLS_GIT\BAT_KIX
+    set LDIR_CLEAR=!DIR_PROJECT_NAME!\BAT_KIX
     rem echo LDIR_CLEAR:!LDIR_CLEAR!
 
     call :WritePROCESS Очистка !LDIR_CLEAR! ...
@@ -248,11 +254,13 @@ rem ----------------------------------------------------------------------------
 :UPDATE_TOOLS_JAVA_SCRIPTS_JAVA
 rem beginfunction
     set FUNCNAME=%0
-    set FUNCNAME=UPDATE_TOOLS_JAVA_SCRIPTS_JAVA
+    rem set FUNCNAME=UPDATE_TOOLS_JAVA_SCRIPTS_JAVA
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
-    call :WritePROCESS FUNCNAME:!FUNCNAME!
+    set !FUNCNAME!=
+
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     rem --------------------------------------------------------
     rem 
@@ -292,12 +300,13 @@ rem ----------------------------------------------------------------------------
 :UPDATE_TOOLS_JAVA_TOOLS_SRC_JAVA
 rem beginfunction
     set FUNCNAME=%0
-    set FUNCNAME=UPDATE_TOOLS_JAVA_TOOLS_SRC_JAVA
+    rem set FUNCNAME=UPDATE_TOOLS_JAVA_TOOLS_SRC_JAVA
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
 
-    call :WritePROCESS FUNCNAME:!FUNCNAME!
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     rem --------------------------------------------------------
     rem 
@@ -337,17 +346,18 @@ rem ----------------------------------------------------------------------------
 :CLEAR_TOOLS_JAVA
 rem beginfunction
     set FUNCNAME=%0
-    set FUNCNAME=CLEAR_TOOLS_JAVA
+    rem set FUNCNAME=CLEAR_TOOLS_JAVA
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
 
-    rem call :WritePROCESS FUNCNAME:!FUNCNAME!
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_CLEAR=!DIR_GROUP_ROOT!\TOOLS_JAVA\BAT
+    set LDIR_CLEAR=!DIR_PROJECT_NAME!\BAT
     rem echo LDIR_CLEAR:!LDIR_CLEAR!
 
     call :WritePROCESS Очистка !LDIR_CLEAR! ...
@@ -368,17 +378,18 @@ rem ----------------------------------------------------------------------------
 :UPDATE_TOOLS_KIX_SCRIPTS_KIX
 rem beginfunction
     set FUNCNAME=%0
-    set FUNCNAME=UPDATE_TOOLS_KIX_SCRIPTS_KIX
+    rem set FUNCNAME=UPDATE_TOOLS_KIX_SCRIPTS_KIX
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
 
-    call :WritePROCESS FUNCNAME:!FUNCNAME!
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_FROM=!DIR_GROUP_ROOT!\PROJECTS_KIX\SCRIPTS_KIX\SRC\SCRIPTS_KIX
+    set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\KIX\PROJECTS_KIX\SCRIPTS_KIX\SRC\SCRIPTS_KIX
     rem echo LDIR_FROM:!LDIR_FROM!
     set LDIR_TO=!DIR_PROJECT_NAME!\SCRIPTS_KIX
     rem echo LDIR_TO:!LDIR_TO!
@@ -396,7 +407,7 @@ rem beginfunction
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_FROM=!DIR_GROUP_ROOT!\PROJECTS_KIX\SCRIPTS_KIX\SRC\SCRIPTS_KIX
+    set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\KIX\PROJECTS_KIX\SCRIPTS_KIX\SRC\SCRIPTS_KIX
     rem echo LDIR_FROM:!LDIR_FROM!
     set LDIR_TO=!DIR_PROJECT_NAME!\BAT
     rem echo LDIR_TO:!LDIR_TO!
@@ -413,17 +424,18 @@ rem ----------------------------------------------------------------------------
 :UPDATE_TOOLS_KIX_TOOLS_SRC_KIX
 rem beginfunction
     set FUNCNAME=%0
-    set FUNCNAME=UPDATE_TOOLS_KIX_TOOLS_SRC_KIX
+    rem set FUNCNAME=UPDATE_TOOLS_KIX_TOOLS_SRC_KIX
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
 
-    call :WritePROCESS FUNCNAME:!FUNCNAME!
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_FROM=!DIR_GROUP_ROOT!\PROJECTS_KIX\TOOLS_SRC_KIX\SRC\BAT
+    set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\KIX\PROJECTS_KIX\TOOLS_SRC_KIX\SRC\BAT
     rem echo LDIR_FROM:!LDIR_FROM!
     set LDIR_TO=!DIR_PROJECT_NAME!\BAT
     rem echo LDIR_TO:!LDIR_TO!
@@ -434,7 +446,7 @@ rem beginfunction
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_FROM=!DIR_GROUP_ROOT!\PROJECTS_KIX\TOOLS_SRC_KIX\SRC\LIB
+    set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\KIX\PROJECTS_KIX\TOOLS_SRC_KIX\SRC\LIB
     rem echo LDIR_FROM:!LDIR_FROM!
     set LDIR_TO=!DIR_PROJECT_NAME!\LIB
     rem echo LDIR_TO:!LDIR_TO!
@@ -458,15 +470,18 @@ rem ----------------------------------------------------------------------------
 :CLEAR_TOOLS_KIX
 rem beginfunction
     set FUNCNAME=%0
-    set FUNCNAME=CLEAR_TOOLS_KIX
+    rem set FUNCNAME=CLEAR_TOOLS_KIX
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
+
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_CLEAR=!DIR_GROUP_ROOT!\TOOLS_KIX\BAT
+    set LDIR_CLEAR=!DIR_PROJECT_NAME!\BAT
     rem echo LDIR_CLEAR:!LDIR_CLEAR!
 
     call :WritePROCESS Очистка !LDIR_CLEAR! ...
@@ -487,16 +502,18 @@ rem ----------------------------------------------------------------------------
 :UPDATE_TOOLS_PY_SCRIPTS_PY
 rem beginfunction
     set FUNCNAME=%0
-    set FUNCNAME=UPDATE_TOOLS_PY_SCRIPTS_PY
+    rem set FUNCNAME=UPDATE_TOOLS_PY_SCRIPTS_PY
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
-    call :WritePROCESS FUNCNAME:!FUNCNAME!
+    set !FUNCNAME!=
+
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_FROM=!DIR_GROUP_ROOT!\PROJECTS_PY\SCRIPTS_PY\SRC\SCRIPTS_PY
+    set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Python\PROJECTS_PY\SCRIPTS_PY\SRC\SCRIPTS_PY
     rem echo LDIR_FROM:!LDIR_FROM!
     set LDIR_TO=!DIR_PROJECT_NAME!\SCRIPTS_PY
     rem echo LDIR_TO:!LDIR_TO!
@@ -514,7 +531,7 @@ rem beginfunction
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_FROM=!DIR_GROUP_ROOT!\PROJECTS_PY\SCRIPTS_PY\SRC\SCRIPTS_PY
+    set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Python\PROJECTS_PY\SCRIPTS_PY\SRC\SCRIPTS_PY
     rem echo LDIR_FROM:!LDIR_FROM!
     set LDIR_TO=!DIR_PROJECT_NAME!\BAT
     rem echo LDIR_TO:!LDIR_TO!
@@ -531,17 +548,18 @@ rem ----------------------------------------------------------------------------
 :UPDATE_TOOLS_PY_TOOLS_SRC_PY
 rem beginfunction
     set FUNCNAME=%0
-    set FUNCNAME=UPDATE_TOOLS_PY_TOOLS_SRC_PY
+    rem set FUNCNAME=UPDATE_TOOLS_PY_TOOLS_SRC_PY
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
 
-    call :WritePROCESS FUNCNAME:!FUNCNAME!
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_FROM=!DIR_GROUP_ROOT!\PROJECTS_PY\TOOLS_SRC_PY\SRC\BAT
+    set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Python\PROJECTS_PY\TOOLS_SRC_PY\SRC\BAT
     rem echo LDIR_FROM:!LDIR_FROM!
     set LDIR_TO=!DIR_PROJECT_NAME!\BAT
     rem echo LDIR_TO:!LDIR_TO!
@@ -552,7 +570,7 @@ rem beginfunction
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_FROM=!DIR_GROUP_ROOT!\PROJECTS_PY\TOOLS_SRC_PY\SRC\LIB
+    set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Python\PROJECTS_PY\TOOLS_SRC_PY\SRC\LIB
     rem echo LDIR_FROM:!LDIR_FROM!
     set LDIR_TO=!DIR_PROJECT_NAME!\LIB
     rem echo LDIR_TO:!LDIR_TO!
@@ -576,17 +594,18 @@ rem ----------------------------------------------------------------------------
 :CLEAR_TOOLS_PY
 rem beginfunction
     set FUNCNAME=%0
-    set FUNCNAME=CLEAR_TOOLS_PY
+    rem set FUNCNAME=CLEAR_TOOLS_PY
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
 
-    rem call :WritePROCESS FUNCNAME:!FUNCNAME!
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_CLEAR=!DIR_GROUP_ROOT!\TOOLS_PY\BAT
+    set LDIR_CLEAR=!DIR_PROJECT_NAME!\BAT
     rem echo LDIR_CLEAR:!LDIR_CLEAR!
 
     call :WritePROCESS Очистка !LDIR_CLEAR! ...
@@ -606,13 +625,14 @@ rem procedure UPDATE_TOOLS_SH_SCRIPTS_SH ()
 rem --------------------------------------------------------------------------------
 :UPDATE_TOOLS_SH_SCRIPTS_SH
 rem beginfunction
-    set FUNCNAME=%0
+    rem set FUNCNAME=%0
     set FUNCNAME=UPDATE_TOOLS_SH_SCRIPTS_SH
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
 
-    call :WritePROCESS FUNCNAME:!FUNCNAME!
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     rem --------------------------------------------------------
     rem 
@@ -652,12 +672,13 @@ rem ----------------------------------------------------------------------------
 :UPDATE_TOOLS_SH_TOOLS_SRC_SH
 rem beginfunction
     set FUNCNAME=%0
-    set FUNCNAME=UPDATE_TOOLS_SH_TOOLS_SRC_SH
+    rem set FUNCNAME=UPDATE_TOOLS_SH_TOOLS_SRC_SH
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
 
-    call :WritePROCESS FUNCNAME:!FUNCNAME!
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     rem --------------------------------------------------------
     rem 
@@ -699,12 +720,13 @@ rem ----------------------------------------------------------------------------
 :UPDATE_TOOLS_SH_TOOLS_SRC_GIT_SH
 rem beginfunction
     set FUNCNAME=%0
-    set FUNCNAME=UPDATE_TOOLS_SH_TOOLS_SRC_GIT_SH
+    rem set FUNCNAME=UPDATE_TOOLS_SH_TOOLS_SRC_GIT_SH
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
 
-    call :WritePROCESS FUNCNAME:!FUNCNAME!
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     rem --------------------------------------------------------
     rem 
@@ -735,21 +757,24 @@ rem ----------------------------------------------------------------------------
 :CLEAR_TOOLS_SH
 rem beginfunction
     set FUNCNAME=%0
-    set FUNCNAME=CLEAR_TOOLS_BAT
+    rem set FUNCNAME=CLEAR_TOOLS_BAT
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
 
-    set LDIR_TO=D:\PROJECTS_LYR\CHECK_LIST\OS\UNIX\TOOLS_SH\SH_GIT
-    rem echo LDIR_TO:!LDIR_TO!
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
-    call :WritePROCESS Очистка !LDIR_TO! ...
+    set LDIR_CLEAR=!DIR_PROJECT_NAME!\SH_GIT
+    rem echo LDIR_CLEAR:!LDIR_CLEAR!
+
+    call :WritePROCESS Очистка !LDIR_CLEAR! ...
 
     set LMASK=*.sh
-    if exist "!LDIR_TO!" (
-        del /F /S /Q "!LDIR_TO!"\!LMASK!    >> %LOG_FULLFILENAME%
+    if exist "!LDIR_CLEAR!" (
+        del /F /S /Q "!LDIR_CLEAR!"\!LMASK!    >> %LOG_FULLFILENAME%
     ) else (
-        mkdir "!LDIR_TO!"                   >> %LOG_FULLFILENAME%
+        mkdir "!LDIR_CLEAR!"                   >> %LOG_FULLFILENAME%
     )
 
     exit /b 0

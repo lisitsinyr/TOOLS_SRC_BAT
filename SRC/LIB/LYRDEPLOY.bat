@@ -6,7 +6,6 @@ chcp 1251>NUL
 
 :begin
     rem Выход из сценария. Дальше - только функции.
-    call :LYRDEPLOY
     exit /b 0
 :end
 
@@ -20,11 +19,13 @@ rem ----------------------------------------------------------------------------
 :LYRDEPLOY
 rem beginfunction
     set FUNCNAME=%0
-    set FUNCNAME=LYRConst
+    set FUNCNAME=LYRDEPLOY
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
     set !FUNCNAME!=
+
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     rem -------------------------------------------------------------------
     rem CONST
@@ -87,6 +88,8 @@ rem beginfunction
         echo DEBUG: procedure !FUNCNAME! ...
     )
     set !FUNCNAME!=
+
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     rem echo PROJECT_GROUP:!PROJECT_GROUP!
     rem echo DIR_PROJECTS_ROOT:!DIR_PROJECTS_ROOT!
@@ -344,9 +347,13 @@ rem ----------------------------------------------------------------------------
 :CopyFilesROOT
 rem beginfunction
     set FUNCNAME=%0
+    set FUNCNAME=CopyFilesROOT
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
+
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     rem set ADirectory=%~1
     rem echo ADirectory:!ADirectory!
@@ -355,8 +362,6 @@ rem beginfunction
     rem echo DIR_PROJECTS_ROOT:!DIR_PROJECTS_ROOT!
     rem echo DIR_PROJECT_NAME:!DIR_PROJECT_NAME!
     rem echo PROJECT_NAME:!PROJECT_NAME!
-
-    call :WritePROCESS ... !FUNCNAME! ...
 
     set LDirectory=D:\PROJECTS_LYR\CHECK_LIST\GIT\PROJECTS_GIT\TOOLS_SRC_GIT\SRC\BAT\A.WORK
     set LFileName=!LDirectory!\lyrgit_push_main.bat
@@ -390,11 +395,13 @@ rem ----------------------------------------------------------------------------
 :SetPROJECT_INI
 rem beginfunction
     set FUNCNAME=%0
+    set FUNCNAME=SetPROJECT_INI
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
 
-    call :WritePROCESS SetPROJECT_INI ...
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     call :SetINI !DIR_PROJECT_NAME!\PROJECT.ini general PROJECT_GROUP !PROJECT_GROUP!
     call :SetINI !DIR_PROJECT_NAME!\PROJECT.ini general PROJECT_NAME !PROJECT_NAME!
@@ -409,11 +416,12 @@ rem ----------------------------------------------------------------------------
 :SetREPO_INI
 rem beginfunction
     set FUNCNAME=%0
+    set FUNCNAME=SetREPO_INI
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
 
-    call :WritePROCESS SetREPO_INI ...
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     call :SetINI !DIR_PROJECT_NAME!\REPO.ini general REPO_NAME !PROJECT_NAME!
 
@@ -426,9 +434,13 @@ rem ----------------------------------------------------------------------------
 :REPO_WORK
 rem beginfunction
     set FUNCNAME=%0
+    set FUNCNAME=REPO_WORK
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
+
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     call :WritePROCESS DEPLOY проекта [REPO_WORK]: !PROJECT_NAME!
 
@@ -468,9 +480,13 @@ rem ----------------------------------------------------------------------------
 :REPO_WORK_TOOLS
 rem beginfunction
     set FUNCNAME=%0
+    set FUNCNAME=REPO_WORK_TOOLS
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
+
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     call :WritePROCESS DEPLOY проекта [REPO_WORK_TOOLS]: !PROJECT_NAME!
 
@@ -516,21 +532,19 @@ rem beginfunction
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
 
-    call :WritePROCESS DEPLOY_PROJECT ...
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     rem call :WritePROCESS PROJECT_GROUP : !PROJECT_GROUP!
     rem call :WritePROCESS PROJECT_NAME  : !PROJECT_NAME!
     rem call :WritePROCESS DIR_GROUP_ROOT: !DIR_GROUP_ROOT!
 
-    echo PROJECT_GROUP : !PROJECT_GROUP!
-
-    echo PROJECT_NAME  : !PROJECT_NAME!
-    
-    echo DIR_GROUP_ROOT: !DIR_GROUP_ROOT!
-
+    rem echo PROJECT_GROUP : !PROJECT_GROUP!
+    rem echo PROJECT_NAME  : !PROJECT_NAME!
+    rem echo DIR_GROUP_ROOT: !DIR_GROUP_ROOT!
     set DIR_PROJECT_NAME=!DIR_PROJECTS_ROOT!\!PROJECT_NAME!
-    echo DIR_PROJECT_NAME:!DIR_PROJECT_NAME!
+    rem echo DIR_PROJECT_NAME:!DIR_PROJECT_NAME!
 
     if !PROJECT_NAME!==TOOLS_BAT (
         call :CLEAR_TOOLS_BAT
@@ -579,8 +593,6 @@ rem beginfunction
         exit /b 0
     )    
 
-    call :PressAnyKey 
-
     call :REPO_WORK !DIR_PROJECT_NAME!
 
     exit /b 0
@@ -592,9 +604,13 @@ rem =================================================
 :git_pull
 rem beginfunction
     set FUNCNAME=%0
+    set FUNCNAME=git_pull
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
+
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     set LOG_FILE_ADD=1
     set ADirectory=%~1
@@ -622,9 +638,13 @@ rem =================================================
 :git_clone
 rem beginfunction
     set FUNCNAME=%0
+    set FUNCNAME=git_clone
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
+
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     set ADIR_PROJECTS_ROOT=%1
     rem echo ADIR_PROJECTS_ROOT:!ADIR_PROJECTS_ROOT!
@@ -657,6 +677,9 @@ rem beginfunction
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
+    set !FUNCNAME!=
+
+    call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     set ADIR_PROJECTS_ROOT=%1
     rem echo ADIR_PROJECTS_ROOT:!ADIR_PROJECTS_ROOT!
@@ -837,9 +860,138 @@ rem ФУНКЦИИ LIB
 rem =================================================
 
 rem =================================================
+rem LYRConsole.bat
+rem =================================================
+:LYRConsole
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:ConsoleTEST_00
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:ConsoleTEST_01
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:ConsoleTEST_02
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:FormatColorStr
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:aListToStr
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:bListToStr
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:SetColor
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:ReSetColorCR
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:ReSetColor
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:Write
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:WriteCR
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:WriteLN
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:WriteLOG
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:WriteNOTSET
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:WriteDEBUG
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:WriteINFO
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:WriteWARNING
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:WriteERROR
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:WriteCRITICAL
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:WriteBEGIN
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:WriteEND
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:WritePROCESS
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:WriteDEBUGTEXT
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:WriteTEXT
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+rem =================================================
+rem LYRConst.bat
+rem =================================================
+:LYRConst
+%LIB_BAT%\LYRConst.bat %*
+exit /b 0
+rem =================================================
+rem LYRDateTime.bat
+rem =================================================
+:LYRDateTime
+%LIB_BAT%\LYRDateTime.bat %*
+exit /b 0
+:YYYYMMDDHHMMSS
+%LIB_BAT%\LYRDateTime.bat %*
+exit /b 0
+:DateTime
+%LIB_BAT%\LYRDateTime.bat %*
+exit /b 0
+rem =================================================
+rem LYRDEPLOY.bat
+rem =================================================
+:LYRDEPLOY
+%LIB_BAT%\LYRDEPLOY.bat %*
+exit /b 0
+:CopyFilesFromPATTERN
+%LIB_BAT%\LYRDEPLOY.bat %*
+exit /b 0
+:CopyFilesROOT
+%LIB_BAT%\LYRDEPLOY.bat %*
+exit /b 0
+:SetPROJECT_INI
+%LIB_BAT%\LYRDEPLOY.bat %*
+exit /b 0
+:SetREPO_INI
+%LIB_BAT%\LYRDEPLOY.bat %*
+exit /b 0
+:REPO_WORK
+%LIB_BAT%\LYRDEPLOY.bat %*
+exit /b 0
+:DEPLOY_PROJECT
+%LIB_BAT%\LYRDEPLOY.bat %*
+exit /b 0
+:git_pull
+%LIB_BAT%\LYRDEPLOY.bat %*
+exit /b 0
+:git_clone
+%LIB_BAT%\LYRDEPLOY.bat %*
+exit /b 0
+:PULL_PROJECT
+%LIB_BAT%\LYRDEPLOY.bat %*
+exit /b 0
+rem =================================================
 rem LYRDEPLOYTools.bat
 rem =================================================
-:LYRDEPLOYTools.bat
+:LYRDEPLOYTools
 %LIB_BAT%\LYRDEPLOYTools.bat %*
 exit /b 0
 :UPDATE_TOOLS_BAT_SCRIPTS_BAT
@@ -893,72 +1045,6 @@ exit /b 0
 :CLEAR_TOOLS_SH
 %LIB_BAT%\LYRDEPLOYTools.bat %*
 exit /b 0
-
-rem =================================================
-rem LYRConsole.bat
-rem =================================================
-:Write
-%LIB_BAT%\LYRConsole.bat %*
-exit /b 0
-:WriteCR
-%LIB_BAT%\LYRConsole.bat %*
-exit /b 0
-:WriteLN
-%LIB_BAT%\LYRConsole.bat %*
-exit /b 0
-:WriteLOG
-%LIB_BAT%\LYRConsole.bat %*
-exit /b 0
-:SetColor
-%LIB_BAT%\LYRConsole.bat %*
-exit /b 0
-:ReSetColor
-%LIB_BAT%\LYRConsole.bat %*
-exit /b 0
-:WriteNOTSET
-%LIB_BAT%\LYRConsole.bat %*
-exit /b 0
-:WriteDEBUG
-%LIB_BAT%\LYRConsole.bat %*
-exit /b 0
-:WriteINFO
-%LIB_BAT%\LYRConsole.bat %*
-exit /b 0
-:WriteWARNING
-%LIB_BAT%\LYRConsole.bat %*
-exit /b 0
-:WriteERROR
-%LIB_BAT%\LYRConsole.bat %*
-exit /b 0
-:WriteCRITICAL
-%LIB_BAT%\LYRConsole.bat %*
-exit /b 0
-:WriteBEGIN
-%LIB_BAT%\LYRConsole.bat %*
-exit /b 0
-:WriteEND
-%LIB_BAT%\LYRConsole.bat %*
-exit /b 0
-:WritePROCESS
-%LIB_BAT%\LYRConsole.bat %*
-exit /b 0
-:WriteDEBUGTEXT
-%LIB_BAT%\LYRConsole.bat %*
-exit /b 0
-:WriteTEXT
-%LIB_BAT%\LYRConsole.bat %*
-exit /b 0
-
-rem =================================================
-rem LYRSupport.bat
-rem =================================================
-:PressAnyKey
-%LIB_BAT%\LYRSupport.bat %*
-exit /b 0
-:CheckErrorlevel
-%LIB_BAT%\LYRSupport.bat %*
-exit /b 0
-
 rem =================================================
 rem LYRFileUtils.bat
 rem =================================================
@@ -1004,14 +1090,73 @@ exit /b 0
 :XCOPY_FILES
 %LIB_BAT%\LYRFileUtils.bat %*
 exit /b 0
-
+rem =================================================
+rem LYRLIB.bat
+rem =================================================
+:LYRLIB
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_LIB
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_POETRY
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_KIX
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_VAR_SCRIPT
+exit /b 0
+:SET_LIB
+:__SET_VAR_DEFAULT
+exit /b 0
+:SET_LIB
+:__SET_VAR_PROJECTS
+exit /b 0
+:SET_LIB
+:__SET_LOG
+exit /b 0
+:SET_LIB
+rem =================================================
+rem LYRLog.bat
+rem =================================================
+:LYRLog
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:__SETVarLog
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:__SHORTLevelName
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:__LOG_STR
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:AddLogConsole
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:AddLog
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:AddLogFile
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:StartLogFile
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:StopLogFile
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
 rem =================================================
 rem LYRParserINI.bat
 rem =================================================
-:GetINI
+:LYRParserINI
 %LIB_BAT%\LYRParserINI.bat %*
 exit /b 0
 :SetINI
+%LIB_BAT%\LYRParserINI.bat %*
+exit /b 0
+:GetINI
 %LIB_BAT%\LYRParserINI.bat %*
 exit /b 0
 :GetINIParametr
@@ -1020,5 +1165,82 @@ exit /b 0
 :GetFileParser
 %LIB_BAT%\LYRParserINI.bat %*
 exit /b 0
-
+rem =================================================
+rem LYRPY.bat
+rem =================================================
+:LYRPY
+%LIB_BAT%\LYRPY.bat %*
+exit /b 0
+:PY_ENV_START
+%LIB_BAT%\LYRPY.bat %*
+exit /b 0
+:PY_ENV_STOP
+%LIB_BAT%\LYRPY.bat %*
+exit /b 0
+rem =================================================
+rem LYRStrUtils.bat
+rem =================================================
+:LYRStrUtils
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
+:TrimLeft
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
+:TrimRight
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
+:Trim
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
+:Left
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
+:Mid
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
+:TrimQuotes
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
+:ListToStr
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
+rem =================================================
+rem LYRSupport.bat
+rem =================================================
+:LYRSupport
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:PressAnyKey
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:Pause
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:Read_P
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:Read_N
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:Read_F
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:GetDir
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:GetFile
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:FORCicle
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:GetSET
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:GetCMD
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:CheckErrorlevel
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
 rem =================================================
