@@ -1,0 +1,23 @@
+rem =================================================
+rem LYRUV.bat
+rem =================================================
+:LYRUV
+%LIB_BAT%\LYRUV.bat %*
+:UV_python_list
+%LIB_BAT%\LYRUV.bat %*
+:UV_python_install
+%LIB_BAT%\LYRUV.bat %*
+:UV_python_uninstall
+%LIB_BAT%\LYRUV.bat %*
+:UV_python_run
+%LIB_BAT%\LYRUV.bat %*
+:UV_python_upgrade
+%LIB_BAT%\LYRUV.bat %*
+:UV_python_find
+%LIB_BAT%\LYRUV.bat %*
+:UV_python_dir
+%LIB_BAT%\LYRUV.bat %*
+:UV_python_
+%LIB_BAT%\LYRUV.bat %*
+:UV_python_pin
+%LIB_BAT%\LYRUV.bat %*
