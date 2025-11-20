@@ -40,3 +40,9 @@ exit /b 0
 :GET_script_name
 %LIB_BAT%\LYRPY.bat %*
 exit /b 0
+:GET_requirements_file
+%LIB_BAT%\LYRPY.bat %*
+exit /b 0
+:GET_package_name
+%LIB_BAT%\LYRPY.bat %*
+exit /b 0
