@@ -28,3 +28,15 @@ exit /b 0
 :GET_python_dir
 %LIB_BAT%\LYRPY.bat %*
 exit /b 0
+:GET_projects_dir
+%LIB_BAT%\LYRPY.bat %*
+exit /b 0
+:GET_project_name
+%LIB_BAT%\LYRPY.bat %*
+exit /b 0
+:GET_script_dir
+%LIB_BAT%\LYRPY.bat %*
+exit /b 0
+:GET_script_name
+%LIB_BAT%\LYRPY.bat %*
+exit /b 0
