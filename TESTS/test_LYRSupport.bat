@@ -29,7 +29,6 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-    
     rem call :test_LYRSupport
     
     rem call :test_PressAnyKey
@@ -45,11 +44,17 @@ rem ----------------------------------------------------------------------------
     rem call :test_Read_N 1 2 3
 
     rem call :test_GetDir
+
     rem call :test_GetFile
+
     rem call :test_FORCicle
+
     rem call :test_GetSET
+
     rem call :test_GetCMD
+
     rem call :test_CheckErrorlevel
+    
     rem call :test_GET_Ox
 
     exit /b 0
@@ -219,7 +224,7 @@ rem beginfunction
     call :Read_N %* || exit /b 1
     echo Read_N:!Read_N!
 
-    pause
+    echo ....test_Read_N: Ok
 
     exit /b 0
 rem endfunction
@@ -233,9 +238,9 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GetDir || exit /b 1
+    call :GetDir D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\*.* ~f || exit /b 1
 
-    pause
+    echo ....test_GetDir: Ok
 
     exit /b 0
 rem endfunction
@@ -249,9 +254,9 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GetFile || exit /b 1
+    call :GetFile D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\*.* ~f || exit /b 1
 
-    pause
+    echo ....test_GetDir: Ok
 
     exit /b 0
 rem endfunction
@@ -265,9 +270,9 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :FORCicle || exit /b 1
+    call :FORCicle 1 1 10 || exit /b 1
 
-    pause
+    echo ....test_FORCicle: Ok
 
     exit /b 0
 rem endfunction
@@ -281,9 +286,9 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GetSET || exit /b 1
+    call :GetSET `set` "" || exit /b 1
 
-    pause
+    echo ....test_GetSET: Ok
 
     exit /b 0
 rem endfunction
@@ -297,9 +302,9 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GetCMD || exit /b 1
+    call :GetCMD `set` "=" "" || exit /b 1
 
-    pause
+    echo ....test_GetCMD: Ok
 
     exit /b 0
 rem endfunction
@@ -313,9 +318,15 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :CheckErrorlevel || exit /b 1
+    rem mkdir "!ADIRECTORY!"
+    echo ERRORLEVEL:!ERRORLEVEL!
+    if not !ERRORLEVEL! EQU 0 (
+        echo ERROR: Directory !ADIRECTORY! not created...
+        call :CheckErrorlevel CreateDir !ERRORLEVEL! 1
+        exit /b 1
+    )
 
-    pause
+    echo ....test_CheckErrorlevel: Ok
 
     exit /b 0
 rem endfunction
@@ -329,9 +340,13 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GET_Ox || exit /b 1
+    rem set O3=mp4
+    call :GET_Ox "O3" "Формат" "mp4" || exit /b 1
+    if defined O3 (
+        set OPTION=!OPTION! -!Ox_Name! !O3!
+    )
 
-    pause
+    echo ....test_GET_Ox: Ok
 
     exit /b 0
 rem endfunction

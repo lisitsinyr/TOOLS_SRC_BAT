@@ -29,26 +29,28 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-    call :test_LYRPY
+    rem call :test_LYRPY
+
     call :test_SET_project_dir
-    call :test_GET_project_dir
-    call :test_SET_projects_dir
-    call :test_GET_projects_dir
-    call :test_SET_project_name
-    call :test_GET_project_name
-    call :test_SET_script_dir
-    call :test_GET_script_dir
-    call :test_SET_script
-    call :test_GET_script
-    call :test_SET_venv_dir
-    call :test_GET_venv_dir
-    call :test_SET_python_dir
-    call :test_GET_python_dir
-    call :test_GET_requirements_file
-    call :test_GET_package_names
-    call :test_VENV_START
-    call :test_VENV_STOP
-    call :test_VENV_UPDATE
+
+    rem call :test_GET_project_dir
+    rem call :test_SET_projects_dir
+    rem call :test_GET_projects_dir
+    rem call :test_SET_project_name
+    rem call :test_GET_project_name
+    rem call :test_SET_script_dir
+    rem call :test_GET_script_dir
+    rem call :test_SET_script
+    rem call :test_GET_script
+    rem call :test_SET_venv_dir
+    rem call :test_GET_venv_dir
+    rem call :test_SET_python_dir
+    rem call :test_GET_python_dir
+    rem call :test_GET_requirements_file
+    rem call :test_GET_package_names
+    rem call :test_VENV_START
+    rem call :test_VENV_STOP
+    rem call :test_VENV_UPDATE
 
     exit /b 0
 :end
@@ -59,10 +61,13 @@ rem procedure LYRPY () -> None
 rem --------------------------------------------------------------------------------
 :test_LYRPY
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
+    call :LYRPY || exit /b 1
 
-    echo Ok
+    echo ....test_LYRPY: Ok
 
     exit /b 0
 rem endfunction
@@ -72,9 +77,14 @@ rem function SET_project_dir (Aproject_dir) -> project_dir
 rem --------------------------------------------------------------------------------
 :test_SET_project_dir
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    set project_dir=
+
+    call :SET_project_dir !project_dir! || exit /b 1
+
     exit /b 0
 rem endfunction
 
@@ -83,10 +93,14 @@ rem function GET_project_dir (Aproject_dir) -> project_dir
 rem --------------------------------------------------------------------------------
 :test_GET_project_dir
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
-    exit /b 0
+    set project_dir=
+
+    call :GET_project_dir !project_dir! || exit /b 1
+
 rem endfunction
 
 rem --------------------------------------------------------------------------------
@@ -94,9 +108,10 @@ rem function SET_projects_dir (Aprojects_dir) -> projects_dir
 rem --------------------------------------------------------------------------------
 :test_SET_projects_dir
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
     exit /b 0
 rem endfunction
 
@@ -105,9 +120,10 @@ rem function GET_projects_dir (projects_dir) -> projects_dir
 rem --------------------------------------------------------------------------------
 :test_GET_projects_dir
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
     exit /b 0
 rem endfunction
 
@@ -116,9 +132,10 @@ rem function SET_project_name (Aproject_name) -> project_name
 rem --------------------------------------------------------------------------------
 :test_SET_project_name
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
     exit /b 0
 rem endfunction
 
@@ -127,9 +144,10 @@ rem function GET_project_name (Aproject_name) -> project_name
 rem --------------------------------------------------------------------------------
 :test_GET_project_name
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
     exit /b 0
 rem endfunction
 
@@ -138,9 +156,10 @@ rem function SET_script_dir (Ascript_dir) -> script_dir
 rem --------------------------------------------------------------------------------
 :test_SET_script_dir
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
     exit /b 0
 rem endfunction
 
@@ -149,9 +168,10 @@ rem function GET_script_dir (Ascript_dir) -> script_dir
 rem --------------------------------------------------------------------------------
 :test_GET_script_dir
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
     exit /b 0
 rem endfunction
 
@@ -160,9 +180,10 @@ rem function SET_script (Ascript) -> script
 rem --------------------------------------------------------------------------------
 :test_SET_script
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
     exit /b 0
 rem endfunction
 
@@ -171,9 +192,10 @@ rem function GET_script (script) -> script
 rem --------------------------------------------------------------------------------
 :test_GET_script
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
     exit /b 0
 rem endfunction
 
@@ -182,11 +204,12 @@ rem function venv_dir (Aproject_dir Avenv_dir) -> venv_dir
 rem --------------------------------------------------------------------------------
 :test_SET_venv_dir
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
     call :SET_VENV_DIR !project_dir! !VENV_DIR! || exit /b 1
 
-    pause
     exit /b 0
 rem endfunction
 
@@ -195,9 +218,10 @@ rem function GET_venv_dir (project_dir venv_dir) -> venv_dir
 rem --------------------------------------------------------------------------------
 :test_GET_venv_dir
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
     exit /b 0
 rem endfunction
 
@@ -206,9 +230,10 @@ rem function SET_python_dir (Apython_dir) -> python_dir
 rem --------------------------------------------------------------------------------
 :test_SET_python_dir
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
     exit /b 0
 rem endfunction
 
@@ -217,9 +242,10 @@ rem function GET_python_dir (python_dir) -> python_dir
 rem --------------------------------------------------------------------------------
 :test_GET_python_dir
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
     exit /b 0
 rem endfunction
 
@@ -228,9 +254,10 @@ rem function GET_requirements_file (requirements_file) -> requirements_file
 rem --------------------------------------------------------------------------------
 :test_GET_requirements_file
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
     exit /b 0
 rem endfunction
 
@@ -239,9 +266,10 @@ rem function GET_package_names (package_names) -> package_names
 rem --------------------------------------------------------------------------------
 :test_GET_package_names
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
     exit /b 0
 rem endfunction
 
@@ -250,11 +278,12 @@ rem procedure VENV_START (Avenv_dir) -> None
 rem -----------------------------------------------
 :test_VENV_START
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
     call :VENV_START !VENV_DIR! || exit /b 1
  
-    pause
     exit /b 0
 rem endfunction
 
@@ -263,11 +292,12 @@ rem procedure VENV_STOP (Avenv_dir) -> None
 rem -----------------------------------------------
 :test_VENV_STOP
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
     call :VENV_STOP !VENV_DIR! || exit /b 1
 
-    pause
     exit /b 0
 rem endfunction
 
@@ -276,11 +306,12 @@ rem procedure VENV_UPDATE (Avenv_dir) -> None
 rem -----------------------------------------------
 :test_VENV_UPDATE
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
     rem call :VENV_UPDATE !VENV_DIR! || exit /b 1
 
-    pause
     exit /b 0
 rem endfunction
 

@@ -30,29 +30,30 @@ rem ----------------------------------------------------------------------------
     set /a LOG_FILE_ADD=0
 
     call :test_LYRUV
-    call :test_UV_python_list
-    call :test_UV_python_install
-    call :test_UV_python_uninstall
-    call :test_UV_python_run
-    call :test_UV_python_upgrade
-    call :test_UV_python_find
-    call :test_UV_python_dir
-    call :test_UV_python_version
-    call :test_UV_python_pin
-    call :test_UV_help
-    call :test_UV_help_cmd
-    call :test_UV_version
-    call :test_UV_self
-    call :test_UV_self_version
-    call :test_UV_install_self
-    call :test_UV_install_other
-    call :test_UV_update_self
-    call :test_UV_install_pip
-    call :test_UV_upgrade_pip
-    call :test_GET_python_version
-    call :test_GET_project_type
-    call :test_GET_package
-    call :test_GET_no-workspace
+
+    rem call :test_UV_python_list
+    rem call :test_UV_python_install
+    rem call :test_UV_python_uninstall
+    rem call :test_UV_python_run
+    rem call :test_UV_python_upgrade
+    rem call :test_UV_python_find
+    rem call :test_UV_python_dir
+    rem call :test_UV_python_version
+    rem call :test_UV_python_pin
+    rem call :test_UV_help
+    rem call :test_UV_help_cmd
+    rem call :test_UV_version
+    rem call :test_UV_self
+    rem call :test_UV_self_version
+    rem call :test_UV_install_self
+    rem call :test_UV_install_other
+    rem call :test_UV_update_self
+    rem call :test_UV_install_pip
+    rem call :test_UV_upgrade_pip
+    rem call :test_GET_python_version
+    rem call :test_GET_project_type
+    rem call :test_GET_package
+    rem call :test_GET_no-workspace
 
     exit /b 0
 :end
@@ -67,9 +68,13 @@ rem procedure LYRUV () -> None
 rem --------------------------------------------------------------------------------
 :test_LYRUV
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -79,9 +84,13 @@ rem procedure UV_python_list () -> None
 rem -----------------------------------------------
 :test_UV_python_list
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -91,10 +100,13 @@ rem procedure UV_python_install (Aversion) -> version
 rem -----------------------------------------------
 :test_UV_python_install
 rem beginfunction
-    set FUNCNAME=%0
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -104,9 +116,13 @@ rem procedure UV_python_uninstall (Aversion) -> version
 rem -----------------------------------------------
 :test_UV_python_uninstall
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -116,9 +132,13 @@ rem procedure UV_python_run () -> None
 rem -----------------------------------------------
 :test_UV_python_run
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -128,9 +148,13 @@ rem procedure UV_python_upgrade () -> None
 rem -----------------------------------------------
 :test_UV_python_upgrade
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -140,9 +164,13 @@ rem procedure UV_python_find (Aversion) -> version
 rem -----------------------------------------------
 :test_UV_python_find
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -152,9 +180,13 @@ rem procedure UV_python_dir () -> None
 rem -----------------------------------------------
 :test_UV_python_dir
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -164,9 +196,13 @@ rem procedure UV_python_version () -> None
 rem -----------------------------------------------
 :test_UV_python_version
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -176,9 +212,13 @@ rem procedure UV_python_pin (Aversion) -> version
 rem -----------------------------------------------
 :test_UV_python_pin
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -188,9 +228,13 @@ rem procedure UV_help () -> None
 rem -----------------------------------------------
 :test_UV_help
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -200,9 +244,13 @@ rem procedure UV_help_cmd () -> None
 rem -----------------------------------------------
 :test_UV_help_cmd
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -212,9 +260,13 @@ rem procedure UV_version () -> None
 rem -----------------------------------------------
 :test_UV_version
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -224,9 +276,13 @@ rem procedure UV_self () -> None
 rem -----------------------------------------------
 :test_UV_self
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -236,9 +292,13 @@ rem procedure UV_self_version () -> None
 rem -----------------------------------------------
 :test_UV_self_version
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -248,9 +308,13 @@ rem procedure UV_install_self () -> None
 rem -----------------------------------------------
 :test_UV_install_self
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -260,9 +324,13 @@ rem procedure UV_install_other () -> None
 rem -----------------------------------------------
 :test_UV_install_other
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -272,9 +340,13 @@ rem procedure UV_update_self () -> None
 rem -----------------------------------------------
 :test_UV_update_self
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -284,9 +356,13 @@ rem procedure UV_install_pip () -> None
 rem -----------------------------------------------
 :test_UV_install_pip
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -296,9 +372,13 @@ rem procedure UV_upgrade_pip () -> None
 rem -----------------------------------------------
 :test_UV_upgrade_pip
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -308,9 +388,13 @@ rem function GET_python_version (python_version) -> python_version
 rem --------------------------------------------------------------------------------
 :test_GET_python_version
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -320,9 +404,13 @@ rem function GET_project_type (project_type) -> project_type
 rem --------------------------------------------------------------------------------
 :test_GET_project_type
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -332,9 +420,13 @@ rem function GET_package (package) -> package
 rem --------------------------------------------------------------------------------
 :test_GET_package
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
@@ -344,9 +436,13 @@ rem function GET_no-workspace (no-workspace) -> no-workspace
 rem --------------------------------------------------------------------------------
 :test_GET_no-workspace
 rem beginfunction
+    echo ======================================
     echo FUNCNAME%0
+    echo --------------------------------------
 
-    pause
+    call :LYRUV || exit /b 1
+
+    echo ....test_LYRUV: Ok
 
     exit /b 0
 rem endfunction
