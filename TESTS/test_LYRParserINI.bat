@@ -29,7 +29,11 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-    call :test_LYRConsole
+    call :test_LYRParserINI
+    call :test_SetINI
+    call :test_GetINI
+    call :test_GetINIParametr
+    call :test_GetFileParser
 
     exit /b 0
 :end
@@ -55,10 +59,92 @@ rem beginfunction
     exit /b 0
 rem endfunction
 
-:SetINI
-:GetINI
-:GetINIParametr
-:GetFileParser
+rem --------------------------------------------------------------------------------
+rem procedure SetINI (AFileName, ASection, AParameter, AValue) -> None
+rem --------------------------------------------------------------------------------
+:test_SetINI
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    call :SetINI pyproject.toml tool.poetry name PATTERN_PY || exit /b 1
+
+    echo ....test_SetINI: Ok
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem procedure GetINI (AFileName, ASection, AParameter) -> None
+rem --------------------------------------------------------------------------------
+:test_GetINI
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    call :GetINI pyproject.toml || exit /b 1
+
+    echo ....test_GetINI: Ok
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem procedure GetINIPY (AFileName, ASection, AParameter) -> None
+rem --------------------------------------------------------------------------------
+:test_GetINIPY
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    call :GetINIPY || exit /b 1
+
+    echo ....test_GetINIPY: Ok
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem procedure GetINIParametr (AFileName, ASection, AParameter) -> None
+rem --------------------------------------------------------------------------------
+:test_GetINIParametr
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    rem call :GetINIParametr pyproject.toml tool.poetry name || exit /b 1
+    rem call :GetINIParametr pyproject.toml tool.poetry description || exit /b 1
+    call :GetINIParametr pyproject.toml tool.poetry || exit /b 1
+
+    rem call :GetFileParser test.txt ";" "1,2,3,4,5" "#" || exit /b 1
+    rem echo !token1!!token2!!token3!!token4!!token5!
+
+    echo ....test_GetINIParametr: Ok
+
+    exit /b 0
+rem endfunction
+rem --------------------------------------------------------------------------------
+rem procedure GetFileParser (AFileName Adelims Atokens Aeol) -> None
+rem --------------------------------------------------------------------------------
+:test_GetFileParser
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    call :GetFileParser pyproject.toml "=" "1,2" "#" || exit /b 1
+
+    rem call :GetFileParser test.txt ";" "1,2,3,4,5" "#" || exit /b 1
+    rem echo !token1!!token2!!token3!!token4!!token5!
+
+    echo ....test_GetFileParser: Ok
+
+    exit /b 0
+rem endfunction
 
 rem =================================================
 rem ‘”Õ ÷»» LIB
@@ -74,6 +160,9 @@ exit /b 0
 %LIB_BAT%\LYRParserINI.bat %*
 exit /b 0
 :GetINI
+%LIB_BAT%\LYRParserINI.bat %*
+exit /b 0
+:GetINIPY
 %LIB_BAT%\LYRParserINI.bat %*
 exit /b 0
 :GetINIParametr

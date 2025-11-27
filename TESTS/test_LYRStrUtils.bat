@@ -29,7 +29,14 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-    call :test_LYRConsole
+    call :test_LYRStrUtils
+    call :test_TrimLeft
+    call :test_TrimRight
+    call :test_Trim
+    call :test_Left
+    call :test_Mid
+    call :test_TrimQuotes
+    call :test_ListToStr
 
     exit /b 0
 :end
@@ -55,13 +62,120 @@ rem beginfunction
     exit /b 0
 rem endfunction
 
-:TrimLeft
-:TrimRight
-:Trim
-:Left
-:Mid
-:TrimQuotes
-:ListToStr
+rem --------------------------------------------------------------------------------
+rem function TrimLeft (ASTR) -> TrimLeft
+rem --------------------------------------------------------------------------------
+:test_TrimLeft
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    call :TrimLeft || exit /b 1
+
+    echo ....test_TrimLeft: Ok
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem function TrimRight (ASTR) -> TrimRight
+rem --------------------------------------------------------------------------------
+:test_TrimRight
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    call :TrimRight || exit /b 1
+
+    echo ....test_TrimRight: Ok
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem function Trim (ASTR) -> Trim
+rem --------------------------------------------------------------------------------
+:test_Trim
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    call :Trim || exit /b 1
+
+    echo ....test_Trim: Ok
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem function Left (ASTR, Alen) -> Left
+rem --------------------------------------------------------------------------------
+:test_Left
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    call :Left || exit /b 1
+
+    echo ....test_Left: Ok
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem function  Mid (ASTR, Aposition, Alen) -> Mid
+rem --------------------------------------------------------------------------------
+:test_Mid
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    call :Mid || exit /b 1
+
+    echo ....test_Mid: Ok
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem function TrimQuotes (ASTR) -> TrimQuotes
+rem --------------------------------------------------------------------------------
+:test_TrimQuotes
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    set s="test" 
+    echo !s!
+    call :TrimQuotes !s! || exit /b 1
+    echo !TrimQuotes!
+
+    echo ....test_TrimQuotes: Ok
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem function ListToStr (ASTR*) -> ListToStr
+rem --------------------------------------------------------------------------------
+:test_ListToStr
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    call :ListToStr || exit /b 1
+
+    echo ....test_ListToStr: Ok
+
+    exit /b 0
+rem endfunction
 
 rem =================================================
 rem ‘”Õ ÷»» LIB

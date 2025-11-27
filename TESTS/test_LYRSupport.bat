@@ -272,6 +272,9 @@ rem beginfunction
 
     call :FORCicle 1 1 10 || exit /b 1
 
+    rem call :GetFileParser test.txt ";" "1,2,3,4,5" "#" || exit /b 1
+    rem echo !token1!!token2!!token3!!token4!!token5!
+
     echo ....test_FORCicle: Ok
 
     exit /b 0
@@ -303,6 +306,7 @@ rem beginfunction
     echo --------------------------------------
 
     call :GetCMD `set` "=" "" || exit /b 1
+    call :GetCMD `dir` " " || exit /b 1
 
     echo ....test_GetCMD: Ok
 

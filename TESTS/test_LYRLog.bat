@@ -29,7 +29,12 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-    call :test_LYRConsole
+    call :test_LYRLog
+    call :test_AddLogConsole
+    call :test_AddLog
+    call :test_AddLogFile
+    call :test_StartLogFile
+    call :test_StopLogFile
 
     exit /b 0
 :end
@@ -40,17 +45,97 @@ rem ÔÓÍÊÖÈÈ
 rem =================================================
 
 rem --------------------------------------------------------------------------------
-rem procedure LYRConsole () -> None
+rem procedure LYRLog () -> None
 rem --------------------------------------------------------------------------------
-:test_LYRConsole
+:test_LYRLog
 rem beginfunction
     echo ======================================
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRConsole || exit /b 1
+    call :LYRLog || exit /b 1
 
-    echo ....test_LYRConsole: Ok
+    echo ....test_LYRLog: Ok
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem procedure AddLogConsole (s*) -> None
+rem --------------------------------------------------------------------------------
+:test_AddLogConsole
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    call :AddLogConsole || exit /b 1
+
+    echo ....test_AddLogConsole: Ok
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem procedure AddLog (Aout, Alevel, ...) -> None
+rem --------------------------------------------------------------------------------
+:test_AddLog
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    call :AddLog || exit /b 1
+
+    echo ....test_AddLog: Ok
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem procedure AddLogFile (Aout, AFileName) -> None
+rem --------------------------------------------------------------------------------
+:test_AddLogFile
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    call :AddLogFile || exit /b 1
+
+    echo ....test_AddLogFile: Ok
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem procedure StartLogFile () -> None
+rem --------------------------------------------------------------------------------
+:test_StartLogFile
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    call :StartLogFile || exit /b 1
+
+    echo ....test_StartLogFile: Ok
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem procedure StopLogFile () -> None
+rem --------------------------------------------------------------------------------
+:test_StopLogFile
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    call :StopLogFile || exit /b 1
+
+    echo ....test_StopLogFile: Ok
 
     exit /b 0
 rem endfunction
