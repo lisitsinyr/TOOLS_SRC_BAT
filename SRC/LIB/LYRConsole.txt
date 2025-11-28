@@ -4,15 +4,6 @@ rem =================================================
 :LYRConsoleINIT
 %LIB_BAT%\LYRConsole.bat %*
 exit /b 0
-:ConsoleTEST_00
-%LIB_BAT%\LYRConsole.bat %*
-exit /b 0
-:ConsoleTEST_01
-%LIB_BAT%\LYRConsole.bat %*
-exit /b 0
-:ConsoleTEST_02
-%LIB_BAT%\LYRConsole.bat %*
-exit /b 0
 :SetColor
 %LIB_BAT%\LYRConsole.bat %*
 exit /b 0

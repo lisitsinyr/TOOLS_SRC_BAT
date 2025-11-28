@@ -1,4 +1,4 @@
-@echo o8ff
+@echo off
 rem -------------------------------------------------------------------
 rem LYRConsole.bat
 rem -------------------------------------------------------------------
@@ -115,6 +115,18 @@ rem beginfunction
     set cDEBUGTEXT=!cS_BOLD! !cFG8_BLUE!
     set cTEXT=!cS_BOLD! !cFG8_YELLOW!
 
+    set lNOTSET=0
+    set lDEBUG=1
+    set lINFO=2
+    set lWARNING=3
+    set lERROR=4
+    set lCRITICAL=5
+    set lBEGIN=6
+    set lEND=7
+    set lPROCESS=8
+    set lDEBUGTEXT=9
+    set lTEXT=10
+
     rem -------------------------------------------------------------------
     rem VAR
     rem -------------------------------------------------------------------
@@ -125,12 +137,12 @@ rem beginfunction
 rem endfunction
 
 rem --------------------------------------------------------------------------------
-rem procedure ConsoleTEST_00 () - None
+rem procedure __ConsoleTEST_00 () - None
 rem --------------------------------------------------------------------------------
-:ConsoleTEST_00
+:__ConsoleTEST_00
 rem beginfunction
     set FUNCNAME=%0
-    set FUNCNAME=ConsoleTEST_00
+    set FUNCNAME=__ConsoleTEST_00
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
@@ -166,12 +178,12 @@ rem beginfunction
 rem endfunction
 
 rem --------------------------------------------------------------------------------
-rem procedure ConsoleTEST_01 () -> None
+rem procedure __ConsoleTEST_01 () -> None
 rem --------------------------------------------------------------------------------
-:ConsoleTEST_01
+:__ConsoleTEST_01
 rem beginfunction
     set FUNCNAME=%0
-    set FUNCNAME=ConsoleTEST_01
+    set FUNCNAME=__ConsoleTEST_01
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
@@ -207,12 +219,12 @@ rem beginfunction
 rem endfunction
     
 rem --------------------------------------------------------------------------------
-rem procedure ConsoleTEST_02 () -> None
+rem procedure __ConsoleTEST_02 () -> None
 rem --------------------------------------------------------------------------------
-:ConsoleTEST_02
+:__ConsoleTEST_02
 rem beginfunction
     set FUNCNAME=%0
-    set FUNCNAME=LYRConst
+    set FUNCNAME=__ConsoleTEST_02
     if defined DEBUG (
         echo DEBUG: procedure !FUNCNAME! ...
     )
@@ -382,18 +394,18 @@ rem beginfunction
     rem echo Read_N:!Read_N!
     if !Read_N! GTR 0 (
         if !Read_N! EQU 1 (
-            set LSTR=%1
+            set LSTR=%~1
         ) else (
             set n=1
             for %%a in ( %* ) do (
-                rem ECHO a:%%a
+                rem echo a:%%a
                 if !n! EQU 1 (
                     set LSTR=!LSTR!%%a
                 ) else (
                     if !n! EQU !Read_N! (
-                        set LSTR=!LSTR!!sEND!%%a
+                        set LSTR=!LSTR!!sEND!%%~a
                     ) else (
-                        set LSTR=!LSTR!^;%%a
+                        set LSTR=!LSTR!^;%%~a
                     )
                 )
                 set /A n+=1
@@ -401,13 +413,15 @@ rem beginfunction
             set LSTR=!sBEGIN!!LSTR!!sRESET!
         )
     )
-    echo LSTR:!LSTR!
+    rem echo !LSTR!
+
+    set __aListToStr=!LSTR!
 
     exit /b 0
 rem endfunction
 
 rem --------------------------------------------------------------------------------
-rem function __bListToStr (ASTR*) -> bListToStr
+rem function __bListToStr (ASTR*) -> __bListToStr
 rem --------------------------------------------------------------------------------
 :__bListToStr
 rem beginfunction
@@ -447,6 +461,8 @@ rem beginfunction
     )
     rem echo LSTR:!LSTR!
 
+    set __bListToStr=!LSTR!
+
     exit /b 0
 rem endfunction
 
@@ -467,7 +483,7 @@ rem beginfunction
     rem Чтобы избежать этого, обычно используют какую-либо внешнюю утилиту
     
     call :__bListToStr %* || exit /b 1
-    rem echo bListToStr:!bListToStr!
+    rem echo __bListToStr:!__bListToStr!
 
     rem <nul set /p strTemp=[33m
     rem <nul set /p strTemp=[!cFG8_WHITE!^;!cBG8_BLACK!m
@@ -527,8 +543,8 @@ rem beginfunction
     set !FUNCNAME!=
 
     call :ListToStr %* || exit /b 1
-
     rem echo !ListToStr!
+
     <nul set /p strTemp=!ListToStr!
 
     exit /b 0
@@ -564,7 +580,7 @@ rem beginfunction
     set !FUNCNAME!=
 
     call :__aListToStr %* || exit /b 1
-    rem echo !__aListToStr!
+    echo !__aListToStr!
 
     exit /b 0
 rem endfunction
@@ -582,39 +598,43 @@ rem beginfunction
     set !FUNCNAME!=
 
     set ALevel=%1
+    rem echo ALevel:!ALevel!
     set s=%2
+    rem echo s:!s!
 
-    if !ALevel! EQU !NOTSET! (
+    rem call :WriteLN !cNOTSET! test
+
+    if !ALevel! EQU !lNOTSET! (
         call :WriteLN !cNOTSET! !s!
     )
-    if !ALevel! EQU !DEBUG! (
+    if !ALevel! EQU !lDEBUG! (
         call :WriteLN !cDEBUG! !s!
     )
-    if !ALevel! EQU !INFO! (
+    if !ALevel! EQU !lINFO! (
         call :WriteLN !cINFO! !s!
     )
-    if !ALevel! EQU !WARNING! (
+    if !ALevel! EQU !lWARNING! (
         call :WriteLN !cWARNING! !s!
     )
-    if !ALevel! EQU !ERROR! (
+    if !ALevel! EQU !lERROR! (
         call :WriteLN !cERROR! !s!
     )
-    if !ALevel! EQU !CRITICAL! (
+    if !ALevel! EQU !lCRITICAL! (
         call :WriteLN !cCRITICAL! !s!
     )
-    if !ALevel! EQU !BEGIN! (
+    if !ALevel! EQU !lBEGIN! (
         call :WriteLN !cBEGIN! !s!
     )
-    if !ALevel! EQU !END! (
-        call :WriteLN !cEND! !s!
+    if !ALevel! EQU !lEND! (
+        call :WriteLN !lcEND! !s!
     )
-    if !ALevel! EQU !PROCESS! (
+    if !ALevel! EQU !lPROCESS! (
         call :WriteLN !cPROCESS! !s!
     )
-    if !ALevel! EQU !DEBUGTEXT! (
+    if !ALevel! EQU !lDEBUGTEXT! (
         call :WriteLN !cDEBUGTEXT! !s!
     )
-    if !ALevel! EQU !TEXT! (
+    if !ALevel! EQU !lTEXT! (
         call :WriteLN !cTEXT! !s!
     )
 
@@ -742,7 +762,7 @@ rem beginfunction
 rem endfunction
 
 rem -------------------------------------------------
-rem  WriteBEGIN (s*) -> None
+rem  WriteBEGIN (s) -> None
 rem -------------------------------------------------
 :WriteBEGIN
 rem beginfunction
@@ -754,8 +774,10 @@ rem beginfunction
     set !FUNCNAME!=
 
     call :SetColor !cBEGIN!
+
     call :ListToStr %* || exit /b 1
     call :Write !ListToStr!
+    
     call :ReSetColorCR
 
     exit /b 0

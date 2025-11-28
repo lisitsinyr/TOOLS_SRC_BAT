@@ -33,33 +33,26 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-    rem call :test_ConsoleTEST_00
-    
-    rem call :test_ConsoleTEST_01
-    
-    rem call :test_ConsoleTEST_02
-    
-    call :test_SetColor
-
-    rem call :test_ReSetColorCR
+    rem call :test_SetColor
     rem call :test_ReSetColor
+    rem call :test_ReSetColorCR
+    
     rem call :test_Write
     rem call :test_WriteCR
+    rem call :test_WriteLN
     
-    call :test_WriteLN
-    
-    rem call :test_WriteLOG
-    rem call :test_WriteNOTSET
-    rem call :test_WriteDEBUG
-    rem call :test_WriteINFO
-    rem call :test_WriteWARNING
-    rem call :test_WriteERROR
-    rem call :test_WriteCRITICAL
-    rem call :test_WriteBEGIN
-    rem call :test_WriteEND
-    rem call :test_WritePROCESS
-    rem call :test_WriteDEBUGTEXT
-    rem call :test_WriteTEXT
+    rem call :test_WriteLOG WriteLOG ...
+    call :test_WriteNOTSET WriteNOTSET ...
+    rem call :test_WriteDEBUG WriteDEBUG ...
+    rem call :test_WriteINFO WriteINFO ...
+    rem call :test_WriteWARNING WriteWARNING ...
+    rem call :test_WriteERROR WriteERROR ...
+    rem call :test_WriteCRITICAL WriteCRITICAL ...
+    rem call :test_WriteBEGIN WriteBEGIN ...
+    rem call :test_WriteEND WriteEND ...
+    rem call :test_WritePROCESS WritePROCESS ...
+    rem call :test_WriteDEBUGTEXT WriteDEBUGTEXT ...
+    rem call :test_WriteTEXT WriteTEXT ...
 
     exit /b 0
 :end
@@ -68,54 +61,6 @@ rem =================================================
 rem =================================================
 rem ФУНКЦИИ
 rem =================================================
-
-rem --------------------------------------------------------------------------------
-rem procedure ConsoleTEST_00 () -> None
-rem --------------------------------------------------------------------------------
-:test_ConsoleTEST_00
-rem beginfunction
-    echo ======================================
-    echo FUNCNAME%0
-    echo --------------------------------------
-
-    call :ConsoleTEST_00 || exit /b 1
-
-    echo ....test_ConsoleTEST_00: Ok
-
-    exit /b 0
-rem endfunction
-
-rem --------------------------------------------------------------------------------
-rem procedure ConsoleTEST_01 () -> None
-rem --------------------------------------------------------------------------------
-:test_ConsoleTEST_01
-rem beginfunction
-    echo ======================================
-    echo FUNCNAME%0
-    echo --------------------------------------
-
-    call :ConsoleTEST_01 || exit /b 1
-
-    echo ....test_ConsoleTEST_01: Ok
-
-    exit /b 0
-rem endfunction
-
-rem --------------------------------------------------------------------------------
-rem procedure ConsoleTEST_02 () -> None
-rem --------------------------------------------------------------------------------
-:test_ConsoleTEST_02
-rem beginfunction
-    echo ======================================
-    echo FUNCNAME%0
-    echo --------------------------------------
-
-    call :ConsoleTEST_02 || exit /b 1
-
-    echo ....test_ConsoleTEST_02: Ok
-
-    exit /b 0
-rem endfunction
 
 rem -------------------------------------------------
 rem  SetColor (AStyles, AFG8, ABG8, AFG256, ABG256) -> None
@@ -126,25 +71,15 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :SetColor !cTEXT! || exit /b 1
+    call :SetColor !cERROR!
+    call :ReSetColor
+
+    call :SetColor !cTEXT!
+    call :Write Тест Тест Тест
+    call :WriteCR
+    call :ReSetColor
 
     echo ....test_SetColor: Ok
-
-    exit /b 0
-rem endfunction
-
-rem --------------------------------------------------------------------------------
-rem procedure ReSetColorCR () -> None
-rem --------------------------------------------------------------------------------
-:test_ReSetColorCR
-rem beginfunction
-    echo ======================================
-    echo FUNCNAME%0
-    echo --------------------------------------
-
-    call :ReSetColorCR || exit /b 1
-
-    echo ....test_ReSetColorCR: Ok
 
     exit /b 0
 rem endfunction
@@ -158,9 +93,37 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :ReSetColor || exit /b 1
+    call :SetColor !cERROR!
+    call :ReSetColor
+
+    call :SetColor !cTEXT!
+    call :Write Тест Тест Тест
+    call :WriteCR
+    call :ReSetColor
 
     echo ....test_ReSetColor: Ok
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem procedure ReSetColorCR () -> None
+rem --------------------------------------------------------------------------------
+:test_ReSetColorCR
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    call :SetColor !cERROR!
+    call :ReSetColorCR
+
+    call :SetColor !cTEXT!
+    call :Write Тест Тест Тест
+    call :WriteCR
+    call :ReSetColorCR
+
+    echo ....test_ReSetColorCR: Ok
 
     exit /b 0
 rem endfunction
@@ -174,7 +137,11 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :Write || exit /b 1
+    call :Write Тест Тест Тест
+
+    call :SetColor !cTEXT!
+    call :Write Тест Тест Тест
+    call :ReSetColor
 
     echo ....test_Write: Ok
 
@@ -190,7 +157,15 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :WriteCR || exit /b 1
+    call :WriteCR
+
+    call :Write Тест Тест Тест
+    call :WriteCR
+
+    call :SetColor !cERROR!
+    call :Write Тест Тест Тест
+    call :WriteCR
+    call :ReSetColorCR
 
     echo ....test_WriteCR: Ok
 
@@ -206,6 +181,14 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    call :WriteLN "Тест Тест Тест"
+
+    call :SetColor !cERROR!
+    call :WriteLN "Тест Тест Тест"
+    call :ReSetColor
+
+    call :WriteLN !cS_BOLD! !cFG8_GREEN! !cBG8_WHITE! "WriteLN ..."
+    call :WriteLN !cS_BOLD! !cFG8_GREEN! !cBG8_WHITE! Тест
     call :WriteLN !cS_BOLD! !cFG8_GREEN! !cBG8_WHITE! "Тест Тест Тест"
 
     echo ....test_WriteLN: Ok
@@ -222,7 +205,17 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :WriteLOG || exit /b 1
+    call :WriteLOG !lNOTSET! "%*"
+    call :WriteLOG !lDEBUG! DEBUG
+    call :WriteLOG !lINFO! INFO
+    call :WriteLOG !lWARNING! WARNING
+    call :WriteLOG !lERROR! ERROR
+    call :WriteLOG !lCRITICAL! CRITICAL
+    call :WriteLOG !lBEGIN! BEGIN
+    call :WriteLOG !lEND! END
+    call :WriteLOG !lPROCESS! PROCESS
+    call :WriteLOG !lDEBUGTEXT! DEBUGTEXT
+    call :WriteLOG !lTEXT! TEXT
 
     echo ....test_WriteLOG: Ok
 
@@ -238,7 +231,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :WriteNOTSET || exit /b 1
+    call :WriteNOTSET %*
 
     echo ....test_WriteNOTSET: Ok
 
@@ -254,7 +247,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :WriteDEBUG || exit /b 1
+    call :WriteDEBUG %*
 
     echo ....test_WriteDEBUG: Ok
 
@@ -270,7 +263,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :WriteINFO || exit /b 1
+    call :WriteINFO %*
 
     echo ....test_WriteINFO: Ok
 
@@ -286,7 +279,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :WriteWARNING || exit /b 1
+    call :WriteWARNING %*
 
     echo ....test_WriteWARNING: Ok
 
@@ -302,7 +295,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :WriteERROR || exit /b 1
+    call :WriteERROR %*
 
     echo ....test_WriteERROR: Ok
 
@@ -318,7 +311,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :WriteCRITICAL || exit /b 1
+    call :WriteCRITICAL %*
 
     echo ....test_WriteCRITICAL: Ok
 
@@ -334,7 +327,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :WriteBEGIN || exit /b 1
+    call :WriteBEGIN %*
 
     echo ....test_WriteBEGIN: Ok
 
@@ -350,7 +343,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :WriteEND || exit /b 1
+    call :WriteEND %*
 
     echo ....test_WriteEND: Ok
 
@@ -366,7 +359,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :WritePROCESS || exit /b 1
+    call :WritePROCESS %*
 
     echo ....test_WritePROCESS: Ok
 
@@ -382,7 +375,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :WriteDEBUGTEXT || exit /b 1
+    call :WriteDEBUGTEXT %*
 
     echo ....test_WriteDEBUGTEXT: Ok
 
@@ -398,7 +391,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :WriteTEXT || exit /b 1
+    call :WriteTEXT %*
 
     echo ....test_WriteTEXT: Ok
 
@@ -480,6 +473,9 @@ exit /b 0
 %LIB_BAT%\LYRConsole.bat %*
 exit /b 0
 :WriteLOG
+%LIB_BAT%\LYRConsole.bat %*
+exit /b 0
+:WriteLOG2
 %LIB_BAT%\LYRConsole.bat %*
 exit /b 0
 :WriteNOTSET
