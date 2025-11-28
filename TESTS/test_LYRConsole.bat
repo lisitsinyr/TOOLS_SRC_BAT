@@ -17,6 +17,10 @@ setlocal enabledelayedexpansion
         echo ERROR: Каталог библиотеки LYR !LIB_BAT! не существует...
         exit /b 1
     )
+    rem -------------------------------------------------------------------
+    rem Настройка среды
+    rem -------------------------------------------------------------------
+    call :SET_LIB %~f0 || exit /b 1
 
 rem --------------------------------------------------------------------------------
 rem 
@@ -29,33 +33,37 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-    call :test_LYRConsole
+    rem call :test_ConsoleTEST_00
+    
+    rem call :test_ConsoleTEST_01
+    
+    rem call :test_ConsoleTEST_02
+    
+    rem call :test_FormatColorStr
 
-    call :test_LYRConsole
-    call :test_ConsoleTEST_00
-    call :test_ConsoleTEST_01
-    call :test_ConsoleTEST_02
-    call :test_FormatColorStr
     call :test_aListToStr
-    call :test_bListToStr
-    call :test_SetColor
-    call :test_ReSetColorCR
-    call :test_ReSetColor
-    call :test_Write
-    call :test_WriteCR
+    
+    rem call :test_bListToStr
+    rem call :test_SetColor
+    rem call :test_ReSetColorCR
+    rem call :test_ReSetColor
+    rem call :test_Write
+    rem call :test_WriteCR
+    
     call :test_WriteLN
-    call :test_WriteLOG
-    call :test_WriteNOTSET
-    call :test_WriteDEBUG
-    call :test_WriteINFO
-    call :test_WriteWARNING
-    call :test_WriteERROR
-    call :test_WriteCRITICAL
-    call :test_WriteBEGIN
-    call :test_WriteEND
-    call :test_WritePROCESS
-    call :test_WriteDEBUGTEXT
-    call :test_WriteTEXT
+    
+    rem call :test_WriteLOG
+    rem call :test_WriteNOTSET
+    rem call :test_WriteDEBUG
+    rem call :test_WriteINFO
+    rem call :test_WriteWARNING
+    rem call :test_WriteERROR
+    rem call :test_WriteCRITICAL
+    rem call :test_WriteBEGIN
+    rem call :test_WriteEND
+    rem call :test_WritePROCESS
+    rem call :test_WriteDEBUGTEXT
+    rem call :test_WriteTEXT
 
     exit /b 0
 :end
@@ -64,22 +72,6 @@ rem =================================================
 rem =================================================
 rem ФУНКЦИИ
 rem =================================================
-
-rem --------------------------------------------------------------------------------
-rem procedure LYRConsole () -> None
-rem --------------------------------------------------------------------------------
-:test_LYRConsole
-rem beginfunction
-    echo ======================================
-    echo FUNCNAME%0
-    echo --------------------------------------
-
-    call :LYRConsole || exit /b 1
-
-    echo ....test_LYRConsole: Ok
-
-    exit /b 0
-rem endfunction
 
 rem --------------------------------------------------------------------------------
 rem procedure ConsoleTEST_00 () -> None
@@ -138,7 +130,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :FormatColorStr || exit /b 1
+    call :FormatColorStr "test" "" "" "" "" "" ""  || exit /b 1
 
     echo ....test_FormatColorStr: Ok
 
@@ -154,7 +146,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :aListToStr || exit /b 1
+    call :aListToStr test || exit /b 1
 
     echo ....test_aListToStr: Ok
 
@@ -266,7 +258,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :WriteLN || exit /b 1
+    call :WriteLN !cS_BOLD! !cFG8_GREEN! !cBG8_WHITE! "Тест Тест Тест"
 
     echo ....test_WriteLN: Ok
 
@@ -470,9 +462,37 @@ rem ФУНКЦИИ LIB
 rem =================================================
 
 rem =================================================
+rem LYRLIB.bat
+rem =================================================
+:LYRLIBINIT
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_LIB
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_POETRY
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_KIX
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_VAR_SCRIPT
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_VAR_DEFAULT
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_VAR_PROJECTS
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_LOG
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+
+rem =================================================
 rem LYRConsole.bat
 rem =================================================
-:LYRConsole
+:LYRConsoleINIT
 %LIB_BAT%\LYRConsole.bat %*
 exit /b 0
 :ConsoleTEST_00

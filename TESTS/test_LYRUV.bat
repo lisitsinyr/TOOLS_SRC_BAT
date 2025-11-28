@@ -18,6 +18,11 @@ setlocal enabledelayedexpansion
         exit /b 1
     )
 
+    rem -------------------------------------------------------------------
+    rem Õ‡ÒÚÓÈÍ‡ ÒÂ‰˚
+    rem -------------------------------------------------------------------
+    call :SET_LIB %~f0 || exit /b 1
+
 rem --------------------------------------------------------------------------------
 rem 
 rem --------------------------------------------------------------------------------
@@ -28,8 +33,6 @@ rem ----------------------------------------------------------------------------
     set DEBUG=
 
     set /a LOG_FILE_ADD=0
-
-    call :test_LYRUV
 
     rem call :test_UV_python_list
     rem call :test_UV_python_install
@@ -63,22 +66,6 @@ rem =================================================
 rem ‘”Õ ÷»»
 rem =================================================
 
-rem --------------------------------------------------------------------------------
-rem procedure LYRUV () -> None
-rem --------------------------------------------------------------------------------
-:test_LYRUV
-rem beginfunction
-    echo ======================================
-    echo FUNCNAME%0
-    echo --------------------------------------
-
-    call :LYRUV || exit /b 1
-
-    echo ....test_LYRUV: Ok
-
-    exit /b 0
-rem endfunction
-
 rem -----------------------------------------------
 rem procedure UV_python_list () -> None
 rem -----------------------------------------------
@@ -88,7 +75,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -104,7 +91,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -120,7 +107,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -136,7 +123,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -152,7 +139,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -168,7 +155,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -184,7 +171,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -200,7 +187,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -216,7 +203,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -232,7 +219,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -248,7 +235,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -264,7 +251,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -280,7 +267,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -296,7 +283,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -312,7 +299,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -328,7 +315,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -344,7 +331,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -360,7 +347,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -376,7 +363,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -392,7 +379,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -408,7 +395,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -424,7 +411,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -440,7 +427,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUV || exit /b 1
+    call :LYRUVINIT || exit /b 1
 
     echo ....test_LYRUV: Ok
 
@@ -450,10 +437,39 @@ rem endfunction
 rem =================================================
 rem ‘”Õ ÷»» LIB
 rem =================================================
+
+rem =================================================
+rem LYRLIB.bat
+rem =================================================
+:LYRLIBINIT
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_LIB
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_POETRY
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_KIX
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_VAR_SCRIPT
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_VAR_DEFAULT
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_VAR_PROJECTS
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_LOG
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+
 rem =================================================
 rem LYRUV.bat
 rem =================================================
-:LYRUV
+:LYRUVINIT
 %LIB_BAT%\LYRUV.bat %*
 exit /b 0
 :UV_python_list

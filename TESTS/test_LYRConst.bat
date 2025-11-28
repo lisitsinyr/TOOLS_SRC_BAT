@@ -18,6 +18,11 @@ setlocal enabledelayedexpansion
         exit /b 1
     )
 
+    rem -------------------------------------------------------------------
+    rem Õ‡ÒÚÓÈÍ‡ ÒÂ‰˚
+    rem -------------------------------------------------------------------
+    call :SET_LIB %~f0 || exit /b 1
+
 rem --------------------------------------------------------------------------------
 rem 
 rem --------------------------------------------------------------------------------
@@ -29,8 +34,6 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-    call :test_LYRConst
-
     exit /b 0
 :end
 rem =================================================
@@ -39,29 +42,41 @@ rem =================================================
 rem ‘”Õ ÷»»
 rem =================================================
 
-rem --------------------------------------------------------------------------------
-rem procedure LYRConst () -> None
-rem --------------------------------------------------------------------------------
-:test_LYRConst
-rem beginfunction
-    echo ======================================
-    echo FUNCNAME%0
-    echo --------------------------------------
-
-    call :LYRConst || exit /b 1
-
-    echo ....test_LYRConst: Ok
-
-    exit /b 0
-rem endfunction
-
 rem =================================================
 rem ‘”Õ ÷»» LIB
 rem =================================================
 
 rem =================================================
+rem LYRLIB.bat
+rem =================================================
+:LYRLIBINIT
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_LIB
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_POETRY
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_KIX
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_VAR_SCRIPT
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_VAR_DEFAULT
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_VAR_PROJECTS
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_LOG
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+
+rem =================================================
 rem LYRConst.bat
 rem =================================================
-:LYRConst
+:LYRConstINIT
 %LIB_BAT%\LYRConst.bat %*
 exit /b 0

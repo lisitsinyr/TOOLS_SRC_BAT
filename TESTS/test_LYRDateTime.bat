@@ -18,6 +18,11 @@ setlocal enabledelayedexpansion
         exit /b 1
     )
 
+    rem -------------------------------------------------------------------
+    rem Õ‡ÒÚÓÈÍ‡ ÒÂ‰˚
+    rem -------------------------------------------------------------------
+    call :SET_LIB %~f0 || exit /b 1
+
 rem --------------------------------------------------------------------------------
 rem 
 rem --------------------------------------------------------------------------------
@@ -29,7 +34,6 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-    call :test_LYRDateTime
     call :test_YYYYMMDDHHMMSS
     call :test_DateTime
 
@@ -40,22 +44,6 @@ rem =================================================
 rem =================================================
 rem ‘”Õ ÷»»
 rem =================================================
-
-rem --------------------------------------------------------------------------------
-rem procedure LYRDateTime () -> None
-rem --------------------------------------------------------------------------------
-:test_LYRDateTime
-rem beginfunction
-    echo ======================================
-    echo FUNCNAME%0
-    echo --------------------------------------
-
-    call :LYRConsole || exit /b 1
-
-    echo ....test_LYRDateTime: Ok
-
-    exit /b 0
-rem endfunction
 
 rem --------------------------------------------------------------------------------
 rem function YYYYMMDDHHMMSS () -> YYYYMMDDHHMMSS
@@ -97,9 +85,37 @@ rem ‘”Õ ÷»» LIB
 rem =================================================
 
 rem =================================================
+rem LYRLIB.bat
+rem =================================================
+:LYRLIBINIT
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_LIB
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_POETRY
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_KIX
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_VAR_SCRIPT
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_VAR_DEFAULT
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_VAR_PROJECTS
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_LOG
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+
+rem =================================================
 rem LYRDateTime.bat
 rem =================================================
-:LYRDateTime
+:LYRDateTimeINIT
 %LIB_BAT%\LYRDateTime.bat %*
 exit /b 0
 :YYYYMMDDHHMMSS

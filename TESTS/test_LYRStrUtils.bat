@@ -18,6 +18,11 @@ setlocal enabledelayedexpansion
         exit /b 1
     )
 
+    rem -------------------------------------------------------------------
+    rem Õ‡ÒÚÓÈÍ‡ ÒÂ‰˚
+    rem -------------------------------------------------------------------
+    call :SET_LIB %~f0 || exit /b 1
+
 rem --------------------------------------------------------------------------------
 rem 
 rem --------------------------------------------------------------------------------
@@ -29,7 +34,6 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-    call :test_LYRStrUtils
     call :test_TrimLeft
     call :test_TrimRight
     call :test_Trim
@@ -45,22 +49,6 @@ rem =================================================
 rem =================================================
 rem ‘”Õ ÷»»
 rem =================================================
-
-rem --------------------------------------------------------------------------------
-rem procedure LYRStrUtils () -> None
-rem --------------------------------------------------------------------------------
-:test_LYRStrUtils
-rem beginfunction
-    echo ======================================
-    echo FUNCNAME%0
-    echo --------------------------------------
-
-    call :LYRStrUtils || exit /b 1
-
-    echo ....test_LYRStrUtils: Ok
-
-    exit /b 0
-rem endfunction
 
 rem --------------------------------------------------------------------------------
 rem function TrimLeft (ASTR) -> TrimLeft
@@ -182,9 +170,37 @@ rem ‘”Õ ÷»» LIB
 rem =================================================
 
 rem =================================================
+rem LYRLIB.bat
+rem =================================================
+:LYRLIBINIT
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_LIB
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_POETRY
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_KIX
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_VAR_SCRIPT
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_VAR_DEFAULT
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_VAR_PROJECTS
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_LOG
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+
+rem =================================================
 rem LYRStrUtils.bat
 rem =================================================
-:LYRStrUtils
+:LYRStrUtilsINIT
 %LIB_BAT%\LYRStrUtils.bat %*
 exit /b 0
 :TrimLeft

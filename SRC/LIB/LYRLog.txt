@@ -1,7 +1,7 @@
 rem =================================================
 rem LYRLog.bat
 rem =================================================
-:LYRLog
+:LYRLogINIT
 %LIB_BAT%\LYRLog.bat %*
 exit /b 0
 :__SETVarLog

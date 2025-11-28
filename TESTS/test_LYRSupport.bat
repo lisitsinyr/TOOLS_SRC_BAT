@@ -18,6 +18,11 @@ setlocal enabledelayedexpansion
         exit /b 1
     )
 
+    rem -------------------------------------------------------------------
+    rem Õ‡ÒÚÓÈÍ‡ ÒÂ‰˚
+    rem -------------------------------------------------------------------
+    call :SET_LIB %~f0 || exit /b 1
+
 rem --------------------------------------------------------------------------------
 rem 
 rem --------------------------------------------------------------------------------
@@ -29,8 +34,6 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-    rem call :test_LYRSupport
-    
     rem call :test_PressAnyKey
     
     rem call :test_Pause
@@ -64,24 +67,6 @@ rem =================================================
 rem =================================================
 rem ‘”Õ ÷»»
 rem =================================================
-
-rem --------------------------------------------------------------------------------
-rem procedure LYRSupport () -> None
-rem --------------------------------------------------------------------------------
-:test_LYRSupport
-rem beginfunction
-    echo ======================================
-    echo FUNCNAME%0
-    echo --------------------------------------
-
-    call :LYRSupport || exit /b 1
-
-    echo ....test_LYRSupport: Ok
-
-    rem pause
-
-    exit /b 0
-rem endfunction
 
 rem --------------------------------------------------------------------------------
 rem procedure PressAnyKey ()
@@ -360,9 +345,37 @@ rem ‘”Õ ÷»» LIB
 rem =================================================
 
 rem =================================================
+rem LYRLIB.bat
+rem =================================================
+:LYRLIBINIT
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_LIB
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_POETRY
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:SET_KIX
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_VAR_SCRIPT
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_VAR_DEFAULT
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_VAR_PROJECTS
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+:__SET_LOG
+%LIB_BAT%\LYRLIB.bat %*
+exit /b 0
+
+rem =================================================
 rem LYRSupport.bat
 rem =================================================
-:LYRSupport
+:LYRSupportINIT
 %LIB_BAT%\LYRSupport.bat %*
 exit /b 0
 :PressAnyKey

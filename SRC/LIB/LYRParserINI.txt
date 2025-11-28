@@ -1,7 +1,7 @@
 rem =================================================
 rem LYRParserINI.bat
 rem =================================================
-:LYRParserINI
+:LYRParserINIINIT
 %LIB_BAT%\LYRParserINI.bat %*
 exit /b 0
 :SetINI

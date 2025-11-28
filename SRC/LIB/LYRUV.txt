@@ -1,7 +1,7 @@
 rem =================================================
 rem LYRUV.bat
 rem =================================================
-:LYRUV
+:LYRUVINIT
 %LIB_BAT%\LYRUV.bat %*
 exit /b 0
 :UV_python_list

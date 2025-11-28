@@ -1,7 +1,7 @@
 rem =================================================
 rem LYRDEPLOY.bat
 rem =================================================
-:LYRDEPLOY
+:LYRDEPLOYINIT
 %LIB_BAT%\LYRDEPLOY.bat %*
 exit /b 0
 :CopyFilesFromPATTERN
