@@ -39,12 +39,8 @@ rem ----------------------------------------------------------------------------
     
     rem call :test_ConsoleTEST_02
     
-    rem call :test_FormatColorStr
+    call :test_SetColor
 
-    call :test_aListToStr
-    
-    rem call :test_bListToStr
-    rem call :test_SetColor
     rem call :test_ReSetColorCR
     rem call :test_ReSetColor
     rem call :test_Write
@@ -122,54 +118,6 @@ rem beginfunction
 rem endfunction
 
 rem -------------------------------------------------
-rem  FormatColorStr (AStyles, AFG8, ABG8, AFG256, ABG256, AESC, s) -> FormatColorStr
-rem -------------------------------------------------
-:test_FormatColorStr
-rem beginfunction
-    echo ======================================
-    echo FUNCNAME%0
-    echo --------------------------------------
-
-    call :FormatColorStr "test" "" "" "" "" "" ""  || exit /b 1
-
-    echo ....test_FormatColorStr: Ok
-
-    exit /b 0
-rem endfunction
-
-rem --------------------------------------------------------------------------------
-rem function aListToStr (ASTR*) -> aListToStr
-rem --------------------------------------------------------------------------------
-:test_aListToStr
-rem beginfunction
-    echo ======================================
-    echo FUNCNAME%0
-    echo --------------------------------------
-
-    call :aListToStr test || exit /b 1
-
-    echo ....test_aListToStr: Ok
-
-    exit /b 0
-rem endfunction
-
-rem --------------------------------------------------------------------------------
-rem function bListToStr (ASTR*) -> bListToStr
-rem --------------------------------------------------------------------------------
-:test_bListToStr
-rem beginfunction
-    echo ======================================
-    echo FUNCNAME%0
-    echo --------------------------------------
-
-    call :bListToStr || exit /b 1
-
-    echo ....test_bListToStr: Ok
-
-    exit /b 0
-rem endfunction
-
-rem -------------------------------------------------
 rem  SetColor (AStyles, AFG8, ABG8, AFG256, ABG256) -> None
 rem -------------------------------------------------
 :test_SetColor
@@ -178,7 +126,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :SetColor || exit /b 1
+    call :SetColor !cTEXT! || exit /b 1
 
     echo ....test_SetColor: Ok
 
@@ -504,13 +452,13 @@ exit /b 0
 :ConsoleTEST_02
 %LIB_BAT%\LYRConsole.bat %*
 exit /b 0
-:FormatColorStr
+:__FormatColorStr
 %LIB_BAT%\LYRConsole.bat %*
 exit /b 0
-:aListToStr
+:__aListToStr
 %LIB_BAT%\LYRConsole.bat %*
 exit /b 0
-:bListToStr
+:__bListToStr
 %LIB_BAT%\LYRConsole.bat %*
 exit /b 0
 :SetColor
