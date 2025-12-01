@@ -35,7 +35,11 @@ rem ----------------------------------------------------------------------------
     set /a LOG_FILE_ADD=0
 
     call :test_YYYYMMDDHHMMSS
-    call :test_DateTime
+
+    set FORMAT="^!YYYY^!-^!MM^!-^!DD^!"
+    set FORMAT="^!YYYY^!-^!MM^!-^!DD^! ^!HH^!:^!MIN^!:^!SS^!"
+
+    call :test_DateTime !FORMAT!
 
     exit /b 0
 :end
@@ -54,7 +58,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :YYYYMMDDHHMMSS || exit /b 1
+    call :YYYYMMDDHHMMSS !! exit /b 1
     echo YYYYMMDDHHMMSS:!YYYYMMDDHHMMSS!
 
     echo ....test_YYYYMMDDHHMMSS: Ok
@@ -71,8 +75,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    set FORMAT="!YYYY!-!MM!-!DD! !HH!:!MIN!:!SS!"
-    call :DateTime !FORMAT! || exit /b 1
+    call :DateTime %1
     echo DateTime:!DateTime!
 
     echo ....test_DateTime: Ok

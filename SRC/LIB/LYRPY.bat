@@ -96,12 +96,12 @@ rem beginfunction
     rem -------------------------------------------------------------------
     rem project_dir
     rem -------------------------------------------------------------------
-    if not defined Aproject_dir
+    if not defined Aproject_dir (
         call :CurrentDir || exit /b 1
         set Aproject_dir=!CurrentDir!
     )
 
-    call :GET_Ox "project_dir" "project_dir" "Aproject_dir" || exit /b 1
+    call :GET_Ox "project_dir" "project_dir" "!Aproject_dir!" || exit /b 1
     echo project_dir:!project_dir!
     if defined project_dir (
         call :SET_project_dir !project_dir! || exit /b 1
@@ -166,12 +166,12 @@ rem beginfunction
     rem -------------------------------------------------------------------
     rem projects_dir
     rem -------------------------------------------------------------------
-    if not defined Aprojects_dir
+    if not defined Aprojects_dir (
         call :CurrentDir || exit /b 1
         set Aprojects_dir=!CurrentDir!
     )
 
-    call :GET_Ox "projects_dir" "projects_dir" "!CurrentDir!" || exit /b 1
+    call :GET_Ox "projects_dir" "projects_dir" "!Aprojects_dir!" || exit /b 1
     echo projects_dir:!projects_dir!
     if defined projects_dir (
         call :SET_projects_dir !projects_dir! || exit /b 1
@@ -233,7 +233,7 @@ rem beginfunction
     call :GET_Ox "project_name" "project_name" "!Aproject_name!" || exit /b 1
     echo project_name:!project_name!
     if defined project_name (
-        call :SET_projects_name !project_name! || exit /b 1
+        call :SET_project_name !project_name! || exit /b 1
     )
 
     set GET_project_name=!project_name!
@@ -295,12 +295,12 @@ rem beginfunction
     rem -------------------------------------------------------------------
     rem script_dir
     rem -------------------------------------------------------------------
-    if not defined Ascript_dir
+    if not defined Ascript_dir (
         call :CurrentDir || exit /b 1
         set Aproject_dir=!CurrentDir!
     )
 
-    call :GET_Ox "script_dir" "script_dir" "Ascript_dir" || exit /b 1
+    call :GET_Ox "script_dir" "script_dir" "!Ascript_dir!" || exit /b 1
     echo script_dir:!script_dir!
     if defined script_dir (
         call :SET_script_dir !script_dir! || exit /b 1
@@ -367,7 +367,7 @@ rem beginfunction
     rem -------------------------------------------------------------------
     rem script_dir
     rem -------------------------------------------------------------------
-    call :GET_Ox "script" "script" "Ascript" || exit /b 1
+    call :GET_Ox "script" "script" "!Ascript!" || exit /b 1
     echo script:!script!
     if defined script (
         call :SET_script !script! || exit /b 1
@@ -380,7 +380,7 @@ rem beginfunction
 rem endfunction
 
 rem --------------------------------------------------------------------------------
-rem function venv_dir (Aproject_dir Avenv_dir) -> venv_dir
+rem function SET_venv_dir (Aproject_dir Avenv_dir) -> venv_dir
 rem --------------------------------------------------------------------------------
 :SET_venv_dir
 rem beginfunction
@@ -398,11 +398,13 @@ rem beginfunction
     rem echo Avenv_dir:!Avenv_dir!
 
     if defined Aproject_dir (
+
         if not exist !Aproject_dir! (
             set venv_dir=
             echo ERROR: Dir !Aproject_dir! not exist ...
             exit /b 1
         )
+
     ) else (
         set venv_dir=
         echo ERROR: Dir project_dir not defined ...
@@ -491,7 +493,7 @@ rem beginfunction
     rem -------------------------------------------------------------------
     rem venv_dir
     rem -------------------------------------------------------------------
-    if not defined Avenv_dir
+    if not defined Avenv_dir (
         if exist !project_dir!.venv\ (
             set venv_dir=!Aproject_dir!.venv\
         ) else (
@@ -531,26 +533,30 @@ rem beginfunction
     rem -------------------------------------------------------------------
     if defined Apython_dir (
 
-       if !Apython_dir!==3.13 (
+        if !Apython_dir!==3.13 (
             set python_dir=C:\Users\lyr\AppData\Local\Programs\Python\Python313\
         ) else (
             if !Apython_dir!==3.14 (
                 set python_dir=C:\Users\lyr\AppData\Local\Programs\Python\Python314\
             ) else (
-                set python_dir=
+                if not exist !python_dir! (
+                    set python_dir=
+                )
             )
         )
+        
         if defined python_dir (
             rem echo python_dir:!python_dir!
             if not exist !python_dir! (
-                set python_dir=
                 echo ERROR: Dir !python_dir! not exist ...
+                set python_dir=
                 exit /b 1
             )
         ) else (
-            echo ERROR: Dir !python_dir! not defined ...
+            echo ERROR: Dir python_dir not defined ...
             exit /b 1
         )
+
     ) else (
         echo ERROR: Apython_dir not defined ...
         exit /b 3
@@ -578,7 +584,7 @@ rem beginfunction
     rem -------------------------------------------------------------------
     rem python_dir
     rem -------------------------------------------------------------------
-    if not defined Apython_dir
+    if not defined Apython_dir (
         call :CurrentDir || exit /b 1
         set Apython_dir=3.13
     )
@@ -612,7 +618,7 @@ rem beginfunction
     rem -------------------------------------------------------------------
     rem requirements_file
     rem -------------------------------------------------------------------
-    call :GET_Ox "requirements_file" "requirements_file" "Arequirements_file" || exit /b 1
+    call :GET_Ox "requirements_file" "requirements_file" "!Arequirements_file!" || exit /b 1
     echo requirements_file:!requirements_file!
     if defined requirements_file (
         if exist !Ox! (
@@ -646,7 +652,7 @@ rem beginfunction
     rem -------------------------------------------------------------------
     rem package_names
     rem -------------------------------------------------------------------
-    call :GET_Ox "package_names" "package_names" "Apackage_names" || exit /b 1
+    call :GET_Ox "package_names" "package_names" "!Apackage_names!" || exit /b 1
     echo package_names:!package_names!
     if defined package_names (
         set package_names=!Ox!
@@ -673,23 +679,32 @@ rem beginfunction
     set Avenv_dir=%~1
     rem echo Avenv_dir:!Avenv_dir!
 
+    set VENV_START=
+
     if defined Avenv_dir (
+
         if not exist !Avenv_dir! (
             echo ERROR: Dir !Avenv_dir! not exist ...
             exit /b 1
         )
+
+        
         if not exist !Avenv_dir!Scripts\activate.bat (
             echo ERROR: File !Avenv_dir!Scripts\activate.bat not exist ...
             exit /b 2
         )
+        
         call !Avenv_dir!Scripts\activate.bat
+        set VENV_START=!Avenv_dir!
+
     ) else (
-        echo ERROR: Avenv_dir not defined ...
+        echo ERROR: Avenv_dir not defined ... VENV_START
         exit /b 3
     )
  
     exit /b 0
 rem endfunction
+
 
 rem -----------------------------------------------
 rem procedure VENV_STOP (Avenv_dir) -> None
@@ -706,6 +721,8 @@ rem beginfunction
     set Avenv_dir=%~1
     rem echo Avenv_dir:!Avenv_dir!
 
+    set VENV_STOP=
+
     if defined Avenv_dir (
         if not exist !Avenv_dir! (
             echo ERROR: Dir !Avenv_dir! not exist ...
@@ -716,8 +733,10 @@ rem beginfunction
             exit /b 2
         )
         call !Avenv_dir!Scripts\deactivate.bat
+        set VENV_STOP=!Avenv_dir!
+
     ) else (
-        echo ERROR: Avenv_dir not defined ...
+        echo ERROR: Avenv_dir not defined ... VENV_STOP
         exit /b 3
     )
 
@@ -739,11 +758,15 @@ rem beginfunction
     set Avenv_dir=%~1
     rem echo Avenv_dir:!Avenv_dir!
 
+    set VENV_UPDATE=
+
     if defined Avenv_dir (
-        if not exist !Avenv_dir!\ (
+        if not exist !Avenv_dir! (
             echo ERROR: Dir !Avenv_dir! not exist ...
             exit /b 1
         )
+
+        set VENV_UPDATE=!Avenv_dir!
 
         echo Install packeges requirements.txt ...
         rem pip freeze > !Avenv_dir!\requirements.txt
@@ -758,7 +781,7 @@ rem beginfunction
         )
 
     ) else (
-         echo ERROR: Avenv_dir not defined ...
+         echo ERROR: Avenv_dir not defined ... VENV_UPDATE
          exit /b 3
     )
 

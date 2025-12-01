@@ -13,15 +13,3 @@ exit /b 0
 :SET_KIX
 %LIB_BAT%\LYRLIB.bat %*
 exit /b 0
-:__SET_VAR_SCRIPT
-%LIB_BAT%\LYRLIB.bat %*
-exit /b 0
-:__SET_VAR_DEFAULT
-%LIB_BAT%\LYRLIB.bat %*
-exit /b 0
-:__SET_VAR_PROJECTS
-%LIB_BAT%\LYRLIB.bat %*
-exit /b 0
-:__SET_LOG
-%LIB_BAT%\LYRLIB.bat %*
-exit /b 0

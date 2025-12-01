@@ -25,7 +25,7 @@ exit /b 0
 :UV_python_dir
 %LIB_BAT%\LYRUV.bat %*
 exit /b 0
-:UV_python_
+:UV_python_version
 %LIB_BAT%\LYRUV.bat %*
 exit /b 0
 :UV_python_pin

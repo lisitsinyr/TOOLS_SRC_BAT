@@ -46,3 +46,6 @@ exit /b 0
 :XCOPY_FILES
 %LIB_BAT%\LYRFileUtils.bat %*
 exit /b 0
+:CHANGE_STR
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0

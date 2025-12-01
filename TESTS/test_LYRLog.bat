@@ -34,10 +34,33 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-    call :test_AddLogConsole
-    call :test_AddLog
-    call :test_AddLogFile
+    rem -------------------------------------------------------------------
+    rem LOG_FULLFILENAME - Файл журнала [каталог+имя+расширение]
+    rem -------------------------------------------------------------------
+    set LOG_FULLFILENAME=!LOG_DIR!\!LOG_FILENAME!.log
+    rem echo LOG_FULLFILENAME: !%LOG_FULLFILENAME!
+
+    set LOG_FILENAME=test
+    set LOG_FULLFILENAME=TEMP\!LOG_FILENAME!.log
+
     call :test_StartLogFile
+    
+    set GLevel=!INFO!
+    set GLevel=!ERROR!
+    call :test_AddLogConsole 1 2 3
+    
+    set out=!loAll!
+    set level=!ERROR!
+    call :test_AddLog !out! !level! 1 2 3
+    
+    rem set /a loStandard=0
+    rem set /a loTextFile=1
+    rem set /a loAll=2
+    set out=!loStandard!
+    set out=!loAll!
+    set FileName=WORK\requirements.txt
+    call :test_AddLogFile !out! !FileName!
+
     call :test_StopLogFile
 
     exit /b 0
@@ -57,7 +80,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :AddLogConsole || exit /b 1
+    call :AddLogConsole %* || exit /b 1
 
     echo ....test_AddLogConsole: Ok
 
@@ -73,7 +96,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :AddLog || exit /b 1
+    call :AddLog !loAll! !PROCESS! %3 %4 %5 %6 %7 %8 %9 test_AddLog ...
 
     echo ....test_AddLog: Ok
 
@@ -89,7 +112,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :AddLogFile || exit /b 1
+    call :AddLogFile %1 %2 || exit /b 1
 
     echo ....test_AddLogFile: Ok
 

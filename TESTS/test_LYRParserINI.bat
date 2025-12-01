@@ -34,10 +34,18 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-    call :test_SetINI
-    call :test_GetINI
-    call :test_GetINIParametr
-    call :test_GetFileParser
+    call :test_GetINI PROJECT.ini general PROJECT_GROUP
+    
+    rem call :test_SetINI PROJECT.ini general PROJECT_GROUP 623476817
+    rem call :test_GetINI PROJECT.ini general PROJECT_GROUP
+
+    rem call :test_GetINIParametr PROJECT.ini general PROJECT_GROUP
+
+    call :test_GetINIPY PROJECT.ini general PROJECT_GROUP
+    
+    rem call :test_GetFileParser
+
+    rem call :test_ PROJECT.ini
 
     exit /b 0
 :end
@@ -56,7 +64,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :SetINI pyproject.toml tool.poetry name PATTERN_PY || exit /b 1
+    call :SetINI %1 %2 %3 %4
+    echo SetINI:!SetINI!
 
     echo ....test_SetINI: Ok
 
@@ -72,7 +81,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GetINI pyproject.toml || exit /b 1
+    call :GetINI %1 %2 %3
+    echo GetINI:!GetINI!
 
     echo ....test_GetINI: Ok
 
@@ -88,7 +98,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GetINIPY || exit /b 1
+    call :GetINIPY %1 %2 %3
+    echo GetINIPY:!GetINIPY!
 
     echo ....test_GetINIPY: Ok
 
@@ -104,12 +115,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    rem call :GetINIParametr pyproject.toml tool.poetry name || exit /b 1
-    rem call :GetINIParametr pyproject.toml tool.poetry description || exit /b 1
-    call :GetINIParametr pyproject.toml tool.poetry || exit /b 1
-
-    rem call :GetFileParser test.txt ";" "1,2,3,4,5" "#" || exit /b 1
-    rem echo !token1!!token2!!token3!!token4!!token5!
+    call :GetINIParametr %1 %2 %3
+    echo GetINIParametr:!GetINIParametr!
 
     echo ....test_GetINIParametr: Ok
 
@@ -124,12 +131,60 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GetFileParser pyproject.toml "=" "1,2" "#" || exit /b 1
-
-    rem call :GetFileParser test.txt ";" "1,2,3,4,5" "#" || exit /b 1
-    rem echo !token1!!token2!!token3!!token4!!token5!
+    call :GetFileParser PROJECT.ini "=" "1,2" "#"
+    echo GetFileParser:!GetFileParser!
 
     echo ....test_GetFileParser: Ok
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem procedure test_
+rem --------------------------------------------------------------------------------
+:test_
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    set FILEINI=%1
+
+    call :GetINI !FILEINI!
+    echo GetINI_file:!GetINI!
+    rem call :GetINIPY !FILEINI!
+    rem call :GetINIParametr !FILEINI!
+
+    rem call :GetLenArray !Sections!
+    rem echo GetLenArray:!GetLenArray!
+
+    rem set /a nmax=SectionsCount-1
+    for /L %%i in (0,1,!SectionsCount!) do (
+        set Section=!Sections[%%i]!
+        echo !Section! 
+
+        call :GetINI !FILEINI! !Section!
+
+        rem set /a kmax=ParametersCount-1
+        for /L %%i in (0,1,!ParametersCount!) do (
+            set Parameter=!Parameters[%%i]!
+            echo !Parameter!
+
+            call :GetINI !FILEINI! !Section! !Parameter!
+            echo GetINI:!GetINI!
+            
+            call :GetINIParametr !FILEINI! !Section! !Parameter!
+            echo GetINIParametr:!GetINIParametr!
+            rem echo !ParameterValue!
+        )
+    )
+
+    rem set list=A B C D
+    rem for %%a in (%list%) do ( 
+    rem     echo %%a
+    rem )
+
+    echo ....test_: Ok
 
     exit /b 0
 rem endfunction

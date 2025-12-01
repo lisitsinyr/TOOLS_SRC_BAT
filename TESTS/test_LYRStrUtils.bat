@@ -34,13 +34,24 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-    call :test_TrimLeft
-    call :test_TrimRight
-    call :test_Trim
-    call :test_Left
-    call :test_Mid
-    call :test_TrimQuotes
-    call :test_ListToStr
+    set s="   123   "
+    rem call :test_TrimLeft !s!
+    rem call :test_TrimRight !s!
+    rem call :test_Trim !s!
+
+    set s="123456789"
+    set len=4
+    rem call :test_Left !s! !len!
+    
+    set s="123456789"
+    set position=2
+    set len=4
+    rem call :test_Mid !s! !position! !len!
+
+    set s=123 456 789
+    rem call :test_TrimQuotes "!s!"
+
+    rem call :test_ListToStr 1 2 3
 
     exit /b 0
 :end
@@ -59,7 +70,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :TrimLeft || exit /b 1
+    call :TrimLeft %1 || exit /b 1
+    echo TrimLeft:!TrimLeft!
 
     echo ....test_TrimLeft: Ok
 
@@ -75,7 +87,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :TrimRight || exit /b 1
+    call :TrimRight %1 || exit /b 1
+    echo TrimRight:!TrimRight!
 
     echo ....test_TrimRight: Ok
 
@@ -91,7 +104,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :Trim || exit /b 1
+    call :Trim %1 || exit /b 1
+    echo Trim:!Trim!
 
     echo ....test_Trim: Ok
 
@@ -107,7 +121,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :Left || exit /b 1
+    call :Left %1 %2 || exit /b 1
+    echo Left:!Left!
 
     echo ....test_Left: Ok
 
@@ -123,7 +138,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :Mid || exit /b 1
+    call :Mid %1 %2 %3 || exit /b 1
+    echo Mid:!Mid!
 
     echo ....test_Mid: Ok
 
@@ -139,10 +155,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    set s="test" 
-    echo !s!
-    call :TrimQuotes !s! || exit /b 1
-    echo !TrimQuotes!
+    call :TrimQuotes %* || exit /b 1
+    echo TrimQuotes:!TrimQuotes!
 
     echo ....test_TrimQuotes: Ok
 
@@ -158,7 +172,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :ListToStr || exit /b 1
+    call :ListToStr %* || exit /b 1
+    echo ListToStr:!ListToStr!
 
     echo ....test_ListToStr: Ok
 

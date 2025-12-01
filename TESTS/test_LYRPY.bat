@@ -34,26 +34,77 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-    call :test_SET_project_dir
+    set projects_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir
 
-    rem call :test_GET_project_dir
-    rem call :test_SET_projects_dir
-    rem call :test_GET_projects_dir
-    rem call :test_SET_project_name
-    rem call :test_GET_project_name
-    rem call :test_SET_script_dir
-    rem call :test_GET_script_dir
-    rem call :test_SET_script
-    rem call :test_GET_script
-    rem call :test_SET_venv_dir
-    rem call :test_GET_venv_dir
-    rem call :test_SET_python_dir
-    rem call :test_GET_python_dir
-    rem call :test_GET_requirements_file
-    rem call :test_GET_package_names
-    rem call :test_VENV_START
-    rem call :test_VENV_STOP
-    rem call :test_VENV_UPDATE
+    rem call :test_SET_projects_dir !projects_dir!
+    rem call :test_GET_projects_dir !projects_dir!
+
+rem pause
+
+    set project_name=projectdir
+
+    rem call :test_SET_project_name !projectdir!
+    rem call :test_GET_project_name !projectdir!
+
+rem pause
+
+    set project_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\projectdir
+
+    rem call :test_SET_project_dir !project_dir!
+    rem call :test_GET_project_dir !project_dir!
+
+rem pause
+
+    set script_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\scriptdir
+
+    rem call :test_SET_script_dir !script_dir!
+    rem call :test_GET_script_dir !script_dir!
+
+rem pause
+
+    set script=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\scriptdir\HelloWorld.py
+
+    rem call :test_SET_script !script!
+    rem call :test_GET_script !script!
+
+rem pause
+
+    set project_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\projectdir
+    set venv_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\projectdir
+    rem call :test_SET_venv_dir !project_dir! !venv_dir!
+    rem call :test_GET_venv_dir !project_dir! !venv_dir!
+
+rem pause
+
+    set python_dir=3.13
+    rem call :test_SET_python_dir !python_dir!
+    rem call :test_GET_python_dir !python_dir!
+
+rem pause
+
+    set requirements_file=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\projectdir\requirements_file
+    rem call :test_GET_requirements_file !requirements_file!
+
+rem pause
+
+    set package_names=a b c
+    rem call :test_GET_package_names !package_names!
+
+rem pause
+
+    set VENV_DIR=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Python\VENV\P313\
+    set venv_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\projectdir
+    call :test_VENV_START !VENV_DIR!
+
+rem pause
+
+    call :test_VENV_STOP !VENV_DIR!
+
+rem pause
+
+    call :test_VENV_UPDATE !VENV_DIR!
+
+rem pause
 
     exit /b 0
 :end
@@ -68,9 +119,12 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    set project_dir=
+    set project_dir=%1
 
     call :SET_project_dir !project_dir! || exit /b 1
+    echo SET_project_dir:!SET_project_dir!
+
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -84,10 +138,14 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    set project_dir=
+    set project_dir=%1
 
     call :GET_project_dir !project_dir! || exit /b 1
+    echo GET_project_dir:!GET_project_dir!
 
+    echo ....%0: Ok
+
+    exit /b 0
 rem endfunction
 
 rem --------------------------------------------------------------------------------
@@ -98,6 +156,13 @@ rem beginfunction
     echo ======================================
     echo FUNCNAME%0
     echo --------------------------------------
+
+    set projects_dir=%1
+
+    call :SET_projects_dir !projects_dir! || exit /b 1
+    echo SET_projects_dir:!SET_projects_dir!
+
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -111,6 +176,13 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    set projects_dir=%1
+
+    call :GET_projects_dir !projects_dir! || exit /b 1
+    echo GET_projects_dir:!GET_projects_dir!
+
+    echo ....%0: Ok
+
     exit /b 0
 rem endfunction
 
@@ -122,6 +194,13 @@ rem beginfunction
     echo ======================================
     echo FUNCNAME%0
     echo --------------------------------------
+
+    set project_name=%1
+
+    call :SET_project_name !project_name! || exit /b 1
+    echo SET_project_name:!SET_project_name!
+
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -135,6 +214,13 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    set project_name=%1
+
+    call :GET_project_name !project_name! || exit /b 1
+    echo GET_project_name:!GET_project_name!
+
+    echo ....%0: Ok
+
     exit /b 0
 rem endfunction
 
@@ -146,6 +232,13 @@ rem beginfunction
     echo ======================================
     echo FUNCNAME%0
     echo --------------------------------------
+
+    set script_dir=%1
+
+    call :SET_script_dir !script_dir! || exit /b 1
+    echo SET_script_dir:!SET_script_dir!
+
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -159,6 +252,13 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    set script_dir=%1
+
+    call :GET_script_dir !script_dir! || exit /b 1
+    echo GET_script_dir:!GET_script_dir!
+
+    echo ....%0: Ok
+
     exit /b 0
 rem endfunction
 
@@ -170,6 +270,13 @@ rem beginfunction
     echo ======================================
     echo FUNCNAME%0
     echo --------------------------------------
+
+    set script=%1
+
+    call :SET_script !script! || exit /b 1
+    echo SET_script:!SET_script!
+
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -183,6 +290,13 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    set script=%1
+
+    call :GET_script !script! || exit /b 1
+    echo GET_script:!GET_script!
+
+    echo ....%0: Ok
+
     exit /b 0
 rem endfunction
 
@@ -195,7 +309,13 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    set project_dir=%1
+    set VENV_DIR=%2
+
     call :SET_VENV_DIR !project_dir! !VENV_DIR! || exit /b 1
+    echo SET_venv_dir:!SET_venv_dir!
+
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -209,6 +329,14 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    set project_dir=%1
+    set VENV_DIR=%2
+
+    call :GET_VENV_DIR !project_dir! !VENV_DIR! || exit /b 1
+    echo GET_venv_dir:!GET_venv_dir!
+
+    echo ....%0: Ok
+
     exit /b 0
 rem endfunction
 
@@ -220,6 +348,13 @@ rem beginfunction
     echo ======================================
     echo FUNCNAME%0
     echo --------------------------------------
+
+    set python_dir=%1
+
+    call :SET_python_dir !python_dir! || exit /b 1
+    echo SET_python_dir:!SET_python_dir!
+
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -233,6 +368,13 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    set python_dir=%1
+
+    call :GET_python_dir !python_dir! || exit /b 1
+    echo GET_python_dir:!GET_python_dir!
+
+    echo ....%0: Ok
+
     exit /b 0
 rem endfunction
 
@@ -244,6 +386,13 @@ rem beginfunction
     echo ======================================
     echo FUNCNAME%0
     echo --------------------------------------
+
+    set requirements_file=%1
+
+    call :GET_requirements_file !requirements_file!
+    echo GET_requirements_file:!GET_requirements_file!
+
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -257,6 +406,13 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    set package_names=%*
+
+    call :GET_package_names !package_names!
+    echo GET_package_names:!GET_package_names!
+
+    echo ....%0: Ok
+
     exit /b 0
 rem endfunction
 
@@ -269,7 +425,12 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    set VENV_DIR=%1
+
     call :VENV_START !VENV_DIR! || exit /b 1
+    echo VENV_START:!VENV_START!
+
+    echo ....%0: Ok
  
     exit /b 0
 rem endfunction
@@ -283,7 +444,12 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    set VENV_DIR=%1
+
     call :VENV_STOP !VENV_DIR! || exit /b 1
+    echo VENV_STOP:!VENV_STOP!
+
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -297,7 +463,12 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    set VENV_DIR=%1
+
     rem call :VENV_UPDATE !VENV_DIR! || exit /b 1
+    echo VENV_UPDATE:!VENV_UPDATE!
+
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction

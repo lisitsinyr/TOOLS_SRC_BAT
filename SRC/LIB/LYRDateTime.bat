@@ -38,6 +38,31 @@ rem beginfunction
     exit /b 0
 rem endfunction
 
+
+rem --------------------------------------------------------------------------------
+rem function __GET_datetime () -> None
+rem --------------------------------------------------------------------------------
+:__GET_datetime
+rem beginfunction
+    set FUNCNAME=%0
+    set FUNCNAME=YYYYMMDDHHMMSS
+    if defined DEBUG (
+        echo DEBUG: procedure !FUNCNAME! ...
+    )
+    set !FUNCNAME!=
+
+    set YYYY=%date:~6,4%
+    set MM=%date:~3,2%
+    set DD=%date:~0,2%
+    set HH=%TIME:~0,2%
+    set MIN=%TIME:~3,2%
+    set SS=%TIME:~6,2%
+
+    set __GET_datetime=
+
+    exit /b 0
+rem endfunction
+
 rem --------------------------------------------------------------------------------
 rem function YYYYMMDDHHMMSS () -> YYYYMMDDHHMMSS
 rem --------------------------------------------------------------------------------
@@ -50,15 +75,14 @@ rem beginfunction
     )
     set !FUNCNAME!=
 
-    set LFORMAT="!YYYY!!MM!!DD!!HH!!MIN!!SS!"
-    call :DateTime !LFORMAT! !! exit /b 1
+    call :__GET_datetime
 
-    rem set FUNCNAME=YYYYMMDDHHMMSS
-    rem set YYYYMMDDHHMMSS=!DateTime!
-    rem set !FUNCNAME!=!DateTime!
+    set LFORMAT=^!YYYY^!^!MM^!^!DD^!^!HH^!^!MIN^!^!SS^!
+    set LFORMAT=!YYYY!!MM!!DD!!HH!!MIN!!SS!
+    rem echo LFORMAT:!LFORMAT!
+
+    set YYYYMMDDHHMMSS=!LFORMAT!
     rem echo YYYYMMDDHHMMSS:!YYYYMMDDHHMMSS!
-
-    set YYYYMMDDHHMMSS=!DateTime!
 
     exit /b 0
 rem endfunction
@@ -75,21 +99,17 @@ rem beginfunction
     )
     set !FUNCNAME!=
 
-    set YYYY=%date:~6,4%
-    set MM=%date:~3,2%
-    set DD=%date:~0,2%
-    set HH=%TIME:~0,2%
-    set MIN=%TIME:~3,2%
-    set SS=%TIME:~6,2%
+    call :__GET_datetime
 
     set AFORMAT=%~1
-    rem echo AFORMAT:!AFORMAT!
+    echo AFORMAT:!AFORMAT!
 
-    rem set DateTime=!AFORMAT!
-    rem set !FUNCNAME!=!AFORMAT!
-    rem echo DateTime:!DateTime!
+    if not defined AFORMAT (
+        set AFORMAT=!YYYY!-!MM!-!DD! !HH!:!MIN!:!SS!
+    )
 
     set DateTime=!AFORMAT!
+    rem echo DateTime:!DateTime!
 
     exit /b 0
 rem endfunction

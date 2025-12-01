@@ -35,28 +35,117 @@ rem ----------------------------------------------------------------------------
     set /a LOG_FILE_ADD=0
 
     rem call :test_UV_python_list
-    rem call :test_UV_python_install
-    rem call :test_UV_python_uninstall
+
+rem pause
+
+    rem call :test_UV_python_install 3.13
+
+rem pause
+
+    rem call :test_UV_python_uninstall 3.10
+
+rem pause
+
     rem call :test_UV_python_run
+
+rem pause
+
     rem call :test_UV_python_upgrade
-    rem call :test_UV_python_find
+
+rem pause
+
+    rem call :test_UV_python_find 3.13
+
+rem pause
+
     rem call :test_UV_python_dir
+
+rem pause
+
     rem call :test_UV_python_version
-    rem call :test_UV_python_pin
+
+rem pause
+
+    rem call :test_UV_python_pin 3.13
+
+rem pause
+
     rem call :test_UV_help
-    rem call :test_UV_help_cmd
+
+rem pause
+
+    rem auth
+    rem run
+    rem init
+    rem add
+    rem remove
+    rem version
+    rem sync
+    rem lock
+    rem export
+    rem tree
+    rem format
+    rem tool
+    rem python
+    rem pip
+    rem venv
+    rem build
+    rem publish
+    rem cache
+    rem self
+    rem generate-shell-completion
+
+    rem call :test_UV_help_cmd init
+
+rem pause
+
     rem call :test_UV_version
+
+rem pause
+
     rem call :test_UV_self
+
+rem pause
+
     rem call :test_UV_self_version
-    rem call :test_UV_install_self
+
+rem pause
+
+    call :test_UV_install_self
+
+pause
+
     rem call :test_UV_install_other
+
+pause
+
     rem call :test_UV_update_self
+
+pause
+
     rem call :test_UV_install_pip
+
+pause
+
     rem call :test_UV_upgrade_pip
+
+pause
+
     rem call :test_GET_python_version
+
+pause
+
     rem call :test_GET_project_type
+
+pause
+
     rem call :test_GET_package
+
+pause
+
     rem call :test_GET_no-workspace
+
+pause
 
     exit /b 0
 :end
@@ -75,9 +164,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :UV_python_list || exit /b 1
+    echo UV_python_list:!UV_python_list!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -91,9 +181,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :UV_python_install %1 || exit /b 1
+    echo UV_python_install:!UV_python_install!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -107,9 +198,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :UV_python_uninstall %1 || exit /b 1
+    echo UV_python_uninstall:!UV_python_uninstall!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -123,9 +215,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :UV_python_run || exit /b 1
+    echo UV_python_run:!UV_python_run!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -139,9 +232,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :UV_python_upgrade || exit /b 1
+    echo UV_python_upgrade:!UV_python_upgrade!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -155,9 +249,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :UV_python_find %1 || exit /b 1
+    echo UV_python_find:!UV_python_find!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -171,9 +266,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :UV_python_dir || exit /b 1
+    echo UV_python_dir:!UV_python_dir!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -187,9 +283,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :UV_python_version || exit /b 1
+    echo UV_python_version:!UV_python_version!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -203,9 +300,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :UV_python_pin %1 || exit /b 1
+    echo UV_python_pin:!UV_python_pin!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -219,9 +317,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :UV_help || exit /b 1
+    echo UV_help:!UV_help!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -235,9 +334,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :UV_help_cmd %1 || exit /b 1
+    echo UV_help_cmd:!UV_help_cmd!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -251,9 +351,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :UV_version || exit /b 1
+    echo UV_version:!UV_version!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -267,9 +368,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :UV_self || exit /b 1
+    echo UV_self:!UV_self!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -283,9 +385,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :UV_self_version || exit /b 1
+    echo UV_self_version:!UV_self_version!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -299,9 +402,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :UV_install_self || exit /b 1
+    echo UV_install_self:!UV_install_self!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -315,9 +419,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :UV_install_other || exit /b 1
+    echo UV_install_other:!UV_install_other!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -331,9 +436,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :UV_update_self || exit /b 1
+    echo UV_update_self:!UV_update_self!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -347,9 +453,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :UV_install_pip || exit /b 1
+    echo UV_install_pip:!UV_install_pip!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -363,9 +470,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :UV_upgrade_pip || exit /b 1
+    echo UV_upgrade_pip:!UV_upgrade_pip!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -379,9 +487,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :GET_python_version || exit /b 1
+    echo GET_python_version:!GET_python_version!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -395,9 +504,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :GET_project_type || exit /b 1
+    echo GET_project_type:!GET_project_type!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -411,9 +521,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :GET_package || exit /b 1
+    echo GET_package:!GET_package!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -427,9 +538,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRUVINIT || exit /b 1
+    call :GET_no-workspace || exit /b 1
+    echo GET_no-workspace:!GET_no-workspace!
 
-    echo ....test_LYRUV: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -493,7 +605,7 @@ exit /b 0
 :UV_python_dir
 %LIB_BAT%\LYRUV.bat %*
 exit /b 0
-:UV_python_
+:UV_python_version
 %LIB_BAT%\LYRUV.bat %*
 exit /b 0
 :UV_python_pin

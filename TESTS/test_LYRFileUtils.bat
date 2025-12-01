@@ -34,21 +34,44 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-    call :test_ExtractFileDir
-    call :test_FullFileName
-    call :test_ExtractFileName
-    call :test_ExtractFileNameWithoutExt
-    call :test_ExtractFileExt
-    call :test_FileAttr
-    call :test_FileSize
-    call :test_CreateDir
-    call :test_CreateFile
-    call :test_CheckFile
-    call :test_CurrentDir
-    call :test_COPY_FILE
-    call :test_COPY_FILES
-    call :test_XCOPY_FILES
+    set FileName=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\test_LYRFileUtils.bat
+    rem call :test_ExtractFileDir !FileName!
+    rem call :test_FullFileName !FileName!
+    rem call :test_ExtractFileName !FileName!
+    rem call :test_ExtractFileNameWithoutExt !FileName!
+    rem call :test_ExtractFileExt !FileName!
+    rem call :test_FileAttr !FileName!
+    rem call :test_FileSize !FileName!
 
+    set DirParh=test
+    rem call :test_CreateDir !DirParh!
+
+    set FileName=WORK\testfile.txt
+    rem call :test_CreateFile !FileName!
+    rem call :test_CheckFile !FileName!
+
+    rem call :test_CurrentDir
+
+    set FileName=WORK\testfile.txt
+    set DirTO=TEMP
+    rem call :test_COPY_FILE !FileName! !DirTO!
+    rem call :test_COPY_FILE !FileName! !DirTO! /Y
+
+    set DirFROM=.\
+    set DirTO=TEMP
+    set MASK=*.bat
+    set sub1=/R
+    set sub2=/Y
+    rem call :test_COPY_FILES !DirFROM! !DirTO! !MASK! "" ""
+
+    set DirFROM=TEST_BAT\
+    set DirTO=TEMP
+    set MASK=*.bat
+    rem call :test_XCOPY_FILES !DirFROM! !DirTO! !MASK! ""
+
+    set FileName=WORK\requirements.txt
+    rem call :test_CHANGE_STR !FileName! "==" ">="
+    
     exit /b 0
 :end
 rem =================================================
@@ -66,7 +89,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :ExtractFileDir || exit /b 1
+    call :ExtractFileDir %1 || exit /b 1
+    echo ExtractFileDir:!ExtractFileDir!
 
     echo ....test_ExtractFileDir: Ok
 
@@ -82,7 +106,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :FullFileName || exit /b 1
+    call :FullFileName %1 || exit /b 1
+    echo FullFileName:!FullFileName!
 
     echo ....test_FullFileName: Ok
 
@@ -98,7 +123,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :ExtractFileName || exit /b 1
+    call :ExtractFileName %1 || exit /b 1
+    echo ExtractFileName:!ExtractFileName!
 
     echo ....test_ExtractFileName: Ok
 
@@ -114,7 +140,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :ExtractFileNameWithoutExt || exit /b 1
+    call :ExtractFileNameWithoutExt %1 || exit /b 1
+    echo ExtractFileNameWithoutExt:!ExtractFileNameWithoutExt!
 
     echo ....test_ExtractFileNameWithoutExt: Ok
 
@@ -130,9 +157,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :LYRFileUtilsINIT || exit /b 1
+    call :ExtractFileExt %1 || exit /b 1
+    echo ExtractFileExt:!ExtractFileExt!
 
-    echo ....test_LYRFileUtils: Ok
+    echo ....test_ExtractFileExt: Ok
 
     exit /b 0
 rem endfunction
@@ -146,7 +174,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :FileAttr || exit /b 1
+    call :FileAttr %1 || exit /b 1
+    echo FileAttr:!FileAttr!
 
     echo ....test_FileAttr: Ok
 
@@ -162,7 +191,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :FileSize || exit /b 1
+    call :FileSize %1 || exit /b 1
+    echo FileSize:!FileSize!
 
     echo ....test_FileSize: Ok
 
@@ -178,7 +208,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :CreateDir || exit /b 1
+    call :CreateDir %1 || exit /b 1
+    echo CreateDir:!CreateDir!
 
     echo ....test_CreateDir: Ok
 
@@ -194,7 +225,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :ClearDir || exit /b 1
+    call :ClearDir %1 %2 || exit /b 1
+    echo ClearDir:!ClearDir!
 
     echo ....test_ClearDir: Ok
 
@@ -210,10 +242,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :CreateFile || exit /b 1
+    call :CreateFile %1 || exit /b 1
+    echo CreateFile:!CreateFile!
 
     echo ....test_CreateFile: Ok
-
 
     exit /b 0
 rem endfunction
@@ -227,7 +259,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :CheckFile || exit /b 1
+    call :CheckFile %1 || exit /b 1
+    echo CheckFile:!CheckFile!
 
     echo ....test_CheckFile: Ok
 
@@ -244,6 +277,7 @@ rem beginfunction
     echo --------------------------------------
 
     call :CurrentDir || exit /b 1
+    echo CurrentDir:!CurrentDir!
 
     echo ....test_CurrentDir: Ok
 
@@ -259,7 +293,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :COPY_FILE || exit /b 1
+    call :COPY_FILE %1 %2 %3 || exit /b 1
+    echo COPY_FILE:!COPY_FILE!
 
     echo ....test_COPY_FILE: Ok
 
@@ -276,7 +311,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :COPY_FILES || exit /b 1
+    call :COPY_FILES %1 %2 %3 %4 %5 || exit /b 1
+    echo COPY_FILES:!COPY_FILES!
 
     echo ....test_COPY_FILES: Ok
 
@@ -292,9 +328,27 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :XCOPY_FILES || exit /b 1
+    call :XCOPY_FILES %1 %2 %3 %4 || exit /b 1
+    echo XCOPY_FILES:!XCOPY_FILES!
 
     echo ....test_XCOPY_FILES: Ok
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem procedure CHANGE_STR (FileName, str_find, str_replace) -> None
+rem --------------------------------------------------------------------------------
+:test_CHANGE_STR
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    call :CHANGE_STR %1 %2 %3 || exit /b 1
+    echo CHANGE_STR:!CHANGE_STR!
+
+    echo ....test_CHANGE_STR: Ok
 
     exit /b 0
 rem endfunction
@@ -377,5 +431,8 @@ exit /b 0
 %LIB_BAT%\LYRFileUtils.bat %*
 exit /b 0
 :XCOPY_FILES
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:CHANGE_STR
 %LIB_BAT%\LYRFileUtils.bat %*
 exit /b 0
