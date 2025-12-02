@@ -76,8 +76,8 @@ rem pause
 
 rem pause
 
-    set python_dir=
     set python_dir=3.13
+    set python_dir=
     rem call :test_SET_python_dir "!python_dir!"
     call :test_GET_python_dir "!python_dir!"
 
