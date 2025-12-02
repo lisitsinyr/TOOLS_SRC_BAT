@@ -36,11 +36,11 @@ rem ----------------------------------------------------------------------------
 
     set projects_dir=
     rem call :test_SET_projects_dir "!projects_dir!"
-    rem call :test_GET_projects_dir "!projects_dir!"
+    call :test_GET_projects_dir "!projects_dir!"
 
     set projects_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir
     rem call :test_SET_projects_dir "!projects_dir!"
-    rem call :test_GET_projects_dir "!projects_dir!"
+    call :test_GET_projects_dir "!projects_dir!"
 
 rem pause
 
