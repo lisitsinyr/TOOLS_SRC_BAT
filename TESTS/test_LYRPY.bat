@@ -64,21 +64,32 @@ rem pause
 
 rem pause
 
-    set script_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\scriptdir
+    set script_dir=
+    rem call :test_SET_script_dir "!script_dir!"
+    rem call :test_GET_script_dir "!script_dir!"
 
+    set script_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\scriptdir
     rem call :test_SET_script_dir "!script_dir!"
     rem call :test_GET_script_dir "!script_dir!"
 
 rem pause
 
-    set script=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\scriptdir\HelloWorld.py
+    set script=
+    rem call :test_SET_script "!script!"
+    rem call :test_GET_script "!script!"
 
+    set script=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\scriptdir\HelloWorld.py
     rem call :test_SET_script "!script!"
     rem call :test_GET_script "!script!"
 
 rem pause
 
     set project_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\projectdir
+
+    set venv_dir=
+    rem call :test_SET_venv_dir "!project_dir!" "!venv_dir!"
+    rem call :test_GET_venv_dir "!project_dir!" "!venv_dir!"
+
     set venv_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\projectdir
     rem call :test_SET_venv_dir "!project_dir!" "!venv_dir!"
     rem call :test_GET_venv_dir "!project_dir!" "!venv_dir!"
@@ -95,10 +106,16 @@ rem pause
 
 rem pause
 
+    set requirements_file=
+    rem call :test_GET_requirements_file !requirements_file!
+
     set requirements_file=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\projectdir\requirements_file
     rem call :test_GET_requirements_file !requirements_file!
 
 rem pause
+
+    set package_names=
+    rem call :test_GET_package_names !package_names!
 
     set package_names=a b c
     rem call :test_GET_package_names !package_names!
@@ -111,10 +128,14 @@ rem pause
 
 rem pause
 
+    set VENV_DIR=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Python\VENV\P313\
+    set venv_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\projectdir
     rem call :test_VENV_STOP !VENV_DIR!
 
 rem pause
 
+    set VENV_DIR=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Python\VENV\P313\
+    set venv_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\projectdir
     rem call :test_VENV_UPDATE !VENV_DIR!
 
 rem pause
