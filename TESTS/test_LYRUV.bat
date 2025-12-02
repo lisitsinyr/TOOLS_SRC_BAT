@@ -35,45 +35,25 @@ rem ----------------------------------------------------------------------------
     set /a LOG_FILE_ADD=0
 
     rem call :test_UV_python_list
-
 rem pause
-
     rem call :test_UV_python_install 3.13
-
 rem pause
-
     rem call :test_UV_python_uninstall 3.10
-
 rem pause
-
     rem call :test_UV_python_run
-
 rem pause
-
     rem call :test_UV_python_upgrade
-
 rem pause
-
     rem call :test_UV_python_find 3.13
-
 rem pause
-
     rem call :test_UV_python_dir
-
 rem pause
-
     rem call :test_UV_python_version
-
 rem pause
-
     rem call :test_UV_python_pin 3.13
-
 rem pause
-
     rem call :test_UV_help
-
 rem pause
-
     rem auth
     rem run
     rem init
@@ -94,58 +74,37 @@ rem pause
     rem cache
     rem self
     rem generate-shell-completion
-
     rem call :test_UV_help_cmd init
-
 rem pause
-
     rem call :test_UV_version
-
 rem pause
-
-    rem call :test_UV_self
-
+    rem call :test_UV_self cmd
 rem pause
-
     rem call :test_UV_self_version
-
 rem pause
-
-    call :test_UV_install_self
-
-pause
-
+    rem call :test_UV_install_self
+rem pause
     rem call :test_UV_install_other
-
-pause
-
+rem pause
     rem call :test_UV_update_self
-
-pause
-
+rem pause
     rem call :test_UV_install_pip
-
-pause
-
+rem pause
     rem call :test_UV_upgrade_pip
-
+rem pause
+    set python_version=3.13
+    call :test_GET_python_version !python_version!
 pause
-
-    rem call :test_GET_python_version
-
-pause
-
-    rem call :test_GET_project_type
-
-pause
-
-    rem call :test_GET_package
-
-pause
-
-    rem call :test_GET_no-workspace
-
-pause
+    rem app
+    rem lib
+    rem bare
+    rem script
+    rem call :test_GET_project_type app
+rem pause
+    rem call :test_GET_package Y
+rem pause
+    rem call :test_GET_no-workspace Y
+rem pause
 
     exit /b 0
 :end
@@ -360,7 +319,7 @@ rem beginfunction
 rem endfunction
 
 rem -----------------------------------------------
-rem procedure UV_self () -> None
+rem procedure UV_self (cmd) -> None
 rem -----------------------------------------------
 :test_UV_self
 rem beginfunction
@@ -368,7 +327,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :UV_self || exit /b 1
+    call :UV_self %1 || exit /b 1
     echo UV_self:!UV_self!
 
     echo ....%0: Ok
@@ -487,7 +446,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GET_python_version || exit /b 1
+    call :GET_python_version %1 || exit /b 1
     echo GET_python_version:!GET_python_version!
 
     echo ....%0: Ok
@@ -504,7 +463,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GET_project_type || exit /b 1
+    call :GET_project_type %1 || exit /b 1
     echo GET_project_type:!GET_project_type!
 
     echo ....%0: Ok
@@ -521,7 +480,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GET_package || exit /b 1
+    call :GET_package %1 || exit /b 1
     echo GET_package:!GET_package!
 
     echo ....%0: Ok
@@ -538,7 +497,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GET_no-workspace || exit /b 1
+    call :GET_no-workspace %1 || exit /b 1
     echo GET_no-workspace:!GET_no-workspace!
 
     echo ....%0: Ok
@@ -647,7 +606,7 @@ exit /b 0
 :GET_package
 %LIB_BAT%\LYRUV.bat %*
 exit /b 0
-:GET_python
+:GET_python_version
 %LIB_BAT%\LYRUV.bat %*
 exit /b 0
 :GET_no-workspace

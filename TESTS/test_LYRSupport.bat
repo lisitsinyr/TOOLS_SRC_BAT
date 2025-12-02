@@ -38,9 +38,7 @@ rem ----------------------------------------------------------------------------
     
     rem call :test_Pause
 
-    rem call :test_Read_P 01 "O1 default" "O1 caption"
-
-    rem call :test_Read_P 01 "" "O1 caption"
+    call :test_Read_P 01 "O1 value" "O1 caption" "O1 default"
 
     rem call :test_Read_F
 
@@ -105,58 +103,36 @@ rem beginfunction
 rem endfunction
 
 rem --------------------------------------------------------------------------------
-rem procedure Read_P (P_Name, P_Value, P_Caption) -> None
+rem procedure Read_P (P_Name, P_Value, P_Caption, P_ValueDefault) -> None
 rem --------------------------------------------------------------------------------
 :test_Read_P
     echo ======================================
     echo FUNCNAME%0
     echo --------------------------------------
-
     rem имя переменной
-    set Aname=%1
-    rem echo Aname:!Aname!
-    rem значение переменной по умолчанию
-    set Adefault=%~2
-    rem echo Adefault:!Adefault!
+    set VarName=%1
+    echo VarName:!VarName!
+    rem значение переменной
+    set VarValue=!%VarName%!
+    set VarValue=%~2
+    echo VarValue:!VarValue!
     rem caption переменной
-    set Acaption=%~3
-    rem echo Acaption:!Acaption!
+    set VarCaption=%~3
+    echo VarCaption:!VarCaption!
+    rem значение переменной по умолчанию
+    set VarDefault=%~4
+    echo VarDefault:!VarDefault!
 
-    rem [!%Aname%!] - значение переменной по умолчанию
-    set Ox=!%Aname%!
-    rem echo Ox:!Ox!
-
-    rem !Aname! - имя переменной
-    set Ox_Name=!Aname!
-    rem echo Ox_Name:!Ox_Name!
-    rem !Acaption! - caption переменной
-    set Ox_Caption=!Acaption!
-    rem echo Ox_Caption:!Ox_Caption!
-    rem !Adefault!значение переменной по умолчанию
-    set Ox_Default=!Adefault!
-    rem echo Ox_Default:!Ox_Default!
-    set Ox=!Ox_Default!
-    rem echo Ox:!Ox!
-    set PN_CAPTION=!Ox_Caption!
-    rem echo PN_CAPTION:!PN_CAPTION!
-
-    if not defined Ox (
-        call :Read_P Ox "!Adefault!" "!Acaption!" || exit /b 1
-        set !Aname!=!Ox!
-    ) else (
-        rem call :Read_P Ox || exit /b 1
-        set !Aname!=!Ox!
+    rem -------------------------------------------------------------------
+    rem 
+    rem -------------------------------------------------------------------
+    if not defined !%VarName%! (
+        call :Read_P !VarName! "!VarValue!" "!VarCaption!" "!VarDefault!" || exit /b 1
     )
-    if defined Ox (
-        rem set !Aname!=!%Aname%!
-        set !Aname!=!Ox!
-    ) else (
-        set !Aname!=
-        echo INFO: Ox [Ox_Name:!Ox_Name! Ox_Caption:!Ox_Caption!] not defined ...
-        rem echo INFO: Ox [Ox_Name:!Aname! Ox_Caption:!Acaption!] not defined ...
-    )
-    echo !Aname!:!%Aname%!
-    
+
+    set test_Read_P=!%VarName%!
+    echo test_Read_P:!test_Read_P!
+   
     echo ....test_Read_P: Ok
 
     exit /b 0

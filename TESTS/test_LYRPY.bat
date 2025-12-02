@@ -36,49 +36,50 @@ rem ----------------------------------------------------------------------------
 
     set projects_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir
 
-    rem call :test_SET_projects_dir !projects_dir!
-    rem call :test_GET_projects_dir !projects_dir!
+    rem call :test_SET_projects_dir "!projects_dir!"
+    rem call :test_GET_projects_dir "!projects_dir!"
 
 rem pause
 
     set project_name=projectdir
 
-    rem call :test_SET_project_name !projectdir!
-    rem call :test_GET_project_name !projectdir!
+    rem call :test_SET_project_name "!projectdir!"
+    rem call :test_GET_project_name "!projectdir!"
 
 rem pause
 
     set project_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\projectdir
 
-    rem call :test_SET_project_dir !project_dir!
-    rem call :test_GET_project_dir !project_dir!
+    rem call :test_SET_project_dir "!project_dir!"
+    rem call :test_GET_project_dir "!project_dir!"
 
 rem pause
 
     set script_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\scriptdir
 
-    rem call :test_SET_script_dir !script_dir!
-    rem call :test_GET_script_dir !script_dir!
+    rem call :test_SET_script_dir "!script_dir!"
+    rem call :test_GET_script_dir "!script_dir!"
 
 rem pause
 
     set script=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\scriptdir\HelloWorld.py
 
-    rem call :test_SET_script !script!
-    rem call :test_GET_script !script!
+    rem call :test_SET_script "!script!"
+    rem call :test_GET_script "!script!"
 
 rem pause
 
     set project_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\projectdir
     set venv_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\projectdir
-    rem call :test_SET_venv_dir !project_dir! !venv_dir!
-    rem call :test_GET_venv_dir !project_dir! !venv_dir!
+    rem call :test_SET_venv_dir "!project_dir!" "!venv_dir!"
+    rem call :test_GET_venv_dir "!project_dir!" "!venv_dir!"
 
 rem pause
 
+    set python_dir=
     set python_dir=3.13
-    rem call :test_SET_python_dir !python_dir!
-    rem call :test_GET_python_dir !python_dir!
+    rem call :test_SET_python_dir "!python_dir!"
+    call :test_GET_python_dir "!python_dir!"
 
 rem pause
 
@@ -94,15 +95,15 @@ rem pause
 
     set VENV_DIR=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Python\VENV\P313\
     set venv_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\projectdir
-    call :test_VENV_START !VENV_DIR!
+    rem call :test_VENV_START !VENV_DIR!
 
 rem pause
 
-    call :test_VENV_STOP !VENV_DIR!
+    rem call :test_VENV_STOP !VENV_DIR!
 
 rem pause
 
-    call :test_VENV_UPDATE !VENV_DIR!
+    rem call :test_VENV_UPDATE !VENV_DIR!
 
 rem pause
 
@@ -368,9 +369,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    set python_dir=%1
+    set python_dir=%~1
+    echo python_dir:!python_dir!
 
-    call :GET_python_dir !python_dir! || exit /b 1
+    call :GET_python_dir "!python_dir!" || exit /b 1
     echo GET_python_dir:!GET_python_dir!
 
     echo ....%0: Ok
