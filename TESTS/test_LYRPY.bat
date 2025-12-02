@@ -34,24 +34,33 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-    set projects_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir
+    set projects_dir=
+    rem call :test_SET_projects_dir "!projects_dir!"
+    rem call :test_GET_projects_dir "!projects_dir!"
 
+    set projects_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir
     rem call :test_SET_projects_dir "!projects_dir!"
     rem call :test_GET_projects_dir "!projects_dir!"
 
 rem pause
 
-    set project_name=projectdir
+    set project_name=
+    rem call :test_GET_project_name "!project_name!"
+    rem call :test_SET_project_name "!project_name!"
 
-    rem call :test_SET_project_name "!projectdir!"
-    rem call :test_GET_project_name "!projectdir!"
+    set project_name=project_name
+    rem call :test_GET_project_name "!project_name!"
+    rem call :test_SET_project_name "!project_name!"
 
 rem pause
 
-    set project_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\projectdir
-
-    rem call :test_SET_project_dir "!project_dir!"
+    set project_dir=
     rem call :test_GET_project_dir "!project_dir!"
+    rem call :test_SET_project_dir "!project_dir!"
+
+    set project_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\projectdir
+    rem call :test_GET_project_dir "!project_dir!"
+    rem call :test_SET_project_dir "!project_dir!"
 
 rem pause
 
@@ -77,11 +86,11 @@ rem pause
 rem pause
 
     set python_dir=3.13
-    call :test_GET_python_dir "!python_dir!"
+    rem call :test_GET_python_dir "!python_dir!"
     rem call :test_SET_python_dir "!python_dir!"
 
     set python_dir=
-    call :test_GET_python_dir "!python_dir!"
+    rem call :test_GET_python_dir "!python_dir!"
     rem call :test_SET_python_dir "!python_dir!"
 
 rem pause
@@ -183,6 +192,7 @@ rem beginfunction
     set projects_dir=%1
 
     call :GET_projects_dir !projects_dir! || exit /b 1
+   
     echo GET_projects_dir:!GET_projects_dir!
 
     echo ....%0: Ok
