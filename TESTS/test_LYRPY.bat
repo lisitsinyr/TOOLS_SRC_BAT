@@ -77,9 +77,12 @@ rem pause
 rem pause
 
     set python_dir=3.13
-    set python_dir=
-    rem call :test_SET_python_dir "!python_dir!"
     call :test_GET_python_dir "!python_dir!"
+    rem call :test_SET_python_dir "!python_dir!"
+
+    set python_dir=
+    call :test_GET_python_dir "!python_dir!"
+    rem call :test_SET_python_dir "!python_dir!"
 
 rem pause
 
@@ -370,7 +373,6 @@ rem beginfunction
     echo --------------------------------------
 
     set python_dir=%~1
-    echo python_dir:!python_dir!
 
     call :GET_python_dir "!python_dir!" || exit /b 1
     echo GET_python_dir:!GET_python_dir!
