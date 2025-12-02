@@ -296,26 +296,6 @@ rem beginfunction
     exit /b 0
 rem endfunction
 
-rem --------------------------------------------------------------------------------
-rem function GET_Ox (Aname Acaption Adefault) -> script
-rem --------------------------------------------------------------------------------
-:test_GET_Ox
-rem beginfunction
-    echo ======================================
-    echo FUNCNAME%0
-    echo --------------------------------------
-
-    rem set O3=mp4
-    call :GET_Ox "O3" "‘ÓÏ‡Ú" "mp4" || exit /b 1
-    if defined O3 (
-        set OPTION=!OPTION! -!Ox_Name! !O3!
-    )
-
-    echo ....test_GET_Ox: Ok
-
-    exit /b 0
-rem endfunction
-
 rem =================================================
 rem ‘”Õ ÷»» LIB
 rem =================================================
@@ -387,8 +367,3 @@ exit /b 0
 :CheckErrorlevel
 %LIB_BAT%\LYRSupport.bat %*
 exit /b 0
-:GET_Ox
-%LIB_BAT%\LYRSupport.bat %*
-exit /b 0
-
-rem ===================================================================
