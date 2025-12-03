@@ -34,13 +34,15 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
+rem pause
+
     set projects_dir=
     rem call :test_SET_projects_dir "!projects_dir!"
-    call :test_GET_projects_dir "!projects_dir!"
+    rem call :test_GET_projects_dir "!projects_dir!"
 
     set projects_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir
     rem call :test_SET_projects_dir "!projects_dir!"
-    call :test_GET_projects_dir "!projects_dir!"
+    rem call :test_GET_projects_dir "!projects_dir!"
 
 rem pause
 
@@ -55,12 +57,12 @@ rem pause
 rem pause
 
     set project_dir=
-    rem call :test_GET_project_dir "!project_dir!"
-    rem call :test_SET_project_dir "!project_dir!"
+    rem call :test_GET_project_dir
+    rem call :test_SET_project_dir
 
     set project_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\projectdir
-    rem call :test_GET_project_dir "!project_dir!"
-    rem call :test_SET_project_dir "!project_dir!"
+    rem call :test_GET_project_dir
+    call :test_SET_project_dir
 
 rem pause
 
@@ -145,7 +147,7 @@ rem pause
 rem =================================================
 
 rem --------------------------------------------------------------------------------
-rem function SET_project_dir (Aproject_dir) -> project_dir
+rem function test_SET_project_dir () -> project_dir
 rem --------------------------------------------------------------------------------
 :test_SET_project_dir
 rem beginfunction
@@ -153,9 +155,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    set project_dir=%1
-
-    call :SET_project_dir !project_dir! || exit /b 1
+    call :SET_project_dir project_dir !project_dir! || exit /b 1
     echo SET_project_dir:!SET_project_dir!
 
     echo ....%0: Ok
@@ -164,7 +164,7 @@ rem beginfunction
 rem endfunction
 
 rem --------------------------------------------------------------------------------
-rem function GET_project_dir (Aproject_dir) -> project_dir
+rem function test_GET_project_dir () -> project_dir
 rem --------------------------------------------------------------------------------
 :test_GET_project_dir
 rem beginfunction
@@ -172,9 +172,10 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    set project_dir=%1
+    call :CurrentDir || exit /b 1
+    set VarDefault=!CurrentDir!
 
-    call :GET_project_dir !project_dir! || exit /b 1
+    call :GET_project_dir project_dir "project_dir_caption" "!VarDefault!" || exit /b 1
     echo GET_project_dir:!GET_project_dir!
 
     echo ....%0: Ok
@@ -614,4 +615,50 @@ exit /b 0
 exit /b 0
 :VENV_UPDATE
 %LIB_BAT%\LYRPY.bat %*
+exit /b 0
+
+rem =================================================
+rem LYRFileUtils.bat
+rem =================================================
+:ExtractFileDir
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:FullFileName
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:ExtractFileName
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:ExtractFileNameWithoutExt
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:ExtractFileExt
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:FileAttr
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:FileSize
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:CreateDir
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:CreateFile
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:CheckFile
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:CurrentDir
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:COPY_FILES
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:XCOPY_FILES
+%LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+:CHANGE_STR
+%LIB_BAT%\LYRFileUtils.bat %*
 exit /b 0
