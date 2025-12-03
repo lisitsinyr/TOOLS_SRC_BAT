@@ -34,35 +34,41 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-rem pause
-
     set projects_dir=
     rem call :test_SET_projects_dir
+    rem pause
     rem call :test_GET_projects_dir
+    rem pause
 
     set projects_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir
     rem call :test_SET_projects_dir
+    rem pause
     rem call :test_GET_projects_dir
-
-rem pause
+    rem pause
 
     set project_name=
-    rem call :test_GET_project_name
     rem call :test_SET_project_name
+    rem pause
+    rem call :test_GET_project_name
+    rem pause
 
     set project_name=project_name
-    rem call :test_GET_project_name
     rem call :test_SET_project_name
-
-rem pause
+    rem pause
+    call :test_GET_project_name
+    rem pause
 
     set project_dir=
-    rem call :test_GET_project_dir
     rem call :test_SET_project_dir
+    rem pause
+    rem call :test_GET_project_dir
+    rem pause
 
     set project_dir=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\TESTS\projectsdir\projectdir
+    rem call :test_SET_project_dir
+    rem pause
     rem call :test_GET_project_dir
-    call :test_SET_project_dir
+    rem pause
 
 rem pause
 
@@ -155,6 +161,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    call :EchoVar project_dir
+
     call :SET_project_dir project_dir !project_dir! || exit /b 1
     echo SET_project_dir:!SET_project_dir!
 
@@ -172,6 +180,8 @@ rem beginfunction
     echo ======================================
     echo FUNCNAME%0
     echo --------------------------------------
+
+    call :EchoVar project_dir
 
     call :CurrentDir || exit /b 1
     set VarDefault=!CurrentDir!
@@ -193,10 +203,12 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    call :EchoVar projects_dir
+
     call :SET_projects_dir projects_dir !projects_dir!! || exit /b 1
     echo SET_projects_dir:!SET_projects_dir!
 
-    echo project_dir=!cd!
+    echo projects_dir=!cd!
     echo ....%0: Ok
 
     exit /b 0
@@ -211,11 +223,13 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    call :EchoVar projects_dir
+
     call :CurrentDir || exit /b 1
     set VarDefault=!CurrentDir!
 
     call :GET_projects_dir projects_dir "projects_dir_caption" "!VarDefault!" || exit /b 1
-    echo GET_project_dir:!GET_project_dir!
+    echo GET_projects_dir:!GET_projects_dir!
 
     echo ....%0: Ok
 
@@ -230,6 +244,8 @@ rem beginfunction
     echo ======================================
     echo FUNCNAME%0
     echo --------------------------------------
+
+    call :EchoVar project_name
 
     call :SET_project_name project_name !project_name! || exit /b 1
     echo SET_project_name:!SET_project_name!
@@ -248,6 +264,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    call :EchoVar project_name
+
     call :GET_project_name project_name "project_name_caption" "" || exit /b 1
     echo GET_project_name:!GET_project_name!
 
@@ -265,6 +283,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    call :EchoVar script_dir
+
     call :SET_script_dir script_dir !script_dir! || exit /b 1
     echo SET_script_dir:!SET_script_dir!
 
@@ -281,6 +301,8 @@ rem beginfunction
     echo ======================================
     echo FUNCNAME%0
     echo --------------------------------------
+
+    call :EchoVar script_dir
 
     call :CurrentDir || exit /b 1
     set VarDefault=!CurrentDir!
@@ -302,6 +324,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    call :EchoVar script
+
     call :SET_script script !script! || exit /b 1
     echo SET_script:!SET_script!
 
@@ -318,6 +342,8 @@ rem beginfunction
     echo ======================================
     echo FUNCNAME%0
     echo --------------------------------------
+
+    call :EchoVar script
 
     call :GET_script script "script_dir_caption" ""  || exit /b 1
     echo GET_script:!GET_script!
@@ -336,7 +362,9 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :SET_VENV_DIR !project_dir! VENV_DIR !VENV_DIR! || exit /b 1
+    call :EchoVar venv_dir
+
+    call :SET_VENV_DIR !project_dir! venv_dir !venv_dir! || exit /b 1
     echo SET_venv_dir:!SET_venv_dir!
 
     echo ....%0: Ok
@@ -353,7 +381,9 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GET_VENV_DIR !project_dir! VENV_DIR "VENV_DIR_caption" "" || exit /b 1
+    call :EchoVar venv_dir
+
+    call :GET_VENV_DIR !project_dir! venv_dir "VENV_DIR_caption" "" || exit /b 1
     echo GET_venv_dir:!GET_venv_dir!
 
     echo ....%0: Ok
@@ -369,6 +399,8 @@ rem beginfunction
     echo ======================================
     echo FUNCNAME%0
     echo --------------------------------------
+
+    call :EchoVar python_dir
 
     call :SET_python_dir python_dir !python_dir! || exit /b 1
     echo SET_python_dir:!SET_python_dir!
@@ -387,6 +419,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    call :EchoVar python_dir
+
     call :GET_python_dir python_dir "project_dir_caption" "3.13" || exit /b 1
     echo GET_python_dir:!GET_python_dir!
 
@@ -403,6 +437,8 @@ rem beginfunction
     echo ======================================
     echo FUNCNAME%0
     echo --------------------------------------
+
+    call :EchoVar requirements_file
 
     call :GET_requirements_file requirements_file "requirements_file_caption" ""
     echo GET_requirements_file:!GET_requirements_file!
@@ -421,6 +457,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    call :EchoVar requirements_file
+
     call :GET_package_names package_names "package_names_caption" ""
     echo GET_package_names:!GET_package_names!
 
@@ -437,6 +475,8 @@ rem beginfunction
     echo ======================================
     echo FUNCNAME%0
     echo --------------------------------------
+
+    call :EchoVar venv_dir
 
     call :VENV_START !venv_dir! || exit /b 1
     echo VENV_START:!VENV_START!
@@ -455,6 +495,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    call :EchoVar venv_dir
+
     call :VENV_STOP !venv_dir! || exit /b 1
     echo VENV_STOP:!VENV_STOP!
 
@@ -471,6 +513,8 @@ rem beginfunction
     echo ======================================
     echo FUNCNAME%0
     echo --------------------------------------
+
+    call :EchoVar venv_dir
 
     rem call :VENV_UPDATE !venv_dir! || exit /b 1
     echo VENV_UPDATE:!VENV_UPDATE!
@@ -632,4 +676,38 @@ exit /b 0
 exit /b 0
 :CHANGE_STR
 %LIB_BAT%\LYRFileUtils.bat %*
+exit /b 0
+
+rem =================================================
+rem LYRLog.bat
+rem =================================================
+:LYRLogINIT
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:__SETVarLog
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:__SHORTLevelName
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:__LOG_STR
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:AddLogConsole
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:AddLog
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:AddLogFile
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:StartLogFile
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:StopLogFile
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:EchoVar
+%LIB_BAT%\LYRLog.bat %*
 exit /b 0

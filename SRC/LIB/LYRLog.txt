@@ -28,3 +28,6 @@ exit /b 0
 :StopLogFile
 %LIB_BAT%\LYRLog.bat %*
 exit /b 0
+:EchoVar
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
