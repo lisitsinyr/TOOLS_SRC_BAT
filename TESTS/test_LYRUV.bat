@@ -93,17 +93,17 @@ rem pause
     rem call :test_UV_upgrade_pip
 rem pause
     set python_version=3.13
-    call :test_GET_python_version !python_version!
+    call :test_GET_python_version
 pause
     rem app
     rem lib
     rem bare
     rem script
-    rem call :test_GET_project_type app
+    rem call :test_GET_project_type
 rem pause
-    rem call :test_GET_package Y
+    rem call :test_GET_package
 rem pause
-    rem call :test_GET_no-workspace Y
+    rem call :test_GET_no-workspace
 rem pause
 
     exit /b 0
@@ -438,7 +438,7 @@ rem beginfunction
 rem endfunction
 
 rem --------------------------------------------------------------------------------
-rem function GET_python_version (python_version) -> python_version
+rem function test_GET_python_version () -> python_version
 rem --------------------------------------------------------------------------------
 :test_GET_python_version
 rem beginfunction
@@ -446,7 +446,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GET_python_version %1 || exit /b 1
+    call :GET_python_version python_version "python_version_caption" "3.13" || exit /b 1
     echo GET_python_version:!GET_python_version!
 
     echo ....%0: Ok
@@ -455,7 +455,7 @@ rem beginfunction
 rem endfunction
 
 rem --------------------------------------------------------------------------------
-rem function GET_project_type (project_type) -> project_type
+rem function test_GET_project_type () -> project_type
 rem --------------------------------------------------------------------------------
 :test_GET_project_type
 rem beginfunction
@@ -463,7 +463,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GET_project_type %1 || exit /b 1
+    call :GET_project_type project_type "project_type_caption" "app" || exit /b 1
     echo GET_project_type:!GET_project_type!
 
     echo ....%0: Ok
@@ -472,7 +472,7 @@ rem beginfunction
 rem endfunction
 
 rem --------------------------------------------------------------------------------
-rem function GET_package (package) -> package
+rem function test_GET_package () -> package
 rem --------------------------------------------------------------------------------
 :test_GET_package
 rem beginfunction
@@ -480,7 +480,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GET_package %1 || exit /b 1
+    call :GET_package package "package_caption" "Y" || exit /b 1
     echo GET_package:!GET_package!
 
     echo ....%0: Ok
@@ -489,7 +489,7 @@ rem beginfunction
 rem endfunction
 
 rem --------------------------------------------------------------------------------
-rem function GET_no-workspace (no-workspace) -> no-workspace
+rem function test_GET_no-workspace () -> no-workspace
 rem --------------------------------------------------------------------------------
 :test_GET_no-workspace
 rem beginfunction
@@ -497,7 +497,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GET_no-workspace %1 || exit /b 1
+    call :GET_no-workspace no-workspace "no-workspace_caption" "Y" || exit /b 1
     echo GET_no-workspace:!GET_no-workspace!
 
     echo ....%0: Ok

@@ -353,7 +353,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GET_VENV_DIR !project_dir! VENV_DIR "" "" || exit /b 1
+    call :GET_VENV_DIR !project_dir! VENV_DIR "VENV_DIR_caption" "" || exit /b 1
     echo GET_venv_dir:!GET_venv_dir!
 
     echo ....%0: Ok
@@ -387,7 +387,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GET_python_dir python_dir "project_name_caption" "3.13" || exit /b 1
+    call :GET_python_dir python_dir "project_dir_caption" "3.13" || exit /b 1
     echo GET_python_dir:!GET_python_dir!
 
     echo ....%0: Ok
@@ -404,7 +404,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GET_requirements_file requirements_file !requirements_file! ""
+    call :GET_requirements_file requirements_file "requirements_file_caption" ""
     echo GET_requirements_file:!GET_requirements_file!
 
     echo ....%0: Ok
@@ -421,7 +421,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GET_package_names package_names !package_names! ""
+    call :GET_package_names package_names "package_names_caption" ""
     echo GET_package_names:!GET_package_names!
 
     echo ....%0: Ok
@@ -430,7 +430,7 @@ rem beginfunction
 rem endfunction
 
 rem -----------------------------------------------
-rem procedure VENV_START (Avenv_dir) -> None
+rem procedure test_VENV_START () -> None
 rem -----------------------------------------------
 :test_VENV_START
 rem beginfunction
@@ -438,9 +438,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    set VENV_DIR=%1
-
-    call :VENV_START !VENV_DIR! || exit /b 1
+    call :VENV_START !venv_dir! || exit /b 1
     echo VENV_START:!VENV_START!
 
     echo ....%0: Ok
@@ -449,7 +447,7 @@ rem beginfunction
 rem endfunction
 
 rem -----------------------------------------------
-rem procedure VENV_STOP (Avenv_dir) -> None
+rem procedure test_VENV_STOP () -> None
 rem -----------------------------------------------
 :test_VENV_STOP
 rem beginfunction
@@ -457,9 +455,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    set VENV_DIR=%1
-
-    call :VENV_STOP !VENV_DIR! || exit /b 1
+    call :VENV_STOP !venv_dir! || exit /b 1
     echo VENV_STOP:!VENV_STOP!
 
     echo ....%0: Ok
@@ -468,7 +464,7 @@ rem beginfunction
 rem endfunction
 
 rem -----------------------------------------------
-rem procedure VENV_UPDATE (Avenv_dir) -> None
+rem procedure test_VENV_UPDATE (r) -> None
 rem -----------------------------------------------
 :test_VENV_UPDATE
 rem beginfunction
@@ -476,9 +472,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    set VENV_DIR=%1
-
-    rem call :VENV_UPDATE !VENV_DIR! || exit /b 1
+    rem call :VENV_UPDATE !venv_dir! || exit /b 1
     echo VENV_UPDATE:!VENV_UPDATE!
 
     echo ....%0: Ok
