@@ -214,7 +214,7 @@ rem beginfunction
     call :CurrentDir || exit /b 1
     set VarDefault=!CurrentDir!
 
-    call :GET_project_dir projects_dir "projects_dir_caption" "!VarDefault!" || exit /b 1
+    call :GET_projects_dir projects_dir "projects_dir_caption" "!VarDefault!" || exit /b 1
     echo GET_project_dir:!GET_project_dir!
 
     echo ....%0: Ok
