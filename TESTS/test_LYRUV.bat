@@ -35,25 +35,35 @@ rem ----------------------------------------------------------------------------
     set /a LOG_FILE_ADD=0
 
     rem call :test_UV_python_list
-rem pause
+    rem pause
+    
     rem call :test_UV_python_install 3.13
-rem pause
+    rem pause
+    
     rem call :test_UV_python_uninstall 3.10
-rem pause
+    rem pause
+    
     rem call :test_UV_python_run
-rem pause
+    rem pause
+    
     rem call :test_UV_python_upgrade
-rem pause
+    rem pause
+    
     rem call :test_UV_python_find 3.13
-rem pause
+    rem pause
+    
     rem call :test_UV_python_dir
-rem pause
+    rem pause
+    
     rem call :test_UV_python_version
-rem pause
+    rem pause
+    
     rem call :test_UV_python_pin 3.13
-rem pause
+    rem pause
+    
     rem call :test_UV_help
-rem pause
+    rem pause
+    
     rem auth
     rem run
     rem init
@@ -75,36 +85,43 @@ rem pause
     rem self
     rem generate-shell-completion
     rem call :test_UV_help_cmd init
-rem pause
+    rem pause
     rem call :test_UV_version
-rem pause
+    rem pause
     rem call :test_UV_self cmd
-rem pause
+    rem pause
     rem call :test_UV_self_version
-rem pause
+    rem pause
     rem call :test_UV_install_self
-rem pause
+    rem pause
     rem call :test_UV_install_other
-rem pause
+    rem pause
     rem call :test_UV_update_self
-rem pause
+    rem pause
     rem call :test_UV_install_pip
-rem pause
+    rem pause
     rem call :test_UV_upgrade_pip
-rem pause
-    set python_version=3.13
-    call :test_GET_python_version
-pause
+    rem pause
+    rem set python_version=3.13
+    rem call :test_GET_python_version
+    rem pause
+
     rem app
     rem lib
     rem bare
     rem script
+    set project_type=
+    call :test_GET_project_type
+    pause
+    set project_type=app
     rem call :test_GET_project_type
-rem pause
+    rem pause
+
     rem call :test_GET_package
-rem pause
+    rem pause
+    
     rem call :test_GET_no-workspace
-rem pause
+    rem pause
 
     exit /b 0
 :end
@@ -463,6 +480,8 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
+    call :EchoVar project_type
+
     call :GET_project_type project_type "project_type_caption" "app" || exit /b 1
     echo GET_project_type:!GET_project_type!
 
@@ -614,4 +633,38 @@ exit /b 0
 exit /b 0
 :GET_package
 %LIB_BAT%\LYRUV.bat %*
+exit /b 0
+
+rem =================================================
+rem LYRLog.bat
+rem =================================================
+:LYRLogINIT
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:__SETVarLog
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:__SHORTLevelName
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:__LOG_STR
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:AddLogConsole
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:AddLog
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:AddLogFile
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:StartLogFile
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:StopLogFile
+%LIB_BAT%\LYRLog.bat %*
+exit /b 0
+:EchoVar
+%LIB_BAT%\LYRLog.bat %*
 exit /b 0
