@@ -111,14 +111,14 @@ rem ----------------------------------------------------------------------------
     rem bare
     rem script
     set project_type=
-    call :test_GET_project_type
-    pause
+    rem call :test_GET_project_type
+    rem pause
     set project_type=app
     rem call :test_GET_project_type
     rem pause
 
-    rem call :test_GET_package
-    rem pause
+    call :test_GET_package
+    pause
     
     rem call :test_GET_no-workspace
     rem pause
@@ -499,7 +499,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GET_package package "package_caption{yn}" "Y" || exit /b 1
+    call :GET_package package "package_caption" "Y" || exit /b 1
     echo GET_package:!GET_package!
 
     echo ....%0: Ok
