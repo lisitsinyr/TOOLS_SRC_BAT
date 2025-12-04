@@ -1,0 +1,21 @@
+rem =================================================
+rem LYRUV_vars.bat
+rem =================================================
+:LYRUV_vars_INIT
+%LIB_BAT%\LYRUV_vars.bat %*
+exit /b 0
+:__INIT_project_types
+%LIB_BAT%\LYRUV_vars.bat %*
+exit /b 0
+:__DEL_project_types
+%LIB_BAT%\LYRUV_vars.bat %*
+exit /b 0
+:__SHOW_project_types
+%LIB_BAT%\LYRUV_vars.bat %*
+exit /b 0
+:__GET_project_type_str
+%LIB_BAT%\LYRUV_vars.bat %*
+exit /b 0
+:__GET_project_type_number
+%LIB_BAT%\LYRUV_vars.bat %*
+exit /b 0

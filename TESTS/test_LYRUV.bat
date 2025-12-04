@@ -499,7 +499,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GET_package package "package_caption" "Y" || exit /b 1
+    call :GET_package package "package_caption{yn}" "Y" || exit /b 1
     echo GET_package:!GET_package!
 
     echo ....%0: Ok
