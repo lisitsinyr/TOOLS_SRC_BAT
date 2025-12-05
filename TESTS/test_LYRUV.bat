@@ -117,11 +117,25 @@ rem ----------------------------------------------------------------------------
     rem call :test_GET_project_type
     rem pause
 
-    call :test_GET_package
-    pause
-    
-    rem call :test_GET_no-workspace
+    set package=
+    rem call :test_GET_package
     rem pause
+    set package=y
+    rem call :test_GET_package
+    rem pause
+    set package=n
+    rem call :test_GET_package
+    rem pause
+
+    set no-workspace=
+    call :test_GET_no-workspace
+    pause
+    set no-workspace=y
+    call :test_GET_no-workspace
+    pause
+    set no-workspace=n
+    call :test_GET_no-workspace
+    pause
 
     exit /b 0
 :end
