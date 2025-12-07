@@ -285,11 +285,9 @@ rem beginfunction
 
     rem mkdir "!ADIRECTORY!"
     echo ERRORLEVEL:!ERRORLEVEL!
-    if not !ERRORLEVEL! EQU 0 (
-        echo ERROR: Directory !ADIRECTORY! not created...
-        call :CheckErrorlevel CreateDir !ERRORLEVEL! 1
-        exit /b 1
-    )
+    call :CheckErrorlevel CreateDir
+
+    call :CheckErrorlevel CreateDir Yes
 
     echo ....test_CheckErrorlevel: Ok
 
