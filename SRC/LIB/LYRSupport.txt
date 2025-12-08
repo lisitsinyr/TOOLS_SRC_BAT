@@ -13,6 +13,9 @@ exit /b 0
 :Read_P
 %LIB_BAT%\LYRSupport.bat %*
 exit /b 0
+:Read_P_editenv
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
 :Read_N
 %LIB_BAT%\LYRSupport.bat %*
 exit /b 0
@@ -35,8 +38,5 @@ exit /b 0
 %LIB_BAT%\LYRSupport.bat %*
 exit /b 0
 :CheckErrorlevel
-%LIB_BAT%\LYRSupport.bat %*
-exit /b 0
-:GET_Ox
 %LIB_BAT%\LYRSupport.bat %*
 exit /b 0

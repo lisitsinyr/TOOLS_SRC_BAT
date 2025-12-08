@@ -38,7 +38,10 @@ rem ----------------------------------------------------------------------------
     
     rem call :test_Pause
 
-    call :test_Read_P 01 "O1 value" "O1 caption" "O1 default"
+    rem call :test_Read_P 01 "O1 value" "O1 caption" "O1 default"
+
+    rem call :test_Read_P_editenv 01 "O1 value" "O1 caption" "O1 default"
+    call :test_Read_P_editenv 01 "" "O1 caption" "O1 default"
 
     rem call :test_Read_F
 
@@ -95,7 +98,7 @@ rem beginfunction
 
     call :Pause 1 || exit /b 1
 
-    echo ....test_Pause: Ok
+    echo ....%0: Ok
 
     rem pause
 
@@ -111,17 +114,17 @@ rem ----------------------------------------------------------------------------
     echo --------------------------------------
     rem имя переменной
     set VarName=%1
-    echo VarName:!VarName!
+    rem echo VarName:!VarName!
     rem значение переменной
     set VarValue=!%VarName%!
     set VarValue=%~2
-    echo VarValue:!VarValue!
+    rem echo VarValue:!VarValue!
     rem caption переменной
     set VarCaption=%~3
-    echo VarCaption:!VarCaption!
+    rem echo VarCaption:!VarCaption!
     rem значение переменной по умолчанию
     set VarDefault=%~4
-    echo VarDefault:!VarDefault!
+    rem echo VarDefault:!VarDefault!
 
     rem -------------------------------------------------------------------
     rem 
@@ -133,7 +136,43 @@ rem ----------------------------------------------------------------------------
     set test_Read_P=!%VarName%!
     echo test_Read_P:!test_Read_P!
    
-    echo ....test_Read_P: Ok
+    echo ....%0: Ok
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem procedure Read_P_editenv (P_Name, P_Value, P_Caption, P_ValueDefault) -> None
+rem --------------------------------------------------------------------------------
+:test_Read_P_editenv
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+    rem имя переменной
+    set VarName=%1
+    rem echo VarName:!VarName!
+    rem значение переменной
+    set VarValue=!%VarName%!
+    set VarValue=%~2
+    rem echo VarValue:!VarValue!
+    rem caption переменной
+    set VarCaption=%~3
+    rem echo VarCaption:!VarCaption!
+    rem значение переменной по умолчанию
+    set VarDefault=%~4
+    rem echo VarDefault:!VarDefault!
+
+    rem -------------------------------------------------------------------
+    rem 
+    rem -------------------------------------------------------------------
+    if not defined !%VarName%! (
+        call :Read_P_editenv !VarName! "!VarValue!" "!VarCaption!" "!VarDefault!" || exit /b 1
+    )
+
+    set test_Read_P_editenv=!%VarName%!
+    echo test_Read_P_editenv:!test_Read_P_editenv!
+   
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -165,7 +204,7 @@ rem beginfunction
         echo no-dev: !no-dev!
     )
 
-    echo ....test_Read_F: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -185,7 +224,7 @@ rem beginfunction
     call :Read_N %* || exit /b 1
     echo Read_N:!Read_N!
 
-    echo ....test_Read_N: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -201,7 +240,7 @@ rem beginfunction
 
     call :GetDir D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\*.* ~f || exit /b 1
 
-    echo ....test_GetDir: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -217,7 +256,7 @@ rem beginfunction
 
     call :GetFile D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\*.* ~f || exit /b 1
 
-    echo ....test_GetDir: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -236,7 +275,7 @@ rem beginfunction
     rem call :GetFileParser test.txt ";" "1,2,3,4,5" "#" || exit /b 1
     rem echo !token1!!token2!!token3!!token4!!token5!
 
-    echo ....test_FORCicle: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -252,7 +291,7 @@ rem beginfunction
 
     call :GetSET `set` "" || exit /b 1
 
-    echo ....test_GetSET: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -269,7 +308,7 @@ rem beginfunction
     call :GetCMD `set` "=" "" || exit /b 1
     call :GetCMD `dir` " " || exit /b 1
 
-    echo ....test_GetCMD: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -289,7 +328,7 @@ rem beginfunction
 
     call :CheckErrorlevel CreateDir Yes
 
-    echo ....test_CheckErrorlevel: Ok
+    echo ....%0: Ok
 
     exit /b 0
 rem endfunction
@@ -339,6 +378,9 @@ exit /b 0
 %LIB_BAT%\LYRSupport.bat %*
 exit /b 0
 :Read_P
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:Read_P_editenv
 %LIB_BAT%\LYRSupport.bat %*
 exit /b 0
 :Read_N
