@@ -682,7 +682,7 @@ rem beginfunction
 
     rem call :__CopyFilesROOT
 
-    rem call :__CopyFilesFromPATTERN
+    call :__CopyFilesFromPATTERN
 
     rem call :__SetPROJECT_INI
 
