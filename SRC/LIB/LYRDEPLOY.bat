@@ -108,7 +108,7 @@ rem beginfunction
     set !FUNCNAME!=
 
     set APROJECT_DIR=%~1
-    remecho APROJECT_DIR:!APROJECT_DIR!
+    rem echo APROJECT_DIR:!APROJECT_DIR!
 
     if not defined APROJECT_DIR (
         echo ERROR: APROJECT_DIR not defined ...
