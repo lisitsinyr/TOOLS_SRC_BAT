@@ -175,13 +175,7 @@ rem beginfunction
     rem Gurl_github
     rem ------------------------------------------------
     call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! url || exit /b 1
-    set Gurl_github=!GetINI!
-    rem echo Gurl_github:!Gurl_github!
-    rem ------------------------------------------------
-    rem Gurl_github
-    rem ------------------------------------------------
-    call :GetINIParametr !GPROJECTS_INI! !GPROJECT_NAME! url || exit /b 1
-    set Gurl_github=!GetINIParametr!
+    set Gurl_github=!ParameterValue!
     echo Gurl_github:!Gurl_github!
 
     if not defined GPROJECT_PATTERN_DIR (
