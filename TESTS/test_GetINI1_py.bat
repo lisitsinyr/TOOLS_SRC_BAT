@@ -11,7 +11,7 @@ setlocal enabledelayedexpansion
     rem echo Старт !BATNAME! ...
 
     set WorkDir=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Python\PROJECTS_PY\SCRIPTS_PY\SRC\SCRIPTS_PY\GetINI\
-    call !WorkDir!GetINI1_py.bat PROJECT.ini general PROJECT_GROUP
+    call !WorkDir!GetINI1_py.bat PROJECT.ini general PROJECTS_GROUP
 
     exit /b 0
 :end

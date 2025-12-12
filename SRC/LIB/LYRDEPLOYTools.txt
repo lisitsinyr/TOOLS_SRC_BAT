@@ -55,3 +55,6 @@ exit /b 0
 :CLEAR_TOOLS_SH
 %LIB_BAT%\LYRDEPLOYTools.bat %*
 exit /b 0
+:GET_url_github
+%LIB_BAT%\LYRDEPLOYTools.bat %*
+exit /b 0

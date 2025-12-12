@@ -34,14 +34,14 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-    call :test_GetINI PROJECT.ini general PROJECT_GROUP
+    call :test_GetINI PROJECT.ini general PROJECTS_GROUP
     
-    rem call :test_SetINI PROJECT.ini general PROJECT_GROUP 623476817
-    rem call :test_GetINI PROJECT.ini general PROJECT_GROUP
+    rem call :test_SetINI PROJECT.ini general PROJECTS_GROUP 623476817
+    rem call :test_GetINI PROJECT.ini general PROJECTS_GROUP
 
-    rem call :test_GetINIParametr PROJECT.ini general PROJECT_GROUP
+    rem call :test_GetINIParametr PROJECT.ini general PROJECTS_GROUP
 
-    call :test_GetINIPY PROJECT.ini general PROJECT_GROUP
+    call :test_GetINIPY PROJECT.ini general PROJECTS_GROUP
     
     rem call :test_GetFileParser
 

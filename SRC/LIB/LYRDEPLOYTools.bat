@@ -243,7 +243,7 @@ rem beginfunction
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
-    set LDIR_FROM=!DIR_GROUP_ROOT!\PROJECTS_JAVA\TOOLS_SRC_JAVA\SRC\LIB
+    set LDIR_FROM=!PROJECTS_DIR_ROOT!\PROJECTS_JAVA\TOOLS_SRC_JAVA\SRC\LIB
     rem echo LDIR_FROM:!LDIR_FROM!
     set LDIR_TO=!DIR_PROJECT_NAME!\LIB
     rem echo LDIR_TO:!LDIR_TO!
@@ -576,6 +576,35 @@ rem beginfunction
     exit /b 0
 rem endfunction
 
+rem --------------------------------------------------------------------------------
+rem procedure GET_url_github (config) -> None
+rem --------------------------------------------------------------------------------
+:GET_url_github
+rem beginfunction
+    set FUNCNAME=%0
+    set FUNCNAME=GET_url_github
+    if defined DEBUG (
+        echo DEBUG: procedure !FUNCNAME! ...
+    )
+    set !FUNCNAME!=
+
+    set Aconfig=%~1
+
+    set L=remote "origin"
+    echo L:!L!
+    call :GetINI !Aconfig! "!L!" url
+    set Lurl=!ParameterValue!
+    echo Lurl:!Lurl!
+
+rem .git\config
+rem [remote "origin"]
+rem     url = git@github.com:lisitsinyr/TOOLS_SRC_BAT.git
+
+    set GET_url_github=
+
+    exit /b 0
+rem endfunction
+
 rem =================================================
 rem ‘”Õ ÷»» LIB
 rem =================================================
@@ -649,12 +678,14 @@ exit /b 0
 :WriteTEXT
 %LIB_BAT%\LYRConsole.bat %*
 exit /b 0
+
 rem =================================================
 rem LYRConst.bat
 rem =================================================
 :LYRConstINIT
 %LIB_BAT%\LYRConst.bat %*
 exit /b 0
+
 rem =================================================
 rem LYRDateTime.bat
 rem =================================================
@@ -667,6 +698,7 @@ exit /b 0
 :DateTime
 %LIB_BAT%\LYRDateTime.bat %*
 exit /b 0
+
 rem =================================================
 rem LYRDEPLOY.bat
 rem =================================================
@@ -700,6 +732,7 @@ exit /b 0
 :PULL_PROJECT
 %LIB_BAT%\LYRDEPLOY.bat %*
 exit /b 0
+
 rem =================================================
 rem LYRDEPLOYTools.bat
 rem =================================================
@@ -739,6 +772,7 @@ exit /b 0
 :UPDATE_TOOLS_SH_TOOLS_SRC_GIT_SH
 %LIB_BAT%\LYRDEPLOYTools.bat %*
 exit /b 0
+
 rem =================================================
 rem LYRFileUtils.bat
 rem =================================================
@@ -787,6 +821,7 @@ exit /b 0
 :XCOPY_FILES
 %LIB_BAT%\LYRFileUtils.bat %*
 exit /b 0
+
 rem =================================================
 rem LYRLIB.bat
 rem =================================================
@@ -814,6 +849,7 @@ exit /b 0
 :__SET_LOG
 exit /b 0
 :SET_LIB
+
 rem =================================================
 rem LYRLog.bat
 rem =================================================
@@ -844,6 +880,7 @@ exit /b 0
 :StopLogFile
 %LIB_BAT%\LYRLog.bat %*
 exit /b 0
+
 rem =================================================
 rem LYRParserINI.bat
 rem =================================================
@@ -862,6 +899,7 @@ exit /b 0
 :GetFileParser
 %LIB_BAT%\LYRParserINI.bat %*
 exit /b 0
+
 rem =================================================
 rem LYRPY.bat
 rem =================================================
@@ -874,6 +912,7 @@ exit /b 0
 :VENV_STOP
 %LIB_BAT%\LYRPY.bat %*
 exit /b 0
+
 rem =================================================
 rem LYRStrUtils.bat
 rem =================================================
@@ -901,6 +940,7 @@ exit /b 0
 :ListToStr
 %LIB_BAT%\LYRStrUtils.bat %*
 exit /b 0
+
 rem =================================================
 rem LYRSupport.bat
 rem =================================================
