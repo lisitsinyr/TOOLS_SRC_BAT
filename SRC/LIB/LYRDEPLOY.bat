@@ -250,8 +250,6 @@ rem beginfunction
         exit /b 0
     )    
 
-pause 
-
     call :__REPO_WORK !GPROJECT_DIR!
 
     exit /b 0
@@ -628,8 +626,6 @@ rem beginfunction
     )
     set !FUNCNAME!=
 
-    rem call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
-
     call :SetINI !GPROJECT_DIR!\PROJECT.ini general PROJECTS_GROUP !PROJECTS_GROUP!
     call :SetINI !GPROJECT_DIR!\PROJECT.ini general PROJECT_NAME !PROJECT_NAME!
     call :SetINI !GPROJECT_DIR!\PROJECT.ini general PROJECTS_DIR_ROOT !PROJECTS_DIR_ROOT!
@@ -648,8 +644,6 @@ rem beginfunction
         echo DEBUG: procedure !FUNCNAME! ...
     )
     set !FUNCNAME!=
-
-    rem call :WritePROCESS ...FUNCNAME:!FUNCNAME!...
 
     call :SetINI !GPROJECT_DIR!\REPO.ini general REPO_NAME !PROJECT_NAME!
 
@@ -727,8 +721,6 @@ rem beginfunction
 
     set ADirectory=%~1
     echo ADirectory:!ADirectory!
-
-pause
 
     if not exist !ADirectory!\ (
         echo ERROR: Каталог !ADirectory! не существует ...
