@@ -130,51 +130,51 @@ rem beginfunction
     rem ------------------------------------------------
     call :GetINIParametr !APROJECT_DIR!\!PROJECT_INI! general PROJECTS_GROUP || exit /b 1
     set GPROJECTS_GROUP=!GetINIParametr!
-    echo GPROJECTS_GROUP:!GPROJECTS_GROUP!
+    rem echo GPROJECTS_GROUP:!GPROJECTS_GROUP!
 
     rem -------------------------------------------------------------------
     rem GPROJECTS_DIR_ROOT
     rem -------------------------------------------------------------------
     call :GetINIParametr !APROJECT_DIR!\!PROJECT_INI! general PROJECTS_DIR_ROOT || exit /b 1
     set GPROJECTS_DIR_ROOT=!GetINIParametr!
-    echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
+    rem echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
 
     rem ------------------------------------------------
     rem GPROJECT_NAME
     rem ------------------------------------------------
     call :GetINIParametr !APROJECT_DIR!\!PROJECT_INI! general PROJECT_NAME || exit /b 1
     set GPROJECT_NAME=!GetINIParametr!
-    echo GPROJECT_NAME:!GPROJECT_NAME!
+    rem echo GPROJECT_NAME:!GPROJECT_NAME!
 
     rem ------------------------------------------------
     rem PROJECT_NAME
     rem ------------------------------------------------
     set GPROJECT_DIR=!APROJECT_DIR!
-    echo GPROJECT_DIR:!GPROJECT_DIR!
+    rem echo GPROJECT_DIR:!GPROJECT_DIR!
 
     set GPROJECTS_INI=!GPROJECTS_DIR_ROOT!\!GPROJECTS_GROUP!.ini
-    echo GPROJECTS_INI:!GPROJECTS_INI!
+    rem echo GPROJECTS_INI:!GPROJECTS_INI!
 
     rem ------------------------------------------------
     rem LPROJECT_DIR
     rem ------------------------------------------------
     call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! PROJECT_DIR || exit /b 1
     set LPROJECT_DIR=!GetINI!
-    echo LPROJECT_DIR:!LPROJECT_DIR!
+    rem echo LPROJECT_DIR:!LPROJECT_DIR!
 
     rem ------------------------------------------------
     rem GPROJECT_PATTERN_DIR
     rem ------------------------------------------------
     call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! PROJECT_PATTERN_DIR || exit /b 1
     set GPROJECT_PATTERN_DIR=!GetINI!
-    echo GPROJECT_PATTERN_DIR:!GPROJECT_PATTERN_DIR!
+    rem echo GPROJECT_PATTERN_DIR:!GPROJECT_PATTERN_DIR!
 
     rem ------------------------------------------------
     rem Gurl_github
     rem ------------------------------------------------
     call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! url || exit /b 1
     set Gurl_github=!GetINI!
-    echo Gurl_github:!Gurl_github!
+    rem echo Gurl_github:!Gurl_github!
 
     if not defined GPROJECT_PATTERN_DIR (
         rem ------------------------------------------------
@@ -182,7 +182,7 @@ rem beginfunction
         rem ------------------------------------------------
         call :GetINI !PROJECTS_INI! general PROJECTS_PATTERN_DIR || exit /b 1
         set PROJECTS_PATTERN_DIR=!GetINI!
-        echo PROJECTS_PATTERN_DIR:!PROJECTS_PATTERN_DIR!
+        rem echo PROJECTS_PATTERN_DIR:!PROJECTS_PATTERN_DIR!
         set GPROJECT_PATTERN_DIR=!PROJECTS_PATTERN_DIR!
     )
 
