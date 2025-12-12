@@ -336,6 +336,8 @@ rem beginfunction
         call :GetINI !FILEINI! PATTERNS Pascal_Delphi
         set LDirPATTERN=!ParameterValue!
     )
+    echo LDirPATTERN:!LDirPATTERN!
+    echo GPROJECT_PATTERN_DIR:!GPROJECT_PATTERN_DIR!
 
     set LDirPATTERN=!GPROJECT_PATTERN_DIR!
 
