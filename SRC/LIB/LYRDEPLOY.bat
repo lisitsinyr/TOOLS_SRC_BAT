@@ -669,7 +669,7 @@ rem beginfunction
     call :WritePROCESS DEPLOY проекта [__REPO_WORK]: !PROJECT_NAME!
 
     set ADirectory=%~1
-    echo ADirectory:!ADirectory!
+    rem echo ADirectory:!ADirectory!
 
     if not exist "!ADirectory!"\ (
         echo ERROR: Каталог !ADirectory! не существует ...
