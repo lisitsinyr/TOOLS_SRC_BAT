@@ -160,7 +160,9 @@ rem beginfunction
     rem ------------------------------------------------
     call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! PROJECT_DIR || exit /b 1
     set LPROJECT_DIR=!GetINI!
-    rem echo LPROJECT_DIR:!LPROJECT_DIR!
+    echo LPROJECT_DIR:!LPROJECT_DIR!
+    set LPROJECT_DIR=!ParameterValue!
+    echo LPROJECT_DIR:!LPROJECT_DIR!
 
     rem ------------------------------------------------
     rem GPROJECT_PATTERN_DIR
