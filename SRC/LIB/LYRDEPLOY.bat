@@ -161,8 +161,8 @@ rem beginfunction
     call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! PROJECT_DIR || exit /b 1
     set LPROJECT_DIR=!GetINI!
     echo LPROJECT_DIR:!LPROJECT_DIR!
-    set LPROJECT_DIR=!ParameterValue!
-    echo LPROJECT_DIR:!LPROJECT_DIR!
+    rem set LPROJECT_DIR=!ParameterValue!
+    rem echo LPROJECT_DIR:!LPROJECT_DIR!
 
     rem ------------------------------------------------
     rem GPROJECT_PATTERN_DIR
@@ -177,6 +177,12 @@ rem beginfunction
     call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! url || exit /b 1
     set Gurl_github=!GetINI!
     rem echo Gurl_github:!Gurl_github!
+    rem ------------------------------------------------
+    rem Gurl_github
+    rem ------------------------------------------------
+    call :GetINIParametr !GPROJECTS_INI! !GPROJECT_NAME! url || exit /b 1
+    set Gurl_github=!ParameterValue!
+    echo Gurl_github:!Gurl_github!
 
     if not defined GPROJECT_PATTERN_DIR (
         rem ------------------------------------------------
