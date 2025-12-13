@@ -213,12 +213,9 @@ rem beginfunction
     rem if defined res (
 
     if defined APROJECTS_GROUP if defined APROJECT_NAME (
-
         echo !APROJECTS_GROUP! !APROJECT_NAME! - True
-
         set GPROJECTS_GROUP=!APROJECTS_GROUP!
         set GPROJECT_NAME=!APROJECT_NAME!
-
         rem ------------------------------------------------
         rem GPROJECTS_DIR_ROOT
         rem ------------------------------------------------
@@ -229,9 +226,7 @@ rem beginfunction
         rem echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
 
     ) else (
-
         echo APROJECTS_GROUP APROJECT_NAME - False
-
         if not exist !cd!\PROJECT.ini (
             echo INFO: !cd!\PROJECT.ini not exist ...
         ) else (
@@ -350,6 +345,9 @@ rem beginfunction
 
     if defined LDirPATTERN if exist "!LDirPATTERN!"\ ( 
 
+        rem ------------------------------------------------------
+        rem 
+        rem ------------------------------------------------------
         set LFileName=PROJECT.INI
         if exist !LDirPATTERN!\!LFileName! (
             if not exist !GPROJECT_DIR!\!LFileName! (
@@ -399,48 +397,56 @@ rem beginfunction
             rem call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
             call :XCOPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
         )
+
         set LDIR_FROM=!LDirPATTERN!\CONFIG
         set LDIR_TO=!GPROJECT_DIR!\CONFIG
         if exist !LDIR_FROM!\ (
             rem call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
             call :XCOPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
         )
+        
         set LDIR_FROM=!LDirPATTERN!\DATA
         set LDIR_TO=!GPROJECT_DIR!\DATA
         if exist !LDIR_FROM!\ (
             rem call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
             call :XCOPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
         )
+        
         set LDIR_FROM=!LDirPATTERN!\DIST
         set LDIR_TO=!GPROJECT_DIR!\DIST
         if exist !LDIR_FROM!\ (
             rem call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
             call :XCOPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
         )
+        
         set LDIR_FROM=!LDirPATTERN!\DOC
         set LDIR_TO=!GPROJECT_DIR!\DOC
         if exist !LDIR_FROM!\ (
             rem call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
             call :XCOPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
         )
+        
         set LDIR_FROM=!LDirPATTERN!\EXE
         set LDIR_TO=!GPROJECT_DIR!\EXE
         if exist !LDIR_FROM!\ (
             rem call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
             call :XCOPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
         )
+        
         set LDIR_FROM=!LDirPATTERN!\LOG
         set LDIR_TO=!GPROJECT_DIR!\LOG
         if exist !LDIR_FROM!\ (
             rem call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
             call :XCOPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
         )
+        
         set LDIR_FROM=!LDirPATTERN!\OUT
         set LDIR_TO=!GPROJECT_DIR!\OUT
         if exist !LDIR_FROM!\ (
             rem call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
             call :XCOPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
         )
+        
         set LDIR_FROM=!LDirPATTERN!\SRC
         set LDIR_TO=!GPROJECT_DIR!\SRC
         if exist !LDIR_FROM!\ (
@@ -448,96 +454,71 @@ rem beginfunction
             call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
             rem call :XCOPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
         )
+        
         set LDIR_FROM=!LDirPATTERN!\TESTS
         set LDIR_TO=!GPROJECT_DIR!\TESTS
         if exist !LDIR_FROM!\ (
             rem call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
             call :XCOPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
         )
+        
         set LDIR_FROM=!LDirPATTERN!\WORK
         set LDIR_TO=!GPROJECT_DIR!\WORK
         if exist !LDIR_FROM!\ (
             rem call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
             call :XCOPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
         )
-    )
 
-    exit /b 0
-rem endfunction
-
-rem --------------------------------------------------------------------------------
-rem procedure __CopyFromPATTERN_PYTHON () -> None
-rem --------------------------------------------------------------------------------
-:__CopyFromPATTERN_PYTHON
-rem beginfunction
-    set FUNCNAME=%0
-    set FUNCNAME=__CopyFromPATTERN_PYTHON
-    if defined DEBUG (
-        echo DEBUG: procedure !FUNCNAME! ...
-    )
-    set !FUNCNAME!=
-
-    set LDirPATTERN=%~1
-
-    set LFileName=pyproject.toml
-    if exist !LDirPATTERN!\!LFileName! if not exist !GPROJECT_DIR!\!LFileName! (
-        if not exist !GPROJECT_DIR!\!LFileName! (
-            echo .... :COPY_FILE !LFileName! ...
-            call :COPY_FILE !LDirPATTERN!\!LFileName! !GPROJECT_DIR! || exit /b 1
+        rem ------------------------------------------------------
+        rem PATTERN_PYTHON
+        rem ------------------------------------------------------
+        set LFileName=pyproject.toml
+        if exist !LDirPATTERN!\!LFileName! if not exist !GPROJECT_DIR!\!LFileName! (
+            if not exist !GPROJECT_DIR!\!LFileName! (
+                call :COPY_FILE !LDirPATTERN!\!LFileName! !GPROJECT_DIR! || exit /b 1
+            )
         )
-    )
-
-    set LFileName=.env
-    if exist !LDirPATTERN!\!LFileName! if not exist !GPROJECT_DIR!\!LFileName! (
-        if not exist !GPROJECT_DIR!\!LFileName! (
-            echo .... :COPY_FILE !LFileName! ...
-            call :COPY_FILE !LDirPATTERN!\!LFileName! !GPROJECT_DIR! || exit /b 1
+        
+        set LFileName=.env
+        if exist !LDirPATTERN!\!LFileName! if not exist !GPROJECT_DIR!\!LFileName! (
+            if not exist !GPROJECT_DIR!\!LFileName! (
+                call :COPY_FILE !LDirPATTERN!\!LFileName! !GPROJECT_DIR! || exit /b 1
+            )
         )
-    )
-
-    set LFileName=.python-version
-    if exist !LDirPATTERN!\!LFileName! (
-        if not exist !GPROJECT_DIR!\!LFileName! (
-            echo .... :COPY_FILE !LFileName! ...
-            call :COPY_FILE !LDirPATTERN!\!LFileName! !GPROJECT_DIR! || exit /b 1
+        
+        set LFileName=.python-version
+        if exist !LDirPATTERN!\!LFileName! (
+            if not exist !GPROJECT_DIR!\!LFileName! (
+                call :COPY_FILE !LDirPATTERN!\!LFileName! !GPROJECT_DIR! || exit /b 1
+            )
         )
-    )
+        
+        set LDIR_FROM=!LDirPATTERN!\NOTEBOOKS
+        set LDIR_TO=!GPROJECT_DIR!\NOTEBOOKS
+        if exist !LDIR_FROM!\ (
+            rem call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
+            call :XCOPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
+        )
 
-    set LDIR_FROM=!LDirPATTERN!\NOTEBOOKS
-    set LDIR_TO=!GPROJECT_DIR!\NOTEBOOKS
-    if exist !LDIR_FROM!\ (
-        call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
-    )
-
-    exit /b 0
-rem endfunction
-
-rem --------------------------------------------------------------------------------
-rem procedure CopyFilesROOT () -> None
-rem --------------------------------------------------------------------------------
-:__CopyFilesROOT
-rem beginfunction
-    set FUNCNAME=%0
-    set FUNCNAME=__CopyFilesROOT
-    if defined DEBUG (
-        echo DEBUG: procedure !FUNCNAME! ...
-    )
-    set !FUNCNAME!=
-
-    set LDirectory=D:\PROJECTS_LYR\CHECK_LIST\GIT\PROJECTS_GIT\TOOLS_SRC_GIT\SRC\BAT\A.WORK
-    set LFileName=lyrgit_push_main.bat
-    if exist !LDirectory!\!LFileName! (
-        copy !LDirectory!\!LFileName! > NUL
-    )
-    set LFileName=lyrgit_pull.bat
-    if exist !LDirectory!\!LFileName! (
-        copy !LDirectory!\!LFileName! > NUL
-    )
-
-    set LDirectory=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\SCRIPTS_BAT\SRC\99.DEPLOY
-    set LFileName=DEPLOY_PROJECT.bat
-    if exist !LDirectory!\!LFileName! (
-        copy !LDirectory!\!LFileName! > NUL
+        rem ------------------------------------------------------
+        rem CopyFilesROOT
+        rem ------------------------------------------------------
+        set LDirectory=D:\PROJECTS_LYR\CHECK_LIST\GIT\PROJECTS_GIT\TOOLS_SRC_GIT\SRC\BAT\A.WORK
+        set LFileName=lyrgit_push_main.bat
+        if exist !LDirectory!\!LFileName! (
+            copy !LDirectory!\!LFileName! > NUL
+        )
+        
+        set LFileName=lyrgit_pull.bat
+        if exist !LDirectory!\!LFileName! (
+            copy !LDirectory!\!LFileName! > NUL
+        )
+        
+        set LDirectory=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\SCRIPTS_BAT\SRC\99.DEPLOY
+        set LFileName=DEPLOY_PROJECT.bat
+        if exist !LDirectory!\!LFileName! (
+            copy !LDirectory!\!LFileName! > NUL
+        )
     )
 
     exit /b 0
@@ -575,58 +556,30 @@ rem beginfunction
     set !FUNCNAME!=
 
     set LSaveDirectory=!cd!
+
     call :WritePROCESS DEPLOY проекта [__REPO_WORK]: !PROJECT_NAME!
+    
     set ADirectory=%~1
     rem echo ADirectory:!ADirectory!
     if not exist "!ADirectory!"\ (
         echo ERROR: Каталог !ADirectory! не существует ...
         exit /b 1
     )
+    
     cd /D "!ADirectory!"
-    call :__CopyFilesROOT
-    call :__CopyFilesFromPATTERN
+    
+    call :__CopyFromPATTERN_ALL !GPROJECT_PATTERN_DIR!
     call :__SetPROJECT_INI
+    
     cd /D "!ADirectory!"
     if exist .git\ (
         call lyrgit_push_main.bat
     ) else (
         echo INFO: Каталог .git не существует ...
     )
+    
     cd /D "!LSaveDirectory!"
-    exit /b 0
-rem endfunction
-
-rem --------------------------------------------------------------------------------
-rem procedure __REPO_WORK_TOOLS (ADirectory) -> None
-rem --------------------------------------------------------------------------------
-:__REPO_WORK_TOOLS
-rem beginfunction
-    set FUNCNAME=%0
-    set FUNCNAME=__REPO_WORK_TOOLS
-    if defined DEBUG (
-        echo DEBUG: procedure !FUNCNAME! ...
-    )
-    set !FUNCNAME!=
-
-    set LSaveDirectory=!cd!
-    call :WritePROCESS ................................DEPLOY проекта [__REPO_WORK_TOOLS]: !PROJECT_NAME!
-    set ADirectory=%~1
-    echo ADirectory:!ADirectory!
-    if not exist !ADirectory!\ (
-        echo ERROR: Каталог !ADirectory! не существует ...
-        set __REPO_WORK_TOOLS=
-        exit /b 1
-    )
-    call :__CopyFilesROOT
-    call :__CopyFilesFromPATTERN
-    call :__SetPROJECT_INI
-    cd /D "!ADirectory!"
-    if exist ".git"\ (
-        call lyrgit_push_main.bat
-    ) else (
-        echo INFO: Каталог .git не существует ...
-    )
-    cd /D "!LSaveDirectory!"
+    
     exit /b 0
 rem endfunction
 
@@ -980,40 +933,6 @@ exit /b 0
 exit /b 0
 :DateTime
 %LIB_BAT%\LYRDateTime.bat %*
-exit /b 0
-
-rem =================================================
-rem LYRDEPLOY.bat
-rem =================================================
-:LYRDEPLOYINIT
-%LIB_BAT%\LYRDEPLOY.bat %*
-exit /b 0
-:__CopyFilesFromPATTERN
-%LIB_BAT%\LYRDEPLOY.bat %*
-exit /b 0
-:__CopyFilesROOT
-%LIB_BAT%\LYRDEPLOY.bat %*
-exit /b 0
-:__SetPROJECT_INI
-%LIB_BAT%\LYRDEPLOY.bat %*
-exit /b 0
-:__SetREPO_INI
-%LIB_BAT%\LYRDEPLOY.bat %*
-exit /b 0
-:__REPO_WORK
-%LIB_BAT%\LYRDEPLOY.bat %*
-exit /b 0
-:DEPLOY_PROJECT
-%LIB_BAT%\LYRDEPLOY.bat %*
-exit /b 0
-:__git_pull
-%LIB_BAT%\LYRDEPLOY.bat %*
-exit /b 0
-:__git_clone
-%LIB_BAT%\LYRDEPLOY.bat %*
-exit /b 0
-:PULL_PROJECT
-%LIB_BAT%\LYRDEPLOY.bat %*
 exit /b 0
 
 rem =================================================
