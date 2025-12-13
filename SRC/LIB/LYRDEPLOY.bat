@@ -183,8 +183,8 @@ rem beginfunction
             set res=Yes
         )
     )
-    if defined res (
-    rem if defined APROJECTS_GROUP if defined APROJECT_NAME (
+    rem if defined res (
+    if defined APROJECTS_GROUP if defined APROJECT_NAME (
         echo !APROJECTS_GROUP! !APROJECT_NAME! - True
         set GPROJECTS_GROUP=!APROJECTS_GROUP!
         set GPROJECT_NAME=!APROJECT_NAME!
