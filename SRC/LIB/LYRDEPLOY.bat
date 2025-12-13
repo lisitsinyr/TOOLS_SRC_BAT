@@ -73,9 +73,9 @@ rem beginfunction
     set !FUNCNAME!=
 
     set APROJECT_GROUP=%~1
-    echo APROJECT_GROUP:!APROJECT_GROUP!
+    rem echo APROJECT_GROUP:!APROJECT_GROUP!
     set APROJECT_NAME=%~2
-    echo APROJECT_NAME:!APROJECT_NAME!
+    rem echo APROJECT_NAME:!APROJECT_NAME!
 
     call :GET_project_INFO !APROJECT_GROUP! !APROJECT_NAME!
 
@@ -151,9 +151,9 @@ rem beginfunction
     set !FUNCNAME!=
 
     set APROJECT_GROUP=%~1
-    echo APROJECT_GROUP:!APROJECT_GROUP!
+    rem echo APROJECT_GROUP:!APROJECT_GROUP!
     set APROJECT_NAME=%~2
-    echo APROJECT_GROUP:!APROJECT_NAME!
+    rem echo APROJECT_GROUP:!APROJECT_NAME!
 
     set res=
     if defined APROJECT_GROUP (
@@ -201,7 +201,6 @@ rem beginfunction
             call :GetINIParametr !GPROJECT_DIR!\PROJECT.ini general PROJECT_NAME || exit /b 1
             set GPROJECT_NAME=!GetINIParametr!
             echo GPROJECT_NAME:!GPROJECT_NAME!
-echo .... 2
         )
     )
 
@@ -537,7 +536,7 @@ rem beginfunction
 
     call :__CopyFilesFromPATTERN
 
-    rem call :__SetPROJECT_INI
+    call :__SetPROJECT_INI
 
     cd /D "!ADirectory!"
 
