@@ -73,11 +73,11 @@ rem beginfunction
     set !FUNCNAME!=
 
     set APROJECT_GROUP=%~1
-    rem echo APROJECT_GROUP:!APROJECT_GROUP!
+    echo APROJECT_GROUP:!APROJECT_GROUP!
     set APROJECT_NAME=%~2
-    rem echo APROJECT_GROUP:!APROJECT_NAME!
+    echo APROJECT_NAME:!APROJECT_NAME!
 
-    call :__GET_project_INFO !APROJECT_GROUP! !APROJECT_NAME!
+    call :GET_project_INFO !APROJECT_GROUP! !APROJECT_NAME!
 
     if !GPROJECT_NAME!==TOOLS_BAT (
         call :ClearDir !GPROJECT_DIR!\BAT *.bat
@@ -151,9 +151,11 @@ rem beginfunction
     set !FUNCNAME!=
 
     set APROJECT_GROUP=%~1
-    rem echo APROJECT_GROUP:!APROJECT_GROUP!
+    echo APROJECT_GROUP:!APROJECT_GROUP!
     set APROJECT_NAME=%~2
-    rem echo APROJECT_GROUP:!APROJECT_NAME!
+    echo APROJECT_GROUP:!APROJECT_NAME!
+
+pause
 
     if defined APROJECT_GROUP if defined APROJECT_NAME (
         rem ------------------------------------------------
@@ -163,43 +165,45 @@ rem beginfunction
         rem BAT=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT
         call :GetINIParametr !GFILEINI! PROJECTS_GROUP !PROJECTS_GROUP! || exit /b 1
         set GPROJECTS_DIR_ROOT=!KeyValue!
-        rem echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
+        echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
 
     ) else (
-        if not exist !cd!\!PROJECT_INI! (
+
+        if not exist !cd!\PROJECT.ini (
             echo INFO: !cd!\PROJECT.ini not exist ...
         ) else (
             rem ------------------------------------------------
             rem GPROJECT_DIR
             rem ------------------------------------------------
             set GPROJECT_DIR=!cd!
-            rem echo GPROJECT_DIR:!GPROJECT_DIR!
+            echo GPROJECT_DIR:!GPROJECT_DIR!
 
             rem ------------------------------------------------
             rem GPROJECTS_GROUP
             rem ------------------------------------------------
             call :GetINIParametr !APROJECT_DIR!\!PROJECT_INI! general PROJECTS_GROUP || exit /b 1
             set GPROJECTS_GROUP=!GetINIParametr!
-            rem echo GPROJECTS_GROUP:!GPROJECTS_GROUP!
+            echo GPROJECTS_GROUP:!GPROJECTS_GROUP!
         
             rem -------------------------------------------------------------------
             rem GPROJECTS_DIR_ROOT
             rem -------------------------------------------------------------------
             call :GetINIParametr !APROJECT_DIR!\!PROJECT_INI! general PROJECTS_DIR_ROOT || exit /b 1
             set GPROJECTS_DIR_ROOT=!GetINIParametr!
-            rem echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
+            echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
         
             rem ------------------------------------------------
             rem GPROJECT_NAME
             rem ------------------------------------------------
             call :GetINIParametr !APROJECT_DIR!\!PROJECT_INI! general PROJECT_NAME || exit /b 1
             set GPROJECT_NAME=!GetINIParametr!
-            rem echo GPROJECT_NAME:!GPROJECT_NAME!
+            echo GPROJECT_NAME:!GPROJECT_NAME!
         )
     )
 
     set GPROJECTS_INI=!GPROJECTS_DIR_ROOT!\!GPROJECTS_GROUP!.ini
-    rem echo GPROJECTS_INI:!GPROJECTS_INI!
+    echo GPROJECTS_INI:!GPROJECTS_INI!
+
 pause
 
     rem ------------------------------------------------
