@@ -72,9 +72,9 @@ rem beginfunction
     set !FUNCNAME!=
 
     set APROJECT_GROUP=%~1
-    rem echo APROJECT_GROUP:!APROJECT_GROUP!
+    echo APROJECT_GROUP:!APROJECT_GROUP!
     set APROJECT_NAME=%~2
-    rem echo APROJECT_NAME:!APROJECT_NAME!
+    echo APROJECT_NAME:!APROJECT_NAME!
 
     call :GET_project_INFO !APROJECT_GROUP! !APROJECT_NAME!
 
