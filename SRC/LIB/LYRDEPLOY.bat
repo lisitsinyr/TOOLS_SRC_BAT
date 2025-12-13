@@ -179,33 +179,33 @@ rem beginfunction
             rem GPROJECT_DIR
             rem ------------------------------------------------
             set GPROJECT_DIR=!cd!
-            echo GPROJECT_DIR:!GPROJECT_DIR!
+            rem echo GPROJECT_DIR:!GPROJECT_DIR!
 
             rem ------------------------------------------------
             rem GPROJECTS_GROUP
             rem ------------------------------------------------
             call :GetINIParametr !GPROJECT_DIR!\PROJECT.ini general PROJECTS_GROUP || exit /b 1
             set GPROJECTS_GROUP=!GetINIParametr!
-            echo GPROJECTS_GROUP:!GPROJECTS_GROUP!
+            rem echo GPROJECTS_GROUP:!GPROJECTS_GROUP!
         
             rem -------------------------------------------------------------------
             rem GPROJECTS_DIR_ROOT
             rem -------------------------------------------------------------------
             call :GetINIParametr !GPROJECT_DIR!\PROJECT.ini general PROJECTS_DIR_ROOT || exit /b 1
             set GPROJECTS_DIR_ROOT=!GetINIParametr!
-            echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
+            rem echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
         
             rem ------------------------------------------------
             rem GPROJECT_NAME
             rem ------------------------------------------------
             call :GetINIParametr !GPROJECT_DIR!\PROJECT.ini general PROJECT_NAME || exit /b 1
             set GPROJECT_NAME=!GetINIParametr!
-            echo GPROJECT_NAME:!GPROJECT_NAME!
+            rem echo GPROJECT_NAME:!GPROJECT_NAME!
         )
     )
 
     set GPROJECTS_INI=!GPROJECTS_DIR_ROOT!\!GPROJECTS_GROUP!.ini
-    echo GPROJECTS_INI:!GPROJECTS_INI!
+    rem echo GPROJECTS_INI:!GPROJECTS_INI!
 
     rem ------------------------------------------------
     rem GPROJECT_DIR
@@ -219,7 +219,7 @@ rem beginfunction
     rem ------------------------------------------------
     call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! PROJECT_PATTERN_DIR || exit /b 1
     set GPROJECT_PATTERN_DIR=!GetINI!
-    echo GPROJECT_PATTERN_DIR:!GPROJECT_PATTERN_DIR!
+    rem echo GPROJECT_PATTERN_DIR:!GPROJECT_PATTERN_DIR!
 
     rem ------------------------------------------------
     rem Gurl_github
