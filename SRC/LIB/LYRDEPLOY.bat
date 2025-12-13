@@ -205,8 +205,7 @@ rem beginfunction
         echo APROJECTS_GROUP APROJECT_NAME - False
     )
 
-pause
-    
+   
     set res=
     if defined APROJECTS_GROUP (
         if defined APROJECT_NAME (
@@ -214,7 +213,12 @@ pause
         )
     )
 
-    if defined res (
+    rem if defined res (
+    if defined APROJECTS_GROUP if defined APROJECT_NAME (
+
+        echo APROJECTS_GROUP APROJECT_NAME - True
+
+pause
         set GPROJECTS_GROUP=!APROJECTS_GROUP!
         set GPROJECT_NAME=!APROJECT_NAME!
 
@@ -228,6 +232,11 @@ pause
         rem echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
 
     ) else (
+
+        echo APROJECTS_GROUP APROJECT_NAME - False
+
+pause
+
         if not exist !cd!\PROJECT.ini (
             echo INFO: !cd!\PROJECT.ini not exist ...
         ) else (
