@@ -28,8 +28,8 @@ rem beginfunction
     rem -------------------------------------------------------------------
     rem CONST
     rem -------------------------------------------------------------------
-    set FILEINI=D:\PROJECTS_LYR\CHECK_LIST\PROJECTS.ini
-    rem echo FILEINI:!FILEINI!
+    set GFILEINI=D:\PROJECTS_LYR\CHECK_LIST\PROJECTS.ini
+    rem echo GFILEINI:!GFILEINI!
 
     rem -------------------------------------------------------------------
     rem VAR
@@ -42,8 +42,8 @@ rem beginfunction
     
     set GPROJECT_NAME=
 
-    set GPROJECTS_DIR=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT
-    set GPROJECTS_DIR=
+    rem set GPROJECTS_DIR=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT
+    rem set GPROJECTS_DIR=
 
     set GPROJECT_PATTERN_DIR=
     
@@ -61,7 +61,7 @@ rem beginfunction
 rem endfunction
 
 rem --------------------------------------------------------------------------------
-rem procedure DEPLOY_PROJECT (APROJECT_DIR) -> None
+rem procedure DEPLOY_PROJECT (PROJECT_GROUP PROJECT_NAME) -> None
 rem --------------------------------------------------------------------------------
 :DEPLOY_PROJECT
 rem beginfunction
@@ -72,96 +72,12 @@ rem beginfunction
     )
     set !FUNCNAME!=
 
-    set APROJECT_DIR=%~1
-    rem echo APROJECT_DIR:!APROJECT_DIR!
+    set APROJECT_GROUP=%~1
+    rem echo APROJECT_GROUP:!APROJECT_GROUP!
+    set APROJECT_NAME=%~2
+    rem echo APROJECT_GROUP:!APROJECT_NAME!
 
-    if not defined APROJECT_DIR (
-        echo ERROR: APROJECT_DIR not defined ...
-        exit /b 1
-    ) else (
-        if not exist !APROJECT_DIR!\ (
-            echo ERROR: !APROJECT_DIR! not exist ...
-            exit /b 1
-        ) else (
-            if not exist !APROJECT_DIR!\!PROJECT_INI! (
-                echo ERROR: !APROJECT_DIR!\PROJECT.ini not exist ...
-                exit /b 1
-            )
-        )
-    )
-
-    rem ------------------------------------------------
-    rem GPROJECTS_GROUP
-    rem ------------------------------------------------
-    call :GetINIParametr !APROJECT_DIR!\!PROJECT_INI! general PROJECTS_GROUP || exit /b 1
-    set GPROJECTS_GROUP=!GetINIParametr!
-    rem echo GPROJECTS_GROUP:!GPROJECTS_GROUP!
-
-    rem -------------------------------------------------------------------
-    rem GPROJECTS_DIR_ROOT
-    rem -------------------------------------------------------------------
-    call :GetINIParametr !APROJECT_DIR!\!PROJECT_INI! general PROJECTS_DIR_ROOT || exit /b 1
-    set GPROJECTS_DIR_ROOT=!GetINIParametr!
-    rem echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
-
-    rem ------------------------------------------------
-    rem GPROJECT_NAME
-    rem ------------------------------------------------
-    call :GetINIParametr !APROJECT_DIR!\!PROJECT_INI! general PROJECT_NAME || exit /b 1
-    set GPROJECT_NAME=!GetINIParametr!
-    rem echo GPROJECT_NAME:!GPROJECT_NAME!
-
-    rem ------------------------------------------------
-    rem PROJECT_NAME
-    rem ------------------------------------------------
-    set GPROJECT_DIR=!APROJECT_DIR!
-    rem echo GPROJECT_DIR:!GPROJECT_DIR!
-
-    set GPROJECTS_INI=!GPROJECTS_DIR_ROOT!\!GPROJECTS_GROUP!.ini
-    rem echo GPROJECTS_INI:!GPROJECTS_INI!
-
-    rem ------------------------------------------------
-    rem LPROJECT_DIR
-    rem ------------------------------------------------
-    call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! PROJECT_DIR || exit /b 1
-    set LPROJECT_DIR=!GetINI!
-    echo LPROJECT_DIR:!LPROJECT_DIR!
-    rem set LPROJECT_DIR=!ParameterValue!
-    rem echo LPROJECT_DIR:!LPROJECT_DIR!
-
-    rem ------------------------------------------------
-    rem GPROJECT_PATTERN_DIR
-    rem ------------------------------------------------
-    call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! PROJECT_PATTERN_DIR || exit /b 1
-    set GPROJECT_PATTERN_DIR=!GetINI!
-    rem echo GPROJECT_PATTERN_DIR:!GPROJECT_PATTERN_DIR!
-
-    rem ------------------------------------------------
-    rem Gurl_github
-    rem ------------------------------------------------
-    call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! url || exit /b 1
-    set Gurl_github=!ParameterValue!
-    echo Gurl_github:!Gurl_github!
-
-    if not defined GPROJECT_PATTERN_DIR (
-        rem ------------------------------------------------
-        rem PROJECTS_PATTERN_DIR
-        rem ------------------------------------------------
-        call :GetINI !PROJECTS_INI! general PROJECTS_PATTERN_DIR || exit /b 1
-        set PROJECTS_PATTERN_DIR=!GetINI!
-        rem echo PROJECTS_PATTERN_DIR:!PROJECTS_PATTERN_DIR!
-        set GPROJECT_PATTERN_DIR=!PROJECTS_PATTERN_DIR!
-    )
-
-    if not defined GPROJECT_PATTERN_DIR (
-        echo ERROR: GPROJECT_PATTERN_DIR not defined ...
-        exit /b 1
-    ) else (
-        if not exist !GPROJECT_PATTERN_DIR!\ (
-            echo ERROR: !GPROJECT_PATTERN_DIR! not exist ...
-            exit /b 1
-        )
-    )
+    call :__GET_project_INFO !APROJECT_GROUP! !APROJECT_NAME!
 
     if !GPROJECT_NAME!==TOOLS_BAT (
         call :ClearDir !GPROJECT_DIR!\BAT *.bat
@@ -218,6 +134,114 @@ rem beginfunction
     )    
 
     call :__REPO_WORK !GPROJECT_DIR!
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem procedure GET_project_INFO (PROJECT_GROUP PROJECT_NAME) -> None
+rem --------------------------------------------------------------------------------
+:GET_project_INFO
+rem beginfunction
+    set FUNCNAME=%0
+    set FUNCNAME=GET_project_INFO
+    if defined DEBUG (
+        echo DEBUG: procedure !FUNCNAME! ...
+    )
+    set !FUNCNAME!=
+
+    set APROJECT_GROUP=%~1
+    rem echo APROJECT_GROUP:!APROJECT_GROUP!
+    set APROJECT_NAME=%~2
+    rem echo APROJECT_GROUP:!APROJECT_NAME!
+
+    if defined APROJECT_GROUP if defined APROJECT_NAME (
+        rem ------------------------------------------------
+        rem GPROJECTS_DIR_ROOT
+        rem ------------------------------------------------
+        rem [PROJECTS_GROUP]
+        rem BAT=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT
+        call :GetINIParametr !GFILEINI! PROJECTS_GROUP !PROJECTS_GROUP! || exit /b 1
+        set GPROJECTS_DIR_ROOT=!KeyValue!
+        rem echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
+
+    ) else (
+        if not exist !cd!\!PROJECT_INI! (
+            echo INFO: !cd!\PROJECT.ini not exist ...
+        ) else (
+            rem ------------------------------------------------
+            rem GPROJECT_DIR
+            rem ------------------------------------------------
+            set GPROJECT_DIR=!cd!
+            rem echo GPROJECT_DIR:!GPROJECT_DIR!
+
+            rem ------------------------------------------------
+            rem GPROJECTS_GROUP
+            rem ------------------------------------------------
+            call :GetINIParametr !APROJECT_DIR!\!PROJECT_INI! general PROJECTS_GROUP || exit /b 1
+            set GPROJECTS_GROUP=!GetINIParametr!
+            rem echo GPROJECTS_GROUP:!GPROJECTS_GROUP!
+        
+            rem -------------------------------------------------------------------
+            rem GPROJECTS_DIR_ROOT
+            rem -------------------------------------------------------------------
+            call :GetINIParametr !APROJECT_DIR!\!PROJECT_INI! general PROJECTS_DIR_ROOT || exit /b 1
+            set GPROJECTS_DIR_ROOT=!GetINIParametr!
+            rem echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
+        
+            rem ------------------------------------------------
+            rem GPROJECT_NAME
+            rem ------------------------------------------------
+            call :GetINIParametr !APROJECT_DIR!\!PROJECT_INI! general PROJECT_NAME || exit /b 1
+            set GPROJECT_NAME=!GetINIParametr!
+            rem echo GPROJECT_NAME:!GPROJECT_NAME!
+        )
+    )
+
+    set GPROJECTS_INI=!GPROJECTS_DIR_ROOT!\!GPROJECTS_GROUP!.ini
+    rem echo GPROJECTS_INI:!GPROJECTS_INI!
+pause
+
+    rem ------------------------------------------------
+    rem GPROJECT_DIR
+    rem ------------------------------------------------
+    call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! PROJECT_DIR || exit /b 1
+    set GPROJECT_DIR=!KeyValue!
+    echo GPROJECT_DIR:!GPROJECT_DIR!
+
+    rem ------------------------------------------------
+    rem GPROJECT_PATTERN_DIR
+    rem ------------------------------------------------
+    call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! PROJECT_PATTERN_DIR || exit /b 1
+    set GPROJECT_PATTERN_DIR=!GetINI!
+    rem echo GPROJECT_PATTERN_DIR:!GPROJECT_PATTERN_DIR!
+
+    rem ------------------------------------------------
+    rem Gurl_github
+    rem ------------------------------------------------
+    call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! url || exit /b 1
+    set Gurl_github=!KeyValue!
+    echo Gurl_github:!Gurl_github!
+
+    if not defined GPROJECT_PATTERN_DIR (
+        rem ------------------------------------------------
+        rem PROJECTS_PATTERN_DIR
+        rem ------------------------------------------------
+        call :GetINI !PROJECTS_INI! general PROJECTS_PATTERN_DIR || exit /b 1
+        set PROJECTS_PATTERN_DIR=!GetINI!
+        rem echo PROJECTS_PATTERN_DIR:!PROJECTS_PATTERN_DIR!
+        set GPROJECT_PATTERN_DIR=!PROJECTS_PATTERN_DIR!
+    )
+
+    if not defined GPROJECT_PATTERN_DIR (
+        echo ERROR: GPROJECT_PATTERN_DIR not defined ...
+        exit /b 1
+    ) else (
+        if not exist !GPROJECT_PATTERN_DIR!\ (
+            echo ERROR: !GPROJECT_PATTERN_DIR! not exist ...
+            exit /b 1
+        )
+    )
 
     exit /b 0
 rem endfunction
@@ -582,16 +606,14 @@ rem beginfunction
 
     set LOG_FILE_ADD=1
     set ADirectory=%~1
-    rem echo __git_pull:!ADirectory!
     if not exist !ADirectory!\ (
         echo ERROR: Каталог !ADirectory! не существует ...
-        set __git_pull=
         exit /b 1
     )
 
     cd /D "!ADirectory!"
 
-    call lyr__git_pull.bat
+    call lyrgit_pull.bat
     
     cd /D "!LSaveDirectory!"
 
@@ -619,7 +641,7 @@ rem beginfunction
         cd /D "!ADIR_PROJECTS_ROOT!"
         if defined url (
             rem git clone !url!
-            call lyr__git_clone.bat "!url!"
+            call lyrgit_clone.bat "!url!"
         ) else (
             echo INFO: Github не существует...
         )
@@ -632,7 +654,7 @@ rem beginfunction
 rem endfunction
 
 rem --------------------------------------------------------------------------------
-rem procedure PULL_PROJECT () -> None
+rem procedure PULL_PROJECT (PROJECT_GROUP PROJECT_NAME) -> None
 rem --------------------------------------------------------------------------------
 :PULL_PROJECT
 rem beginfunction
@@ -645,173 +667,182 @@ rem beginfunction
 
     set LSaveDirectory=!cd!
 
-    set ADIR_PROJECTS_ROOT=%1
-    rem echo ADIR_PROJECTS_ROOT:!ADIR_PROJECTS_ROOT!
+    set APROJECT_GROUP=%1
+    rem echo APROJECT_GROUP:!APROJECT_GROUP!
     set APROJECT_NAME=%2
     rem echo APROJECT_NAME:!APROJECT_NAME!
 
+    call :GET_project_INFO !APROJECT_GROUP! !APROJECT_NAME!
+    
     call :WritePROCESS PULL проекта: !APROJECT_NAME! ...
 
-    set LGPROJECT_DIR=!ADIR_PROJECTS_ROOT!\!APROJECT_NAME!
-    rem echo LGPROJECT_DIR:!LGPROJECT_DIR!
-
-    if exist "!LGPROJECT_DIR!"\ (
-        cd /D "!LGPROJECT_DIR!"
+    if exist "!GPROJECT_DIR!"\ (
+        cd /D "!GPROJECT_DIR!"
         if exist ".git"\ (
-            call lyr__git_pull.bat
+            call lyrgit_pull.bat
         ) else (
             echo INFO: Каталог .git не существует ...
         )
     ) else (
-        echo info: Каталог !LGPROJECT_DIR! не существует...
+        echo info: Каталог !GPROJECT_DIR! не существует...
         if !APROJECT_NAME!==TOOLS_SRC_GIT (
-            call :GetINI !FILEINI! GITHUB TOOLS_SRC_GIT
-            set urlGITHUB=!ParameterValue!
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlGITHUB!
+            call :__git_clone !GPROJECT_DIR! !Gurl_github!
         )
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         if !APROJECT_NAME!==TOOLS_GIT (
-            call :GetINI !FILEINI! GITHUB TOOLS_GIT
-            set urlGITHUB=!ParameterValue!
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlGITHUB!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         
         if !APROJECT_NAME!==TOOLS_SRC_BAT (
-            call :GetINI !FILEINI! GITHUB TOOLS_SRC_BAT
-            set urlGITHUB=!ParameterValue!
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlGITHUB!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
 
         if !APROJECT_NAME!==TOOLS_BAT (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlTOOLS_BAT!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==COMMANDS_BAT (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlCOMMANDS_BAT!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==INFO_BAT (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlINFO_BAT!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==SCRIPTS_BAT (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlSCRIPTS_BAT!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
 
         if !APROJECT_NAME!==TOOLS_SRC_KIX (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlTOOLS_SRC_KIX!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==TOOLS_KIX (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlTOOLS_KIX!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==INFO_KIX (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlINFO_KIX!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==SCRIPTS_KIX (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlSCRIPTS_KIX!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
 
         if !APROJECT_NAME!==INFO_JAVA (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlINFO_JAVA!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==LANG_JAVA (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlLANG_JAVA!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==LIBRARY_JAVA (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlLIBRARY_JAVA!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==PATTERNS_JAVA (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlPATTERNS_JAVA!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==TESTS_JAVA (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlTESTS_JAVA!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==TOOLS_SRC_JAVA (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlTOOLS_SRC_JAVA!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==TOOLS_JAVA (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlTOOLS_JAVA!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
 
         if !APROJECT_NAME!==APPInfo_PY (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlAPPInfo_PY!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==EXAMPLES_PY (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlEXAMPLES_PY!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==FRAMEWORK_PY (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlFRAMEWORK_PY!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==INFO_PYTHON (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlINFO_PYTHON!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==LANG_PYTHON (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlLANG_PYTHON!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==LIBRARY_PY (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlLIBRARY_PY!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==MobileAPP_PY (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlMobileAPP_PY!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==PATTERN_PY (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlPATTERN_PY!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==PATTERNS_PY (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlPATTERNS_PY!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==PROJECTS_PY (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlPROJECTS_PY!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==SCRIPTS_PY (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlSCRIPTS_PY!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==SOFTWARE_PY (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlSOFTWARE_PY!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==TEST_PY (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlTEST_PY!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==TESTS_PY (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlTESTS_PY!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==TOOLS_SRC_PY (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlTOOLS_SRC_PY!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==YOUTUBE_PY (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlYOUTUBE_PY!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==TOOLS_PY (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlTOOLS_PY!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
 
         if !APROJECT_NAME!==LUIS_D7 (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlLUIS_D7!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==TOOLS_D7 (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlTOOLS_D7!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==LUIS_D11 (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlLUIS_D11!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==TOOLS_D11 (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlTOOLS_D11!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
 
         if !APROJECT_NAME!==COMMANDS_SH (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlCOMMANDS_SH!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==INFO_UNIX (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlINFO_UNIX!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==SCRIPTS_SH (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlSCRIPTS_SH!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==SOFTWARE (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlSOFTWARE!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==TOOLS_SRC_SH (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlTOOLS_SRC_SH!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
         if !APROJECT_NAME!==TOOLS_SH (
-            call :__git_clone !ADIR_PROJECTS_ROOT! !urlTOOLS_SH!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
     )   
 

@@ -590,17 +590,17 @@ rem beginfunction
 
     set Aconfig=%~1
 
-    set L=remote "origin"
-    echo L:!L!
-    call :GetINI !Aconfig! "!L!" url
-    set Lurl=!ParameterValue!
-    echo Lurl:!Lurl!
+    echo INFO: function !FUNCNAME! not implemented! ...
 
-rem .git\config
-rem [remote "origin"]
-rem     url = git@github.com:lisitsinyr/TOOLS_SRC_BAT.git
+    rem .git\config
+    rem [remote "origin"]
+    rem     url = git@github.com:lisitsinyr/TOOLS_SRC_BAT.git
 
-    set GET_url_github=
+    rem set L=remote "origin"
+    rem echo L:!L!
+    rem call :GetINI !Aconfig! "!L!" url
+    rem set Lurl=!KeyNameValue!
+    rem echo Lurl:!Lurl!
 
     exit /b 0
 rem endfunction

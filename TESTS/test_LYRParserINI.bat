@@ -34,14 +34,19 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-    call :test_GetINI PROJECT.ini general PROJECTS_GROUP
-    
     rem call :test_SetINI PROJECT.ini general PROJECTS_GROUP 623476817
-    rem call :test_GetINI PROJECT.ini general PROJECTS_GROUP
 
-    rem call :test_GetINIParametr PROJECT.ini general PROJECTS_GROUP
+    rem call :test_GetINI PROJECT.ini general2 PROJECTS_GROUP2
+    rem call :test_GetINI PROJECT.ini general2
+    rem call :test_GetINI PROJECT.ini
 
-    call :test_GetINIPY PROJECT.ini general PROJECTS_GROUP
+    rem call :test_GetINIParametr PROJECT.ini general2 PROJECTS_GROUP2
+    rem call :test_GetINIParametr PROJECT.ini general2
+    rem call :test_GetINIParametr PROJECT.ini
+
+    rem call :test_GetINIPY PROJECT.ini general2 PROJECTS_GROUP2
+    call :test_GetINIPY PROJECT.ini general2
+    rem call :test_GetINIPY PROJECT.ini
     
     rem call :test_GetFileParser
 
@@ -56,7 +61,7 @@ rem ФУНКЦИИ
 rem =================================================
 
 rem --------------------------------------------------------------------------------
-rem procedure SetINI (AFileName, ASection, AParameter, AValue) -> None
+rem procedure SetINI (AFileName, ASection, AKeyName, AValue) -> None
 rem --------------------------------------------------------------------------------
 :test_SetINI
 rem beginfunction
@@ -73,7 +78,7 @@ rem beginfunction
 rem endfunction
 
 rem --------------------------------------------------------------------------------
-rem procedure GetINI (AFileName, ASection, AParameter) -> None
+rem procedure GetINI (AFileName, ASection, AKeyName) -> None
 rem --------------------------------------------------------------------------------
 :test_GetINI
 rem beginfunction
@@ -82,7 +87,25 @@ rem beginfunction
     echo --------------------------------------
 
     call :GetINI %1 %2 %3
-    echo GetINI:!GetINI!
+    rem echo KeyValue:!KeyValue!
+    rem echo GetINI:!GetINI!
+
+    if !SectionsCount! GEQ 0 (
+        echo SectionsCount:!SectionsCount!
+        rem for /L %%переменная in (начало, шаг, конец) do (оператор)
+        for /L %%i in (0, 1, !SectionsCount!) do (
+            set LSection=!Sections[%%i]!
+            echo !LSection! 
+        )
+    )
+
+    if !KeyNamesCount! GEQ 0 (
+        echo KeyNamesCount:!KeyNamesCount!
+        for /L %%i in (0, 1, !KeyNamesCount!) do (
+            set LKeyName=!KeyNames[%%i]!
+            echo !LKeyName! 
+        )
+    )
 
     echo ....test_GetINI: Ok
 
@@ -90,7 +113,7 @@ rem beginfunction
 rem endfunction
 
 rem --------------------------------------------------------------------------------
-rem procedure GetINIPY (AFileName, ASection, AParameter) -> None
+rem procedure GetINIPY (AFileName, ASection, AKeyName) -> None
 rem --------------------------------------------------------------------------------
 :test_GetINIPY
 rem beginfunction
@@ -99,7 +122,25 @@ rem beginfunction
     echo --------------------------------------
 
     call :GetINIPY %1 %2 %3
-    echo GetINIPY:!GetINIPY!
+    rem echo KeyValue:!KeyValue!
+    rem echo GetINIPY:!GetINIPY!
+
+    if !SectionsCount! GEQ 0 (
+        echo SectionsCount:!SectionsCount!
+        rem for /L %%переменная in (начало, шаг, конец) do (оператор)
+        for /L %%i in (0, 1, !SectionsCount!) do (
+            set LSection=!Sections[%%i]!
+            echo !LSection! 
+        )
+    )
+
+    if !KeyNamesCount! GEQ 0 (
+        echo KeyNamesCount:!KeyNamesCount!
+        for /L %%i in (0, 1, !KeyNamesCount!) do (
+            set LKeyName=!KeyNames[%%i]!
+            echo !LKeyName! 
+        )
+    )
 
     echo ....test_GetINIPY: Ok
 
@@ -107,7 +148,7 @@ rem beginfunction
 rem endfunction
 
 rem --------------------------------------------------------------------------------
-rem procedure GetINIParametr (AFileName, ASection, AParameter) -> None
+rem procedure GetINIParametr (AFileName, ASection, AKeyName) -> None
 rem --------------------------------------------------------------------------------
 :test_GetINIParametr
 rem beginfunction
@@ -116,7 +157,23 @@ rem beginfunction
     echo --------------------------------------
 
     call :GetINIParametr %1 %2 %3
-    echo GetINIParametr:!GetINIParametr!
+
+    if !SectionsCount! GEQ 0 (
+        echo SectionsCount:!SectionsCount!
+        rem for /L %%переменная in (начало, шаг, конец) do (оператор)
+        for /L %%i in (0, 1, !SectionsCount!) do (
+            set LSection=!Sections[%%i]!
+            echo !LSection! 
+        )
+    )
+
+    if !KeyNamesCount! GEQ 0 (
+        echo KeyNamesCount:!KeyNamesCount!
+        for /L %%i in (0, 1, !KeyNamesCount!) do (
+            set LKeyName=!KeyNames[%%i]!
+            echo !LKeyName! 
+        )
+    )
 
     echo ....test_GetINIParametr: Ok
 
@@ -165,17 +222,17 @@ rem beginfunction
 
         call :GetINI !FILEINI! !Section!
 
-        rem set /a kmax=ParametersCount-1
-        for /L %%i in (0,1,!ParametersCount!) do (
-            set Parameter=!Parameters[%%i]!
-            echo !Parameter!
+        rem set /a kmax=KeyNamesCount-1
+        for /L %%i in (0,1,!KeyNamesCount!) do (
+            set KeyName=!KeyNames[%%i]!
+            echo !KeyName!
 
-            call :GetINI !FILEINI! !Section! !Parameter!
+            call :GetINI !FILEINI! !Section! !KeyName!
             echo GetINI:!GetINI!
             
-            call :GetINIParametr !FILEINI! !Section! !Parameter!
+            call :GetINIParametr !FILEINI! !Section! !KeyName!
             echo GetINIParametr:!GetINIParametr!
-            rem echo !ParameterValue!
+            rem echo !KeyValue!
         )
     )
 
