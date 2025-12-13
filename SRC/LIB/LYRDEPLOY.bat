@@ -151,9 +151,9 @@ rem beginfunction
     set !FUNCNAME!=
 
     set APROJECTS_GROUP=%~1
-    echo APROJECTS_GROUP:!APROJECTS_GROUP!
+    rem echo APROJECTS_GROUP:!APROJECTS_GROUP!
     set APROJECT_NAME=%~2
-    echo APROJECT_NAME:!APROJECT_NAME!
+    rem echo APROJECT_NAME:!APROJECT_NAME!
 
     set res=
     if defined APROJECT_GROUP (
@@ -173,7 +173,7 @@ rem beginfunction
         rem BAT=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT
         call :GetINIParametr !GFILEINI! PROJECTS_GROUP !PROJECTS_GROUP! || exit /b 1
         set GPROJECTS_DIR_ROOT=!KeyValue!
-        echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
+        rem echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
 
     ) else (
         if not exist !cd!\PROJECT.ini (
@@ -209,7 +209,7 @@ rem beginfunction
     )
 
     set GPROJECTS_INI=!GPROJECTS_DIR_ROOT!\!GPROJECTS_GROUP!.ini
-    echo GPROJECTS_INI:!GPROJECTS_INI!
+    rem echo GPROJECTS_INI:!GPROJECTS_INI!
 
     rem ------------------------------------------------
     rem GPROJECT_DIR
@@ -223,7 +223,7 @@ rem beginfunction
     rem ------------------------------------------------
     call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! PROJECT_PATTERN_DIR || exit /b 1
     set GPROJECT_PATTERN_DIR=!GetINI!
-    echo GPROJECT_PATTERN_DIR:!GPROJECT_PATTERN_DIR!
+    rem echo GPROJECT_PATTERN_DIR:!GPROJECT_PATTERN_DIR!
 
     rem ------------------------------------------------
     rem Gurl_github
@@ -238,7 +238,7 @@ rem beginfunction
         rem ------------------------------------------------
         call :GetINI !GPROJECTS_INI! general PROJECTS_PATTERN_DIR || exit /b 1
         set GPROJECT_PATTERN_DIR=!KeyValue!
-        echo GPROJECT_PATTERN_DIR:!GPROJECT_PATTERN_DIR!
+        rem echo GPROJECT_PATTERN_DIR:!GPROJECT_PATTERN_DIR!
     )
 
     if not defined GPROJECT_PATTERN_DIR (
