@@ -198,7 +198,7 @@ rem beginfunction
         rem echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
 
     ) else (
-        echo APROJECTS_GROUP APROJECT_NAME - False
+        echo .... APROJECTS_GROUP APROJECT_NAME - False
         if not exist !cd!\PROJECT.ini (
             echo INFO: !cd!\PROJECT.ini not exist ...
         ) else (
