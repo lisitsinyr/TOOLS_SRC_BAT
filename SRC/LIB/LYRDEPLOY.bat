@@ -153,7 +153,7 @@ rem beginfunction
     set APROJECT_GROUP=%~1
     echo APROJECT_GROUP:!APROJECT_GROUP!
     set APROJECT_NAME=%~2
-    echo APROJECT_GROUP:!APROJECT_NAME!
+    echo APROJECT_NAME:!APROJECT_NAME!
 
     set res=
     if defined APROJECT_GROUP (
