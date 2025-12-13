@@ -172,31 +172,29 @@ rem beginfunction
     set APROJECT_NAME=%~2
     rem echo APROJECT_NAME:!APROJECT_NAME!
 
-    set res=
     if defined APROJECTS_GROUP if defined APROJECT_NAME (
         echo APROJECTS_GROUP APROJECT_NAME - True
+        set res=Yes
     ) else (
         echo APROJECTS_GROUP APROJECT_NAME - False
+        set res=
     )
-    if defined APROJECTS_GROUP (
-        if defined APROJECT_NAME (
-            set res=Yes
-        )
-    )
-    rem if defined res (
-    if defined APROJECTS_GROUP if defined APROJECT_NAME (
+    rem if defined APROJECTS_GROUP (
+    rem     if defined APROJECT_NAME (
+    rem         set res=Yes
+    rem     )
+    rem )
+    if defined res (
+    rem if defined APROJECTS_GROUP if defined APROJECT_NAME (
         echo !APROJECTS_GROUP! !APROJECT_NAME! - True
         set GPROJECTS_GROUP=!APROJECTS_GROUP!
         set GPROJECT_NAME=!APROJECT_NAME!
         rem ------------------------------------------------
         rem GPROJECTS_DIR_ROOT
         rem ------------------------------------------------
-        rem [PROJECTS_GROUP]
-        rem BAT=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT
         call :GetINIParametr !GFILEINI! PROJECTS_GROUP !PROJECTS_GROUP! || exit /b 1
         set GPROJECTS_DIR_ROOT=!KeyValue!
         rem echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
-
     ) else (
         echo .... APROJECTS_GROUP APROJECT_NAME - False
         if not exist !cd!\PROJECT.ini (
