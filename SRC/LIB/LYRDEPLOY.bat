@@ -234,7 +234,7 @@ rem beginfunction
         rem ------------------------------------------------
         call :GetINI !PROJECTS_INI! general PROJECTS_PATTERN_DIR || exit /b 1
         set PROJECTS_PATTERN_DIR=!GetINI!
-        rem echo PROJECTS_PATTERN_DIR:!PROJECTS_PATTERN_DIR!
+        echo PROJECTS_PATTERN_DIR:!PROJECTS_PATTERN_DIR!
         set GPROJECT_PATTERN_DIR=!PROJECTS_PATTERN_DIR!
     )
 
