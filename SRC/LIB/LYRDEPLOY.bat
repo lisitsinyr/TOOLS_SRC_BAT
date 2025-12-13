@@ -163,8 +163,8 @@ rem beginfunction
     )
 
     if defined res (
-        set GPROJECT_NAME=APROJECT_NAME
-        set GPROJECTS_GROUP=APROJECTS_GROUP
+        set GPROJECTS_GROUP=!APROJECTS_GROUP!
+        set GPROJECT_NAME=!APROJECT_NAME!
 
         rem ------------------------------------------------
         rem GPROJECTS_DIR_ROOT
