@@ -199,21 +199,19 @@ rem beginfunction
     set APROJECT_NAME=%~2
     rem echo APROJECT_NAME:!APROJECT_NAME!
 
-    if defined APROJECTS_GROUP if defined APROJECT_NAME (
-        echo APROJECTS_GROUP APROJECT_NAME - True
-    ) else (
-        echo APROJECTS_GROUP APROJECT_NAME - False
+    rem if defined APROJECTS_GROUP if defined APROJECT_NAME (
+    rem     echo APROJECTS_GROUP APROJECT_NAME - True
+    rem ) else (
+    rem     echo APROJECTS_GROUP APROJECT_NAME - False
     )
-
-   
-    set res=
-    if defined APROJECTS_GROUP (
-        if defined APROJECT_NAME (
-            set res=Yes
-        )
-    )
-
+    rem set res=
+    rem if defined APROJECTS_GROUP (
+    rem     if defined APROJECT_NAME (
+    rem         set res=Yes
+    rem     )
+    rem )
     rem if defined res (
+
     if defined APROJECTS_GROUP if defined APROJECT_NAME (
 
         echo !APROJECTS_GROUP! !APROJECT_NAME! - True
