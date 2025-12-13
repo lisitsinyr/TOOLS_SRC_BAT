@@ -175,7 +175,6 @@ rem beginfunction
         if not exist !cd!\PROJECT.ini (
             echo INFO: !cd!\PROJECT.ini not exist ...
         ) else (
-echo .... 2
             rem ------------------------------------------------
             rem GPROJECT_DIR
             rem ------------------------------------------------
@@ -185,23 +184,24 @@ echo .... 2
             rem ------------------------------------------------
             rem GPROJECTS_GROUP
             rem ------------------------------------------------
-            call :GetINIParametr !APROJECT_DIR!\!PROJECT_INI! general PROJECTS_GROUP || exit /b 1
+            call :GetINIParametr !GPROJECT_DIR!\PROJECT.ini general PROJECTS_GROUP || exit /b 1
             set GPROJECTS_GROUP=!GetINIParametr!
             echo GPROJECTS_GROUP:!GPROJECTS_GROUP!
         
             rem -------------------------------------------------------------------
             rem GPROJECTS_DIR_ROOT
             rem -------------------------------------------------------------------
-            call :GetINIParametr !APROJECT_DIR!\!PROJECT_INI! general PROJECTS_DIR_ROOT || exit /b 1
+            call :GetINIParametr !GPROJECT_DIR!\PROJECT.ini general PROJECTS_DIR_ROOT || exit /b 1
             set GPROJECTS_DIR_ROOT=!GetINIParametr!
             echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
         
             rem ------------------------------------------------
             rem GPROJECT_NAME
             rem ------------------------------------------------
-            call :GetINIParametr !APROJECT_DIR!\!PROJECT_INI! general PROJECT_NAME || exit /b 1
+            call :GetINIParametr !GPROJECT_DIR!\PROJECT.ini general PROJECT_NAME || exit /b 1
             set GPROJECT_NAME=!GetINIParametr!
             echo GPROJECT_NAME:!GPROJECT_NAME!
+echo .... 2
         )
     )
 
