@@ -71,12 +71,14 @@ rem beginfunction
     )
     set !FUNCNAME!=
 
-    set APROJECT_GROUP=%~1
-    echo APROJECT_GROUP:!APROJECT_GROUP!
+    set APROJECTS_GROUP=%~1
+    echo APROJECTS_GROUP:!APROJECTS_GROUP!
     set APROJECT_NAME=%~2
     echo APROJECT_NAME:!APROJECT_NAME!
 
-    call :GET_project_INFO !APROJECT_GROUP! !APROJECT_NAME!
+    call :GET_project_INFO !APROJECTS_GROUP! !APROJECT_NAME!
+
+    call :WriteBEGIN .... Старт DEPLOY проекта !GPROJECTS_GROUP! !GPROJECT_NAME! ...
 
     if !GPROJECT_NAME!==TOOLS_BAT (
         call :ClearDir !GPROJECT_DIR!\BAT *.bat
@@ -134,6 +136,8 @@ rem beginfunction
 
     call :__REPO_WORK !GPROJECT_DIR!
 
+    call :WriteBEGIN .... Стоп DEPLOY проекта !GPROJECTS_GROUP! !GPROJECT_NAME! ...
+
     exit /b 0
 rem endfunction
 
@@ -150,9 +154,9 @@ rem beginfunction
     set !FUNCNAME!=
 
     set APROJECTS_GROUP=%~1
-    rem echo APROJECTS_GROUP:!APROJECTS_GROUP!
+    echo APROJECTS_GROUP:!APROJECTS_GROUP!
     set APROJECT_NAME=%~2
-    rem echo APROJECT_NAME:!APROJECT_NAME!
+    echo APROJECT_NAME:!APROJECT_NAME!
 
     set res=
     if defined APROJECT_GROUP (
