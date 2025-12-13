@@ -238,7 +238,7 @@ rem beginfunction
     set AFileName=%~1
     rem echo AFileName:!AFileName!
     set ASection=%~2
-    echo ASection:!ASection!
+    rem echo ASection:!ASection!
     set AKeyName=%~3
     rem echo AKeyName:!AKeyName!
 
