@@ -216,9 +216,8 @@ rem beginfunction
     rem if defined res (
     if defined APROJECTS_GROUP if defined APROJECT_NAME (
 
-        echo APROJECTS_GROUP APROJECT_NAME - True
+        echo !APROJECTS_GROUP! !APROJECT_NAME! - True
 
-pause
         set GPROJECTS_GROUP=!APROJECTS_GROUP!
         set GPROJECT_NAME=!APROJECT_NAME!
 
@@ -234,8 +233,6 @@ pause
     ) else (
 
         echo APROJECTS_GROUP APROJECT_NAME - False
-
-pause
 
         if not exist !cd!\PROJECT.ini (
             echo INFO: !cd!\PROJECT.ini not exist ...
