@@ -84,7 +84,13 @@ rem beginfunction
         call :ClearDir !GPROJECT_DIR!\BAT *.bat
         call :UPDATE_TOOLS_BAT_SCRIPTS_BAT
         call :UPDATE_TOOLS_BAT_TOOLS_SRC_BAT
-        call :__REPO_WORK_TOOLS !GPROJECT_DIR!
+        
+        set GPROJECT_PATTERN_DIR=
+        
+        call :__REPO_WORK !GPROJECT_DIR!
+
+        call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
+
         exit /b 0
     )    
 
@@ -92,7 +98,13 @@ rem beginfunction
         call :ClearDir !GPROJECT_DIR!\BAT *.bat
         call :ClearDir !GPROJECT_DIR!\BAT_KIX *.bat
         call :UPDATE_TOOLS_GIT_TOOLS_SRC_GIT
-        call :__REPO_WORK_TOOLS !GPROJECT_DIR!
+        
+        set GPROJECT_PATTERN_DIR=
+        
+        call :__REPO_WORK !GPROJECT_DIR!
+
+        call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
+
         exit /b 0
     )    
 
@@ -100,7 +112,13 @@ rem beginfunction
         call :ClearDir !GPROJECT_DIR!\BAT *.bat
         call :UPDATE_TOOLS_JAVA_SCRIPTS_JAVA
         call :UPDATE_TOOLS_JAVA_TOOLS_SRC_JAVA
-        call :__REPO_WORK_TOOLS !GPROJECT_DIR!
+        
+        set GPROJECT_PATTERN_DIR=
+        
+        call :__REPO_WORK !GPROJECT_DIR!
+
+        call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
+
         exit /b 0
     )    
 
@@ -108,7 +126,13 @@ rem beginfunction
         call :ClearDir !GPROJECT_DIR!\BAT *.bat
         call :UPDATE_TOOLS_KIX_SCRIPTS_KIX
         call :UPDATE_TOOLS_KIX_TOOLS_SRC_KIX
-        call :__REPO_WORK_TOOLS !GPROJECT_DIR!
+
+        set GPROJECT_PATTERN_DIR=
+        
+        call :__REPO_WORK !GPROJECT_DIR!
+
+        call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
+
         exit /b 0
     )    
 
@@ -116,7 +140,13 @@ rem beginfunction
         call :ClearDir !GPROJECT_DIR!\BAT *.bat
         call :UPDATE_TOOLS_PY_SCRIPTS_PY
         call :UPDATE_TOOLS_PY_TOOLS_SRC_PY
-        call :__REPO_WORK_TOOLS !GPROJECT_DIR!
+
+        set GPROJECT_PATTERN_DIR=
+
+        call :__REPO_WORK !GPROJECT_DIR!
+
+        call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
+
         exit /b 0
     )    
 
@@ -125,12 +155,23 @@ rem beginfunction
         call :UPDATE_TOOLS_SH_SCRIPTS_SH
         call :UPDATE_TOOLS_SH_TOOLS_SRC_SH
         call :UPDATE_TOOLS_SH_TOOLS_SRC_GIT_SH
-        call :__REPO_WORK_TOOLS !GPROJECT_DIR!
+
+        set GPROJECT_PATTERN_DIR=
+
+        call :__REPO_WORK !GPROJECT_DIR!
+
+        call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
+
         exit /b 0
     )    
 
     if !GPROJECT_NAME!==TOOLS_PS (
-        rem call :__REPO_WORK_TOOLS !GPROJECT_DIR!
+        set GPROJECT_PATTERN_DIR=
+
+        rem call :__REPO_WORK !GPROJECT_DIR!
+
+        rem call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
+
         exit /b 0
     )    
 
@@ -158,6 +199,14 @@ rem beginfunction
     set APROJECT_NAME=%~2
     rem echo APROJECT_NAME:!APROJECT_NAME!
 
+    if defined APROJECTS_GROUP if defined APROJECT_NAME (
+        echo APROJECTS_GROUP APROJECT_NAME - True
+    ) else (
+        echo APROJECTS_GROUP APROJECT_NAME - False
+    )
+
+pause
+    
     set res=
     if defined APROJECTS_GROUP (
         if defined APROJECT_NAME (
@@ -272,10 +321,9 @@ rem beginfunction
     call :__CopyFromPATTERN_ALL !GPROJECT_PATTERN_DIR!
 
     set res=
-    if !PROJECTS_GROUP!==PROJECTS_PY set res=true
-    if !PROJECTS_GROUP!==Python set res=true
+    if !GPROJECTS_GROUP!==PROJECTS_PY set res=true
+    if !GPROJECTS_GROUP!==Python set res=true
     if defined res ( 
-
         call :__CopyFromPATTERN_PYTHON !GPROJECT_PATTERN_DIR!
     )
 
@@ -477,7 +525,7 @@ rem beginfunction
     if exist !LDirectory!\!LFileName! (
         copy !LDirectory!\!LFileName! > NUL
     )
-    set LFileName=lyr__git_pull.bat
+    set LFileName=lyrgit_pull.bat
     if exist !LDirectory!\!LFileName! (
         copy !LDirectory!\!LFileName! > NUL
     )
@@ -523,35 +571,24 @@ rem beginfunction
     set !FUNCNAME!=
 
     set LSaveDirectory=!cd!
-    
     call :WritePROCESS DEPLOY проекта [__REPO_WORK]: !PROJECT_NAME!
-
     set ADirectory=%~1
     rem echo ADirectory:!ADirectory!
-
     if not exist "!ADirectory!"\ (
         echo ERROR: Каталог !ADirectory! не существует ...
         exit /b 1
     )
-
     cd /D "!ADirectory!"
-
     call :__CopyFilesROOT
-
     call :__CopyFilesFromPATTERN
-
     call :__SetPROJECT_INI
-
     cd /D "!ADirectory!"
-
     if exist .git\ (
         call lyrgit_push_main.bat
     ) else (
         echo INFO: Каталог .git не существует ...
     )
-
     cd /D "!LSaveDirectory!"
-
     exit /b 0
 rem endfunction
 
@@ -568,36 +605,24 @@ rem beginfunction
     set !FUNCNAME!=
 
     set LSaveDirectory=!cd!
-
     call :WritePROCESS ................................DEPLOY проекта [__REPO_WORK_TOOLS]: !PROJECT_NAME!
-
     set ADirectory=%~1
     echo ADirectory:!ADirectory!
-
     if not exist !ADirectory!\ (
         echo ERROR: Каталог !ADirectory! не существует ...
         set __REPO_WORK_TOOLS=
         exit /b 1
     )
-
     call :__CopyFilesROOT
-
     call :__CopyFilesFromPATTERN
-
     call :__SetPROJECT_INI
-
     cd /D "!ADirectory!"
-
     if exist ".git"\ (
         call lyrgit_push_main.bat
     ) else (
         echo INFO: Каталог .git не существует ...
     )
-
-    call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
-
     cd /D "!LSaveDirectory!"
-
     exit /b 0
 rem endfunction
 
@@ -614,18 +639,14 @@ rem beginfunction
     set !FUNCNAME!=
 
     set LSaveDirectory=!cd!
-
     set LOG_FILE_ADD=1
     set ADirectory=%~1
     if not exist !ADirectory!\ (
         echo ERROR: Каталог !ADirectory! не существует ...
         exit /b 1
     )
-
     cd /D "!ADirectory!"
-
     call lyrgit_pull.bat
-    
     cd /D "!LSaveDirectory!"
 
     exit /b 0
