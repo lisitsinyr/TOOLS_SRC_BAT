@@ -139,7 +139,7 @@ rem beginfunction
 rem endfunction
 
 rem --------------------------------------------------------------------------------
-rem procedure GET_project_INFO (PROJECT_GROUP PROJECT_NAME) -> None
+rem procedure GET_project_INFO (PROJECTS_GROUP PROJECT_NAME) -> None
 rem --------------------------------------------------------------------------------
 :GET_project_INFO
 rem beginfunction
@@ -150,8 +150,8 @@ rem beginfunction
     )
     set !FUNCNAME!=
 
-    set APROJECT_GROUP=%~1
-    echo APROJECT_GROUP:!APROJECT_GROUP!
+    set APROJECTS_GROUP=%~1
+    echo APROJECTS_GROUP:!APROJECTS_GROUP!
     set APROJECT_NAME=%~2
     echo APROJECT_NAME:!APROJECT_NAME!
 
@@ -163,6 +163,9 @@ rem beginfunction
     )
 
     if defined res (
+        set GPROJECT_NAME=APROJECT_NAME
+        set GPROJECTS_GROUP=APROJECTS_GROUP
+
         rem ------------------------------------------------
         rem GPROJECTS_DIR_ROOT
         rem ------------------------------------------------
@@ -171,6 +174,7 @@ rem beginfunction
         call :GetINIParametr !GFILEINI! PROJECTS_GROUP !PROJECTS_GROUP! || exit /b 1
         set GPROJECTS_DIR_ROOT=!KeyValue!
         echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
+
     ) else (
         if not exist !cd!\PROJECT.ini (
             echo INFO: !cd!\PROJECT.ini not exist ...
@@ -232,10 +236,9 @@ rem beginfunction
         rem ------------------------------------------------
         rem PROJECTS_PATTERN_DIR
         rem ------------------------------------------------
-        call :GetINI !PROJECTS_INI! general PROJECTS_PATTERN_DIR || exit /b 1
-        set PROJECTS_PATTERN_DIR=!GetINI!
-        echo PROJECTS_PATTERN_DIR:!PROJECTS_PATTERN_DIR!
-        set GPROJECT_PATTERN_DIR=!PROJECTS_PATTERN_DIR!
+        call :GetINI !GPROJECTS_INI! general PROJECTS_PATTERN_DIR || exit /b 1
+        set GPROJECT_PATTERN_DIR=!KeyValue!
+        echo GPROJECT_PATTERN_DIR:!GPROJECT_PATTERN_DIR!
     )
 
     if not defined GPROJECT_PATTERN_DIR (
