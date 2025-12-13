@@ -84,13 +84,9 @@ rem beginfunction
         call :ClearDir !GPROJECT_DIR!\BAT *.bat
         call :UPDATE_TOOLS_BAT_SCRIPTS_BAT
         call :UPDATE_TOOLS_BAT_TOOLS_SRC_BAT
-        
         set GPROJECT_PATTERN_DIR=
-        
         call :__REPO_WORK !GPROJECT_DIR!
-
         call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
-
         exit /b 0
     )    
 
@@ -98,13 +94,9 @@ rem beginfunction
         call :ClearDir !GPROJECT_DIR!\BAT *.bat
         call :ClearDir !GPROJECT_DIR!\BAT_KIX *.bat
         call :UPDATE_TOOLS_GIT_TOOLS_SRC_GIT
-        
         set GPROJECT_PATTERN_DIR=
-        
         call :__REPO_WORK !GPROJECT_DIR!
-
         call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
-
         exit /b 0
     )    
 
@@ -112,13 +104,9 @@ rem beginfunction
         call :ClearDir !GPROJECT_DIR!\BAT *.bat
         call :UPDATE_TOOLS_JAVA_SCRIPTS_JAVA
         call :UPDATE_TOOLS_JAVA_TOOLS_SRC_JAVA
-        
         set GPROJECT_PATTERN_DIR=
-        
         call :__REPO_WORK !GPROJECT_DIR!
-
         call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
-
         exit /b 0
     )    
 
@@ -126,13 +114,9 @@ rem beginfunction
         call :ClearDir !GPROJECT_DIR!\BAT *.bat
         call :UPDATE_TOOLS_KIX_SCRIPTS_KIX
         call :UPDATE_TOOLS_KIX_TOOLS_SRC_KIX
-
         set GPROJECT_PATTERN_DIR=
-        
         call :__REPO_WORK !GPROJECT_DIR!
-
         call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
-
         exit /b 0
     )    
 
@@ -140,13 +124,9 @@ rem beginfunction
         call :ClearDir !GPROJECT_DIR!\BAT *.bat
         call :UPDATE_TOOLS_PY_SCRIPTS_PY
         call :UPDATE_TOOLS_PY_TOOLS_SRC_PY
-
         set GPROJECT_PATTERN_DIR=
-
         call :__REPO_WORK !GPROJECT_DIR!
-
         call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
-
         exit /b 0
     )    
 
@@ -155,23 +135,16 @@ rem beginfunction
         call :UPDATE_TOOLS_SH_SCRIPTS_SH
         call :UPDATE_TOOLS_SH_TOOLS_SRC_SH
         call :UPDATE_TOOLS_SH_TOOLS_SRC_GIT_SH
-
         set GPROJECT_PATTERN_DIR=
-
         call :__REPO_WORK !GPROJECT_DIR!
-
         call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
-
         exit /b 0
     )    
 
     if !GPROJECT_NAME!==TOOLS_PS (
         set GPROJECT_PATTERN_DIR=
-
         rem call :__REPO_WORK !GPROJECT_DIR!
-
         rem call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
-
         exit /b 0
     )    
 
