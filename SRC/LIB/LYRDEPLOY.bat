@@ -169,6 +169,8 @@ pause
 
     ) else (
 
+echo .......... !cd!\PROJECT.ini
+
         if not exist !cd!\PROJECT.ini (
             echo INFO: !cd!\PROJECT.ini not exist ...
         ) else (
