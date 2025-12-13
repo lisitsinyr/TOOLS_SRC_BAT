@@ -29,12 +29,11 @@ rem beginfunction
     rem CONST
     rem -------------------------------------------------------------------
     set GFILEINI=D:\PROJECTS_LYR\CHECK_LIST\PROJECTS.ini
-    rem echo GFILEINI:!GFILEINI!
 
     rem -------------------------------------------------------------------
     rem VAR
     rem -------------------------------------------------------------------
-    set GPROJECTS_GROUP=PROJECTS_BAT
+    set GPROJECTS_GROUP=BAT
     set GPROJECTS_GROUP=
 
     set GPROJECTS_DIR_ROOT=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT
@@ -500,9 +499,9 @@ rem beginfunction
     )
     set !FUNCNAME!=
 
-    call :SetINI !GPROJECT_DIR!\PROJECT.ini general PROJECTS_GROUP !PROJECTS_GROUP!
-    call :SetINI !GPROJECT_DIR!\PROJECT.ini general PROJECT_NAME !PROJECT_NAME!
-    call :SetINI !GPROJECT_DIR!\PROJECT.ini general PROJECTS_DIR_ROOT !PROJECTS_DIR_ROOT!
+    call :SetINI !GPROJECT_DIR!\PROJECT.ini general PROJECTS_GROUP !GPROJECTS_GROUP!
+    call :SetINI !GPROJECT_DIR!\PROJECT.ini general PROJECT_NAME !GPROJECT_NAME!
+    call :SetINI !GPROJECT_DIR!\PROJECT.ini general PROJECTS_DIR_ROOT !GPROJECTS_DIR_ROOT!
 
     exit /b 0
 rem endfunction
