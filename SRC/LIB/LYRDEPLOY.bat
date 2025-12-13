@@ -173,10 +173,10 @@ rem beginfunction
     rem echo APROJECT_NAME:!APROJECT_NAME!
 
     if defined APROJECTS_GROUP if defined APROJECT_NAME (
-        echo APROJECTS_GROUP APROJECT_NAME - True
+        rem echo APROJECTS_GROUP APROJECT_NAME - True
         set res=Yes
     ) else (
-        echo APROJECTS_GROUP APROJECT_NAME - False
+        rem echo APROJECTS_GROUP APROJECT_NAME - False
         set res=
     )
     rem if defined APROJECTS_GROUP (
@@ -186,7 +186,7 @@ rem beginfunction
     rem )
     if defined res (
     rem if defined APROJECTS_GROUP if defined APROJECT_NAME (
-        echo !APROJECTS_GROUP! !APROJECT_NAME! - True
+        rem echo !APROJECTS_GROUP! !APROJECT_NAME! - True
         set GPROJECTS_GROUP=!APROJECTS_GROUP!
         set GPROJECT_NAME=!APROJECT_NAME!
         rem ------------------------------------------------
@@ -196,7 +196,7 @@ rem beginfunction
         set GPROJECTS_DIR_ROOT=!KeyValue!
         rem echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
     ) else (
-        echo .... APROJECTS_GROUP APROJECT_NAME - False
+        rem echo .... APROJECTS_GROUP APROJECT_NAME - False
         if not exist !cd!\PROJECT.ini (
             echo INFO: !cd!\PROJECT.ini not exist ...
         ) else (
