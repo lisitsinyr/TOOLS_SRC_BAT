@@ -176,7 +176,7 @@ rem beginfunction
     rem     echo APROJECTS_GROUP APROJECT_NAME - True
     rem ) else (
     rem     echo APROJECTS_GROUP APROJECT_NAME - False
-    )
+    rem )
     rem set res=
     rem if defined APROJECTS_GROUP (
     rem     if defined APROJECT_NAME (
@@ -184,7 +184,6 @@ rem beginfunction
     rem     )
     rem )
     rem if defined res (
-
     if defined APROJECTS_GROUP if defined APROJECT_NAME (
         echo !APROJECTS_GROUP! !APROJECT_NAME! - True
         set GPROJECTS_GROUP=!APROJECTS_GROUP!
