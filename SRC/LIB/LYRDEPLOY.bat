@@ -207,28 +207,26 @@ rem beginfunction
     set GPROJECTS_INI=!GPROJECTS_DIR_ROOT!\!GPROJECTS_GROUP!.ini
     echo GPROJECTS_INI:!GPROJECTS_INI!
 
-pause
-
     rem ------------------------------------------------
     rem GPROJECT_DIR
     rem ------------------------------------------------
     call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! PROJECT_DIR || exit /b 1
     set GPROJECT_DIR=!KeyValue!
-    echo GPROJECT_DIR:!GPROJECT_DIR!
+    rem echo GPROJECT_DIR:!GPROJECT_DIR!
 
     rem ------------------------------------------------
     rem GPROJECT_PATTERN_DIR
     rem ------------------------------------------------
     call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! PROJECT_PATTERN_DIR || exit /b 1
     set GPROJECT_PATTERN_DIR=!GetINI!
-    rem echo GPROJECT_PATTERN_DIR:!GPROJECT_PATTERN_DIR!
+    echo GPROJECT_PATTERN_DIR:!GPROJECT_PATTERN_DIR!
 
     rem ------------------------------------------------
     rem Gurl_github
     rem ------------------------------------------------
     call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! url || exit /b 1
     set Gurl_github=!KeyValue!
-    echo Gurl_github:!Gurl_github!
+    rem echo Gurl_github:!Gurl_github!
 
     if not defined GPROJECT_PATTERN_DIR (
         rem ------------------------------------------------
