@@ -57,29 +57,30 @@ rem beginfunction
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\SCRIPTS_BAT\SRC
     rem echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\SCRIPTS_BAT
+    set LDIR_TO=!GPROJECT_DIR!\SCRIPTS_BAT
     rem echo LDIR_TO:!LDIR_TO!
-
-    set LMASK=*.*
     if exist "!LDIR_TO!" (
         del /F /S /Q "!LDIR_TO!"\!LMASK!    >> %LOG_FULLFILENAME%
     ) else (                        
         mkdir "!LDIR_TO!"                   >> %LOG_FULLFILENAME% 
     )
-
+    rem set LARG=/D /S /E /V /F /H /R /K /Y /O
     set LMASK=*.*
-    call :XCOPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
+    if exist !LDIR_FROM!\ (
+        call :XCOPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
+    )
 
     rem --------------------------------------------------------
     rem 
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\SCRIPTS_BAT\SRC
     rem echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\BAT
+    set LDIR_TO=!GPROJECT_DIR!\BAT
     rem echo LDIR_TO:!LDIR_TO!
-
     set LMASK=*.bat
-    call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
+    if exist !LDIR_FROM!\ (
+        call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
+    )
 
     exit /b 0
 rem endfunction
@@ -103,9 +104,8 @@ rem beginfunction
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\SRC\BAT
     rem echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\BAT
+    set LDIR_TO=!GPROJECT_DIR!\BAT
     rem echo LDIR_TO:!LDIR_TO!
-
     set LMASK=*.bat
     call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
 
@@ -114,18 +114,18 @@ rem beginfunction
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT\SRC\LIB
     rem echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\LIB
+    set LDIR_TO=!GPROJECT_DIR!\LIB
     rem echo LDIR_TO:!LDIR_TO!
-
-    set LMASK=*.bat
     if exist "!LDIR_TO!" (
         del /F /S /Q "!LDIR_TO!"\!LMASK! >> %LOG_FULLFILENAME%
     ) else (
         mkdir "!LDIR_TO!"            >> %LOG_FULLFILENAME%
     )
-
+    rem set LARG=/D /S /E /V /F /H /R /K /Y /O
     set LMASK=*.bat
-    call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
+    if exist !LDIR_FROM!\ (
+        call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
+    )
 
     exit /b 0
 rem endfunction
@@ -149,9 +149,8 @@ rem beginfunction
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\GIT\PROJECTS_GIT\TOOLS_SRC_GIT\SRC\BAT
     rem echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\BAT
+    set LDIR_TO=!GPROJECT_DIR!\BAT
     rem echo LDIR_TO:!LDIR_TO!
-
     set LMASK=*.bat
     call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
 
@@ -160,9 +159,8 @@ rem beginfunction
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\GIT\PROJECTS_GIT\TOOLS_SRC_GIT\SRC\BAT_KIX
     rem echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\BAT_KIX
+    set LDIR_TO=!GPROJECT_DIR!\BAT_KIX
     rem echo LDIR_TO:!LDIR_TO!
-
     set LMASK=*.bat
     call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
 
@@ -188,16 +186,13 @@ rem beginfunction
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Java\PROJECTS_JAVA\SCRIPTS_JAVA
     rem echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\SCRIPTS_JAVA
+    set LDIR_TO=!GPROJECT_DIR!\SCRIPTS_JAVA
     rem echo LDIR_TO:!LDIR_TO!
-
-    set LMASK=*.*
     if exist "!LDIR_TO!" (
         del /F /S /Q "!LDIR_TO!"\!LMASK!    >> %LOG_FULLFILENAME%
     ) else (                        
         mkdir "!LDIR_TO!"                   >> %LOG_FULLFILENAME% 
     )
-
     set LMASK=*.*
     call :XCOPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
 
@@ -206,9 +201,8 @@ rem beginfunction
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Java\PROJECTS_JAVA\SCRIPTS_JAVA
     rem echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\BAT
+    set LDIR_TO=!GPROJECT_DIR!\BAT
     rem echo LDIR_TO:!LDIR_TO!
-
     set LMASK=*.bat
     call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
 
@@ -234,9 +228,8 @@ rem beginfunction
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Java\PROJECTS_JAVA\TOOLS_SRC_JAVA\src\BAT
     rem echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\BAT
+    set LDIR_TO=!GPROJECT_DIR!\BAT
     rem echo LDIR_TO:!LDIR_TO!
-
     set LMASK=*.bat
     call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
 
@@ -245,16 +238,13 @@ rem beginfunction
     rem --------------------------------------------------------
     set LDIR_FROM=!PROJECTS_DIR_ROOT!\PROJECTS_JAVA\TOOLS_SRC_JAVA\SRC\LIB
     rem echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\LIB
+    set LDIR_TO=!GPROJECT_DIR!\LIB
     rem echo LDIR_TO:!LDIR_TO!
-
-    set LMASK=*.*
     if exist "!LDIR_TO!" (
         del /F /S /Q "!LDIR_TO!"\!LMASK!    >> %LOG_FULLFILENAME%
     ) else (
         mkdir "!LDIR_TO!"                   >> %LOG_FULLFILENAME%
     )
-
     set LMASK=*.*
     call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
 
@@ -280,16 +270,13 @@ rem beginfunction
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\KIX\PROJECTS_KIX\SCRIPTS_KIX\SRC\SCRIPTS_KIX
     rem echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\SCRIPTS_KIX
+    set LDIR_TO=!GPROJECT_DIR!\SCRIPTS_KIX
     rem echo LDIR_TO:!LDIR_TO!
-
-    set LMASK=*.*
     if exist "!LDIR_TO!" (
         del /F /S /Q "!LDIR_TO!"\!LMASK! >> %LOG_FULLFILENAME%
     ) else (                        
         mkdir "!LDIR_TO!"            >> %LOG_FULLFILENAME% 
     )
-
     set LMASK=*.*
     call :XCOPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
 
@@ -298,9 +285,8 @@ rem beginfunction
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\KIX\PROJECTS_KIX\SCRIPTS_KIX\SRC\SCRIPTS_KIX
     rem echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\BAT
+    set LDIR_TO=!GPROJECT_DIR!\BAT
     rem echo LDIR_TO:!LDIR_TO!
-
     set LMASK=*.bat
     call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
 
@@ -326,9 +312,8 @@ rem beginfunction
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\KIX\PROJECTS_KIX\TOOLS_SRC_KIX\SRC\BAT
     rem echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\BAT
+    set LDIR_TO=!GPROJECT_DIR!\BAT
     rem echo LDIR_TO:!LDIR_TO!
-
     set LMASK=*.bat
     call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
 
@@ -337,16 +322,13 @@ rem beginfunction
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\KIX\PROJECTS_KIX\TOOLS_SRC_KIX\SRC\LIB
     rem echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\LIB
+    set LDIR_TO=!GPROJECT_DIR!\LIB
     rem echo LDIR_TO:!LDIR_TO!
-
-    set LMASK=*.kxl
     if exist "!LDIR_TO!" (
         del /F /S /Q "!LDIR_TO!"\!LMASK! >> %LOG_FULLFILENAME%
     ) else (
         mkdir "!LDIR_TO!"            >> %LOG_FULLFILENAME%
     )
-
     set LMASK=*.kxl
     call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
 
@@ -371,17 +353,14 @@ rem beginfunction
     rem SCRIPTS_PY\SRC\SCRIPTS_PY\*.*
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Python\PROJECTS_PY\SCRIPTS_PY\SRC\SCRIPTS_PY
-    echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\SCRIPTS_PY
-    echo LDIR_TO:!LDIR_TO!
-
-    set LMASK=*.*
+    rem echo LDIR_FROM:!LDIR_FROM!
+    set LDIR_TO=!GPROJECT_DIR!\SCRIPTS_PY
+    rem echo LDIR_TO:!LDIR_TO!
     if exist "!LDIR_TO!" (
         del /F /S /Q "!LDIR_TO!"\!LMASK! >> %LOG_FULLFILENAME%
     ) else (                        
         mkdir "!LDIR_TO!"            >> %LOG_FULLFILENAME% 
     )
-
     set LMASK=*.*
     call :XCOPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
 
@@ -389,10 +368,9 @@ rem beginfunction
     rem SCRIPTS_PY\SRC\SCRIPTS_PY\*.bat
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Python\PROJECTS_PY\SCRIPTS_PY\SRC\SCRIPTS_PY
-    echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\BAT
-    echo LDIR_TO:!LDIR_TO!
-
+    rem echo LDIR_FROM:!LDIR_FROM!
+    set LDIR_TO=!GPROJECT_DIR!\BAT
+    rem echo LDIR_TO:!LDIR_TO!
     set LMASK=*.bat
     call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
 
@@ -417,10 +395,9 @@ rem beginfunction
     rem TOOLS_SRC_PY\SRC\BAT\*.bat
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Python\PROJECTS_PY\TOOLS_SRC_PY\SRC\BAT
-    echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\BAT
-    echo LDIR_TO:!LDIR_TO!
-
+    rem echo LDIR_FROM:!LDIR_FROM!
+    set LDIR_TO=!GPROJECT_DIR!\BAT
+    rem echo LDIR_TO:!LDIR_TO!
     set LMASK=*.bat
     call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
 
@@ -428,17 +405,14 @@ rem beginfunction
     rem TOOLS_SRC_PY\SRC\LIB\*.*
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\DESKTOP\Python\PROJECTS_PY\TOOLS_SRC_PY\SRC\LIB
-    echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\LIB
-    echo LDIR_TO:!LDIR_TO!
-
-    set LMASK=*.*
+    rem echo LDIR_FROM:!LDIR_FROM!
+    set LDIR_TO=!GPROJECT_DIR!\LIB
+    rem echo LDIR_TO:!LDIR_TO!
     if exist "!LDIR_TO!" (
         del /F /S /Q "!LDIR_TO!"\!LMASK! >> %LOG_FULLFILENAME%
     ) else (
         mkdir "!LDIR_TO!"            >> %LOG_FULLFILENAME%
     )
-
     set LMASK=*.*
     rem call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
 
@@ -464,16 +438,13 @@ rem beginfunction
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\OS\UNIX\PROJECTS_UNIX\SCRIPTS_SH\SRC\SCRIPTS_SH
     rem echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\SCRIPTS_SH
+    set LDIR_TO=!GPROJECT_DIR!\SCRIPTS_SH
     rem echo LDIR_TO:!LDIR_TO!
-
-    set LMASK=*.*
     if exist "!LDIR_TO!" (
         del /F /S /Q "!LDIR_TO!"\!LMASK! >> %LOG_FULLFILENAME%
     ) else (                        
         mkdir "!LDIR_TO!"            >> %LOG_FULLFILENAME% 
     )
-
     set LMASK=*.*
     call :XCOPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! || exit /b 1
 
@@ -482,9 +453,8 @@ rem beginfunction
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\OS\UNIX\PROJECTS_UNIX\SCRIPTS_SH\SRC\SCRIPTS_SH
     rem echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\SH
+    set LDIR_TO=!GPROJECT_DIR!\SH
     rem echo LDIR_TO:!LDIR_TO!
-
     set LMASK=*.sh
     call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
 
@@ -510,9 +480,8 @@ rem beginfunction
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\OS\UNIX\PROJECTS_UNIX\TOOLS_SRC_SH\SRC\SH
     rem echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\SH
+    set LDIR_TO=!GPROJECT_DIR!\SH
     rem echo LDIR_TO:!LDIR_TO!
-
     set LMASK=*.sh
     call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
 
@@ -521,18 +490,13 @@ rem beginfunction
     rem --------------------------------------------------------
     set LDIR_FROM=D:\PROJECTS_LYR\CHECK_LIST\OS\UNIX\PROJECTS_UNIX\TOOLS_SRC_SH\SRC\LIB
     rem echo LDIR_FROM:!LDIR_FROM!
-    set LDIR_TO=!DIR_PROJECT_NAME!\LIB
+    set LDIR_TO=!GPROJECT_DIR!\LIB
     rem echo LDIR_TO:!LDIR_TO!
-
-    rem call :WritePROCESS Очистка !LDIR_TO! ...
-
-    set LMASK=*.*
     if exist "!LDIR_TO!" (
         del /F /S /Q "!LDIR_TO!"\!LMASK!    >> %LOG_FULLFILENAME%
     ) else (
         mkdir "!LDIR_TO!"                   >> %LOG_FULLFILENAME%
     )
-
     set LMASK=*.*
     call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
 
@@ -560,16 +524,11 @@ rem beginfunction
     rem echo LDIR_FROM:!LDIR_FROM!
     set LDIR_TO=D:\PROJECTS_LYR\CHECK_LIST\OS\UNIX\TOOLS_SH\SH_GIT
     rem echo LDIR_TO:!LDIR_TO!
-
-    rem call :WritePROCESS Очистка !LDIR_TO! ...
-
-    set LMASK=*.*
     if exist "!LDIR_TO!"\ (
         del /F /S /Q "!LDIR_TO!"\!LMASK!    >> %LOG_FULLFILENAME% 
     ) else (
         mkdir "!LDIR_TO!"                   >> %LOG_FULLFILENAME%
     )
-
     set LMASK=*.*
     call :COPY_FILES !LDIR_FROM! !LDIR_TO! !LMASK! /R || exit /b 1
 

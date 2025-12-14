@@ -44,6 +44,8 @@ rem beginfunction
     rem set GPROJECTS_DIR=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT
     rem set GPROJECTS_DIR=
 
+    set /a GPROJECT_DEPLOY=0
+
     set GPROJECT_PATTERN_DIR=
     
     set GPROJECT_DIR=D:\PROJECTS_LYR\CHECK_LIST\SCRIPT\BAT\PROJECTS_BAT\TOOLS_SRC_BAT
@@ -78,79 +80,86 @@ rem beginfunction
 
     call :GET_project_INFO !APROJECTS_GROUP! !APROJECT_NAME!
 
-    call :WriteBEGIN .... Старт DEPLOY проекта !GPROJECTS_GROUP! !GPROJECT_NAME! ...
+    if !GPROJECT_DEPLOY! EQU 1 (
 
-    if !GPROJECT_NAME!==TOOLS_BAT (
-        call :ClearDir !GPROJECT_DIR!\BAT *.bat
-        call :UPDATE_TOOLS_BAT_SCRIPTS_BAT
-        call :UPDATE_TOOLS_BAT_TOOLS_SRC_BAT
-        set GPROJECT_PATTERN_DIR=
+        call :WriteBEGIN .... Старт DEPLOY проекта !GPROJECTS_GROUP! !GPROJECT_NAME! ...
+    
+        if !GPROJECT_NAME!==TOOLS_BAT (
+            call :ClearDir !GPROJECT_DIR!\BAT *.bat
+            call :UPDATE_TOOLS_BAT_SCRIPTS_BAT
+            call :UPDATE_TOOLS_BAT_TOOLS_SRC_BAT
+            echo GPROJECT_PATTERN_DIR:!GPROJECT_PATTERN_DIR!
+            set GPROJECT_PATTERN_DIR=
+            call :__REPO_WORK !GPROJECT_DIR!
+            call :PULL_PROJECT D:\TOOLS !GPROJECT_NAME!
+            exit /b 0
+        )    
+    
+        if !GPROJECT_NAME!==TOOLS_GIT (
+            call :ClearDir !GPROJECT_DIR!\BAT *.bat
+            call :ClearDir !GPROJECT_DIR!\BAT_KIX *.bat
+            call :UPDATE_TOOLS_GIT_TOOLS_SRC_GIT
+            set GPROJECT_PATTERN_DIR=
+            call :__REPO_WORK !GPROJECT_DIR!
+            call :PULL_PROJECT D:\TOOLS !GPROJECT_NAME!
+            exit /b 0
+        )    
+    
+        if !GPROJECT_NAME!==TOOLS_JAVA (
+            call :ClearDir !GPROJECT_DIR!\BAT *.bat
+            call :UPDATE_TOOLS_JAVA_SCRIPTS_JAVA
+            call :UPDATE_TOOLS_JAVA_TOOLS_SRC_JAVA
+            set GPROJECT_PATTERN_DIR=
+            call :__REPO_WORK !GPROJECT_DIR!
+            call :PULL_PROJECT D:\TOOLS !GPROJECT_NAME!
+            exit /b 0
+        )    
+    
+        if !GPROJECT_NAME!==TOOLS_KIX (
+            call :ClearDir !GPROJECT_DIR!\BAT *.bat
+            call :UPDATE_TOOLS_KIX_SCRIPTS_KIX
+            call :UPDATE_TOOLS_KIX_TOOLS_SRC_KIX
+            set GPROJECT_PATTERN_DIR=
+            call :__REPO_WORK !GPROJECT_DIR!
+            call :PULL_PROJECT D:\TOOLS !GPROJECT_NAME!
+            exit /b 0
+        )    
+    
+        if !GPROJECT_NAME!==TOOLS_PY (
+            call :ClearDir !GPROJECT_DIR!\BAT *.bat
+            call :UPDATE_TOOLS_PY_SCRIPTS_PY
+            call :UPDATE_TOOLS_PY_TOOLS_SRC_PY
+            set GPROJECT_PATTERN_DIR=
+            call :__REPO_WORK !GPROJECT_DIR!
+            call :PULL_PROJECT D:\TOOLS !GPROJECT_NAME!
+            exit /b 0
+        )    
+    
+        if !GPROJECT_NAME!==TOOLS_SH (
+            call :ClearDir !GPROJECT_DIR!\SH_GIT *.sh
+            call :UPDATE_TOOLS_SH_SCRIPTS_SH
+            call :UPDATE_TOOLS_SH_TOOLS_SRC_SH
+            call :UPDATE_TOOLS_SH_TOOLS_SRC_GIT_SH
+            set GPROJECT_PATTERN_DIR=
+            call :__REPO_WORK !GPROJECT_DIR!
+            call :PULL_PROJECT D:\TOOLS !GPROJECT_NAME!
+            exit /b 0
+        )    
+    
+        if !GPROJECT_NAME!==TOOLS_PS (
+            set GPROJECT_PATTERN_DIR=
+            rem call :__REPO_WORK !GPROJECT_DIR!
+            rem call :PULL_PROJECT D:\TOOLS !GPROJECT_NAME!
+            exit /b 0
+        )    
+    
         call :__REPO_WORK !GPROJECT_DIR!
-        call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
-        exit /b 0
-    )    
-
-    if !GPROJECT_NAME!==TOOLS_GIT (
-        call :ClearDir !GPROJECT_DIR!\BAT *.bat
-        call :ClearDir !GPROJECT_DIR!\BAT_KIX *.bat
-        call :UPDATE_TOOLS_GIT_TOOLS_SRC_GIT
-        set GPROJECT_PATTERN_DIR=
-        call :__REPO_WORK !GPROJECT_DIR!
-        call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
-        exit /b 0
-    )    
-
-    if !GPROJECT_NAME!==TOOLS_JAVA (
-        call :ClearDir !GPROJECT_DIR!\BAT *.bat
-        call :UPDATE_TOOLS_JAVA_SCRIPTS_JAVA
-        call :UPDATE_TOOLS_JAVA_TOOLS_SRC_JAVA
-        set GPROJECT_PATTERN_DIR=
-        call :__REPO_WORK !GPROJECT_DIR!
-        call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
-        exit /b 0
-    )    
-
-    if !GPROJECT_NAME!==TOOLS_KIX (
-        call :ClearDir !GPROJECT_DIR!\BAT *.bat
-        call :UPDATE_TOOLS_KIX_SCRIPTS_KIX
-        call :UPDATE_TOOLS_KIX_TOOLS_SRC_KIX
-        set GPROJECT_PATTERN_DIR=
-        call :__REPO_WORK !GPROJECT_DIR!
-        call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
-        exit /b 0
-    )    
-
-    if !GPROJECT_NAME!==TOOLS_PY (
-        call :ClearDir !GPROJECT_DIR!\BAT *.bat
-        call :UPDATE_TOOLS_PY_SCRIPTS_PY
-        call :UPDATE_TOOLS_PY_TOOLS_SRC_PY
-        set GPROJECT_PATTERN_DIR=
-        call :__REPO_WORK !GPROJECT_DIR!
-        call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
-        exit /b 0
-    )    
-
-    if !GPROJECT_NAME!==TOOLS_SH (
-        call :ClearDir !GPROJECT_DIR!\SH_GIT *.sh
-        call :UPDATE_TOOLS_SH_SCRIPTS_SH
-        call :UPDATE_TOOLS_SH_TOOLS_SRC_SH
-        call :UPDATE_TOOLS_SH_TOOLS_SRC_GIT_SH
-        set GPROJECT_PATTERN_DIR=
-        call :__REPO_WORK !GPROJECT_DIR!
-        call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
-        exit /b 0
-    )    
-
-    if !GPROJECT_NAME!==TOOLS_PS (
-        set GPROJECT_PATTERN_DIR=
-        rem call :__REPO_WORK !GPROJECT_DIR!
-        rem call :PULL_PROJECT D:\TOOLS !PROJECT_NAME!
-        exit /b 0
-    )    
-
-    call :__REPO_WORK !GPROJECT_DIR!
-
-    call :WriteBEGIN .... Стоп DEPLOY проекта !GPROJECTS_GROUP! !GPROJECT_NAME! ...
+    
+        call :WriteBEGIN .... Стоп DEPLOY проекта !GPROJECTS_GROUP! !GPROJECT_NAME! ...
+    ) else (
+        rem echo GPROJECT_DEPLOY:!GPROJECT_DEPLOY!
+        call :WriteINFO .... проект !GPROJECTS_GROUP! !GPROJECT_NAME! пропущен ...
+    )
 
     exit /b 0
 rem endfunction
@@ -184,6 +193,7 @@ rem beginfunction
     rem         set res=Yes
     rem     )
     rem )
+
     if defined res (
     rem if defined APROJECTS_GROUP if defined APROJECT_NAME (
         rem echo !APROJECTS_GROUP! !APROJECT_NAME! - True
@@ -192,7 +202,7 @@ rem beginfunction
         rem ------------------------------------------------
         rem GPROJECTS_DIR_ROOT
         rem ------------------------------------------------
-        call :GetINIParametr !GFILEINI! PROJECTS_GROUP !PROJECTS_GROUP! || exit /b 1
+        call :GetINIParametr !GFILEINI! PROJECTS_GROUP !GPROJECTS_GROUP! || exit /b 1
         set GPROJECTS_DIR_ROOT=!KeyValue!
         rem echo GPROJECTS_DIR_ROOT:!GPROJECTS_DIR_ROOT!
     ) else (
@@ -252,6 +262,17 @@ rem beginfunction
     call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! url || exit /b 1
     set Gurl_github=!KeyValue!
     rem echo Gurl_github:!Gurl_github!
+
+    rem ------------------------------------------------
+    rem GPROJECT_DEPLOY
+    rem ------------------------------------------------
+    call :GetINI !GPROJECTS_INI! PROJECTS_NAME !GPROJECT_NAME! || exit /b 1
+    if not defined KeyValue (
+        set /a GPROJECT_DEPLOY=0
+    ) else (
+        set /a GPROJECT_DEPLOY=!KeyValue!
+    )
+    rem echo GPROJECT_DEPLOY:!GPROJECT_DEPLOY!
 
     if not defined GPROJECT_PATTERN_DIR (
         rem ------------------------------------------------
@@ -626,44 +647,26 @@ rem beginfunction
 
     set LSaveDirectory=!cd!
 
-    set APROJECT_GROUP=%1
-    rem echo APROJECT_GROUP:!APROJECT_GROUP!
+    set ADIR_PROJECTS_ROOT=%1
+    echo ADIR_PROJECTS_ROOT:!ADIR_PROJECTS_ROOT!
     set APROJECT_NAME=%2
-    rem echo APROJECT_NAME:!APROJECT_NAME!
+    echo APROJECT_NAME:!APROJECT_NAME!
 
-    call :GET_project_INFO !APROJECT_GROUP! !APROJECT_NAME!
-    
-    call :WritePROCESS PULL проекта: !APROJECT_NAME! ...
+    call :WritePROCESS PULL проекта: !ADIR_PROJECTS_ROOT! ...
 
-    if exist "!GPROJECT_DIR!"\ (
-        cd /D "!GPROJECT_DIR!"
+    if exist "!ADIR_PROJECTS_ROOT!\!APROJECT_NAME!"\ (
+        cd /D "!ADIR_PROJECTS_ROOT!\!APROJECT_NAME!"
         if exist ".git"\ (
-            call lyrgit_pull.bat
+            rem call lyrgit_pull.bat
+            git pull
         ) else (
             echo INFO: Каталог .git не существует ...
         )
     ) else (
-        echo info: Каталог !GPROJECT_DIR! не существует...
+        echo info: Каталог !APROJECT_DIR! не существует...
         if !APROJECT_NAME!==TOOLS_SRC_GIT (
-            call :__git_clone !GPROJECT_DIR! !Gurl_github!
+            call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         if !APROJECT_NAME!==TOOLS_GIT (
             call :__git_clone !ADIR_PROJECTS_ROOT! !Gurl_github!
         )
@@ -1062,7 +1065,7 @@ exit /b 0
 rem =================================================
 rem LYRParserINI.bat
 rem =================================================
-:LYRParserINIINIT
+:LYRParserINI
 %LIB_BAT%\LYRParserINI.bat %*
 exit /b 0
 :SetINI
