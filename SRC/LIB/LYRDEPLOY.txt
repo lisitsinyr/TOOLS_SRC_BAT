@@ -10,21 +10,3 @@ exit /b 0
 :PULL_PROJECT
 %LIB_BAT%\LYRDEPLOY.bat %*
 exit /b 0
-:__CopyFilesFromPATTERN
-%LIB_BAT%\LYRDEPLOY.bat %*
-exit /b 0
-:__SetPROJECT_INI
-%LIB_BAT%\LYRDEPLOY.bat %*
-exit /b 0
-:__SetREPO_INI
-%LIB_BAT%\LYRDEPLOY.bat %*
-exit /b 0
-:__REPO_WORK
-%LIB_BAT%\LYRDEPLOY.bat %*
-exit /b 0
-:__git_pull
-%LIB_BAT%\LYRDEPLOY.bat %*
-exit /b 0
-:__git_clone
-%LIB_BAT%\LYRDEPLOY.bat %*
-exit /b 0
