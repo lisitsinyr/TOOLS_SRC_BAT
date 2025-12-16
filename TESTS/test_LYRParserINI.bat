@@ -39,30 +39,32 @@ rem ----------------------------------------------------------------------------
 
     rem call :test_SetINI !LFILEINI_test02! general PROJECTS_GROUP 623476817
 
-    rem call :test_GetINI !LFILEINI_test02! general2 PROJECTS_GROUP2
-    rem call :test_GetINI !LFILEINI_test02! general2
-    rem call :test_GetINI !LFILEINI_test02!
+    rem call :test_GetINI !LFILEINI_test02! general2 PROJECTS_GROUP2 ""
+    rem call :test_GetINI !LFILEINI_test02! general2 "" "" ""
+    rem call :test_GetINI !LFILEINI_test02! "" "" "" ""
 
-    rem call :test_GetINIParametr !LFILEINI_test02! general2 PROJECTS_GROUP2
-    rem call :test_GetINIParametr !LFILEINI_test02! general2
-    rem call :test_GetINIParametr !LFILEINI_test02!
+    rem call :test_GetINIParametr !LFILEINI_test02! general2 PROJECTS_GROUP2 ""
+    rem call :test_GetINIParametr !LFILEINI_test02! general2 ""  ""  ""
+    rem call :test_GetINIParametr !LFILEINI_test02! "" ""  ""  ""
 
-    rem call :test_GetINIPY !LFILEINI_test02! general2 PROJECTS_GROUP2
-    rem call :test_GetINIPY !LFILEINI_test02! general2
-    rem call :test_GetINIPY !LFILEINI_test02!
+    rem call :test_GetINIPY !LFILEINI_test02! general2 PROJECTS_GROUP2 ""
+    rem call :test_GetINIPY !LFILEINI_test02! general2 ""  ""  ""
+    rem call :test_GetINIPY !LFILEINI_test02! "" "" "" ""
 
-
-    call :test_GetINIParametr !LFILEINI_test01! SCRIPTS_BAT PROJECT_DIR
+    rem call :test_GetINI !LFILEINI_test01! SCRIPTS_BAT PROJECT_DIR ""
+    rem call :test_GetINIPY !LFILEINI_test01! SCRIPTS_BAT PROJECT_DIR ""
+    call :test_GetINIParametr !LFILEINI_test01! SCRIPTS_BAT PROJECT_DIR ""
+    rem call :test_GetINIParametr2 !LFILEINI_test01! SCRIPTS_BAT PROJECT_DIR ""
     
     set PROJECTS_NAME=None
 
-    rem call :test_GetINI !LFILEINI_test01! PROJECTS_NAME "" PROJECTS_NAME
+    rem call :test_GetINI !LFILEINI_test01! PROJECTS_NAME "" PROJECTS_NAME ""
 
-    rem call :test_GetINIParametr !LFILEINI_test01! PROJECTS_NAME "" PROJECTS_NAME
+    rem call :test_GetINIParametr !LFILEINI_test01! PROJECTS_NAME "" PROJECTS_NAME ""
 
-    rem call :test_GetINIParametr2 !LFILEINI_test01! PROJECTS_NAME "" PROJECTS_NAME
+    rem call :test_GetINIParametr2 !LFILEINI_test01! PROJECTS_NAME "" PROJECTS_NAME ""
 
-    rem call :test_GetINIPY !LFILEINI_test01! PROJECTS_NAME "" PROJECTS_NAME
+    rem call :test_GetINIPY !LFILEINI_test01! PROJECTS_NAME "" PROJECTS_NAME ""
     
     rem call :test_GetFileParser !LFILEINI_test02!
 
@@ -103,8 +105,16 @@ rem beginfunction
     echo --------------------------------------
 
     echo "%~1" "%~2" "%~3" "%~4"
+    set a1=%~1
+    set a2=%~2
+    set a3=%~3
+    set a4=%~4
 
     call :GetINI "%~1" "%~2" "%~3" "%~4"
+    if defined a1 ( if defined a2 ( if defined a3 (
+        echo KeyName:!KeyName!
+        echo KeyValue:!KeyValue!
+    )))
 
     if !SectionsCount! GEQ 0 (
         echo SectionsCount:!SectionsCount!
@@ -145,8 +155,16 @@ rem beginfunction
     echo --------------------------------------
 
     echo "%~1" "%~2" "%~3" "%~4"
+    set a1=%~1
+    set a2=%~2
+    set a3=%~3
+    set a4=%~4
 
     call :GetINIPY "%~1" "%~2" "%~3" "%~4"
+    if defined a1 ( if defined a2 ( if defined a3 (
+        echo KeyName:!KeyName!
+        echo KeyValue:!KeyValue!
+    )))
 
     if !SectionsCount! GEQ 0 (
         echo SectionsCount:!SectionsCount!
@@ -187,17 +205,16 @@ rem beginfunction
     echo --------------------------------------
 
     echo "%~1" "%~2" "%~3" "%~4"
+    set a1=%~1
+    set a2=%~2
+    set a3=%~3
+    set a4=%~4
 
     call :GetINIParametr "%~1" "%~2" "%~3" "%~4"
-    echo KeyValue:!KeyValue!
-
-    echo ....test_GetINIParametr: Ok
-
-    rem call :GetLenArray !Sections!
-    rem echo GetLenArray:!GetLenArray!
-
-    exit /b 0
-rem endfunction
+    if defined a1 ( if defined a2 ( if defined a3 (
+        echo KeyName:!KeyName!
+        echo KeyValue:!KeyValue!
+    )))
 
     if !SectionsCount! GEQ 0 (
         echo SectionsCount:!SectionsCount!
@@ -207,6 +224,9 @@ rem endfunction
             echo !LSection! 
         )
     )
+
+    call :GetLenArray Sections
+    echo GetLenArray:!GetLenArray!
 
     if !KeyNamesCount! GEQ 0 (
         echo KeyNamesCount:!KeyNamesCount!
@@ -222,7 +242,14 @@ rem endfunction
             )
         )
     )
+    
+    echo ....test_GetINIParametr: Ok
 
+    rem call :GetLenArray !Sections!
+    rem echo GetLenArray:!GetLenArray!
+
+    exit /b 0
+rem endfunction
 
 rem --------------------------------------------------------------------------------
 rem procedure test_GetINIParametr2 (AFileName, ASection, AKeyName, AKeyNames) -> None
@@ -234,10 +261,17 @@ rem beginfunction
     echo --------------------------------------
 
     echo "%~1" "%~2" "%~3" "%~4"
+    echo "%~1" "%~2" "%~3" "%~4"
+    set a1=%~1
+    set a2=%~2
+    set a3=%~3
+    set a4=%~4
 
     call :GetINIParametr2 "%~1" "%~2" "%~3" "%~4"
-
-    set PROJECTS_NAME
+    if defined a1 ( if defined a2 ( if defined a3 (
+        echo KeyName:!KeyName!
+        echo KeyValue:!KeyValue!
+    )))
 
     if !SectionsCount! GEQ 0 (
         echo SectionsCount:!SectionsCount!
@@ -390,4 +424,50 @@ exit /b 0
 exit /b 0
 :GetFileParser
 %LIB_BAT%\LYRParserINI.bat %*
+exit /b 0
+
+rem =================================================
+rem LYRSupport.bat
+rem =================================================
+:LYRSupportINIT
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:PressAnyKey
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:Pause
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:Read_P
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:Read_P_editenv
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:Read_N
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:Read_F
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:GetDir
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:GetFile
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:FORCicle
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:GetSET
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:GetCMD
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:CheckErrorlevel
+%LIB_BAT%\LYRSupport.bat %*
+exit /b 0
+:GetLenArray
+%LIB_BAT%\LYRSupport.bat %*
 exit /b 0
