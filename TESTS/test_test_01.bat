@@ -16,12 +16,14 @@ setlocal enabledelayedexpansion
     rem     echo .... !LValue!
     rem )
 
-    rem FOR /F "tokens=1,2" %%a in ("гитара рыбка") do echo Моя %%a и моя %%b — выводит «Моя гитара и моя рыбка».
+    FOR /F "tokens=1,2" %%a in ("гитара рыбка") do (
+        echo Моя %%a и моя %%b — выводит «Моя гитара и моя рыбка».
+    )
 
-    rem set list=A B C D
-    rem for %%a in (%list%) do ( 
-    rem     echo %%a
-    rem )
+    set list=A B C D
+    for %%a in (%list%) do ( 
+        echo %%a
+    )
 
     rem Как удалить все переменные в cmd (только в одном окне)?
     rem Совершенно верно, можно при помощи for с ключом /f обработать вывод команды set без параметров, получив имена всех (почти) определённых переменных среды (частей выводимых строк до знака =: delims==):

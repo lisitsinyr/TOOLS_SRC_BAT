@@ -39,36 +39,30 @@ rem ----------------------------------------------------------------------------
 
     rem call :test_SetINI !LFILEINI_test02! general PROJECTS_GROUP 623476817
 
-    rem call :test_GetINI !LFILEINI_test02! general2 PROJECTS_GROUP2 ""
-    rem call :test_GetINI !LFILEINI_test02! general2 "" "" ""
-    rem call :test_GetINI !LFILEINI_test02! "" "" "" ""
+    rem call :test_GetINI !LFILEINI_test02! general2 PROJECTS_GROUP2
+    rem call :test_GetINI !LFILEINI_test02! general2 "" ""
+    rem call :test_GetINI !LFILEINI_test02! "" "" ""
+
+    rem call :test_GetINIPY !LFILEINI_test02! general2 PROJECTS_GROUP2
+    rem call :test_GetINIPY !LFILEINI_test02! general2 ""  ""
+    rem call :test_GetINIPY !LFILEINI_test02! "" "" ""
 
     rem call :test_GetINIParametr !LFILEINI_test02! general2 PROJECTS_GROUP2 ""
     rem call :test_GetINIParametr !LFILEINI_test02! general2 ""  ""  ""
     rem call :test_GetINIParametr !LFILEINI_test02! "" ""  ""  ""
 
-    rem call :test_GetINIPY !LFILEINI_test02! general2 PROJECTS_GROUP2 ""
-    rem call :test_GetINIPY !LFILEINI_test02! general2 ""  ""  ""
-    rem call :test_GetINIPY !LFILEINI_test02! "" "" "" ""
-
-    rem call :test_GetINI !LFILEINI_test01! SCRIPTS_BAT PROJECT_DIR ""
-    rem call :test_GetINIPY !LFILEINI_test01! SCRIPTS_BAT PROJECT_DIR ""
+    rem call :test_GetINI !LFILEINI_test01! SCRIPTS_BAT PROJECT_DIR
+    rem call :test_GetINIPY !LFILEINI_test01! SCRIPTS_BAT PROJECT_DIR
     call :test_GetINIParametr !LFILEINI_test01! SCRIPTS_BAT PROJECT_DIR ""
-    rem call :test_GetINIParametr2 !LFILEINI_test01! SCRIPTS_BAT PROJECT_DIR ""
     
     set PROJECTS_NAME=None
 
-    rem call :test_GetINI !LFILEINI_test01! PROJECTS_NAME "" PROJECTS_NAME ""
+    rem call :test_GetINI !LFILEINI_test01! PROJECTS_NAME "" PROJECTS_NAME
+    rem call :test_GetINIPY !LFILEINI_test01! PROJECTS_NAME "" PROJECTS_NAME
 
     rem call :test_GetINIParametr !LFILEINI_test01! PROJECTS_NAME "" PROJECTS_NAME ""
-
-    rem call :test_GetINIParametr2 !LFILEINI_test01! PROJECTS_NAME "" PROJECTS_NAME ""
-
-    rem call :test_GetINIPY !LFILEINI_test01! PROJECTS_NAME "" PROJECTS_NAME ""
     
     rem call :test_GetFileParser !LFILEINI_test02!
-
-    rem call :test_ PROJECT.ini
 
     exit /b 0
 :end
@@ -315,56 +309,6 @@ rem beginfunction
     echo GetFileParser:!GetFileParser!
 
     echo ....test_GetFileParser: Ok
-
-    exit /b 0
-rem endfunction
-
-rem --------------------------------------------------------------------------------
-rem procedure test_
-rem --------------------------------------------------------------------------------
-:test_
-rem beginfunction
-    echo ======================================
-    echo FUNCNAME%0
-    echo --------------------------------------
-
-    set FILEINI=%1
-
-    call :GetINI !FILEINI!
-    echo GetINI_file:!GetINI!
-    rem call :GetINIPY !FILEINI!
-    rem call :GetINIParametr !FILEINI!
-
-    rem call :GetLenArray !Sections!
-    rem echo GetLenArray:!GetLenArray!
-
-    rem set /a nmax=SectionsCount-1
-    for /L %%i in (0,1,!SectionsCount!) do (
-        set Section=!Sections[%%i]!
-        echo !Section! 
-
-        call :GetINI !FILEINI! !Section!
-
-        rem set /a kmax=KeyNamesCount-1
-        for /L %%i in (0,1,!KeyNamesCount!) do (
-            set KeyName=!KeyNames[%%i]!
-            echo !KeyName!
-
-            call :GetINI !FILEINI! !Section! !KeyName!
-            echo GetINI:!GetINI!
-            
-            call :GetINIParametr !FILEINI! !Section! !KeyName!
-            echo GetINIParametr:!GetINIParametr!
-            rem echo !KeyValue!
-        )
-    )
-
-    rem set list=A B C D
-    rem for %%a in (%list%) do ( 
-    rem     echo %%a
-    rem )
-
-    echo ....test_: Ok
 
     exit /b 0
 rem endfunction
