@@ -61,7 +61,85 @@ rem beginfunction
 rem endfunction
 
 rem --------------------------------------------------------------------------------
-rem procedure DEPLOY_PROJECT (PROJECT_GROUP PROJECT_NAME) -> None
+rem procedure DEPLOY_PROJECTS (PROJECTS_INI) -> None
+rem --------------------------------------------------------------------------------
+:DEPLOY_PROJECTS
+rem beginfunction
+    set FUNCNAME=%0
+    set FUNCNAME=DEPLOY_PROJECTS
+    if defined DEBUG (
+        echo DEBUG: procedure !FUNCNAME! ...
+    )
+    set !FUNCNAME!=
+
+    set APROJECTS_INI=%~1
+    rem echo APROJECTS_INI:!APROJECTS_INI!
+
+    call :GetINIParametr "!APROJECTS_INI!" PROJECTS_GROUP "" PROJECTS_GROUP
+    rem call :GetINI "!APROJECTS_INI!" PROJECTS_GROUP
+    set /a kmax=!KeyNamesCount!
+    rem echo ..2.. kmax:!kmax!
+    for /L %%s in (0,1,!kmax!) do (
+        echo ..2.. s:%%s
+        rem set LPROJECTS_GROUP=!KeyNames[%%s]!
+        set LPROJECTS_GROUP=!PROJECTS_GROUP[%%s]!
+        rem echo ..2.. LPROJECTS_GROUP:!LPROJECTS_GROUP!
+
+        echo "!APROJECTS_INI!" PROJECTS_GROUP !LPROJECTS_GROUP!
+        call :GetINIParametr "!APROJECTS_INI!" PROJECTS_GROUP !LPROJECTS_GROUP!
+        rem call :GetINI "!APROJECTS_INI!" PROJECTS_GROUP !LPROJECTS_GROUP!
+        rem echo ..2.. KeyValue:!KeyValue!
+
+        set LPROJECTS_GROUP_INI=!KeyValue!\!LPROJECTS_GROUP!.ini
+        rem echo ..2.. LPROJECTS_GROUP_INI:!LPROJECTS_GROUP_INI!
+
+        call :DEPLOY_PROJECTS_GROUP !LPROJECTS_GROUP! !LPROJECTS_GROUP_INI!
+
+        pause
+    )
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem procedure DEPLOY_PROJECTS_GROUP (PROJECTS_GROUP PROJECTS_INI) -> None
+rem --------------------------------------------------------------------------------
+:DEPLOY_PROJECTS_GROUP
+rem beginfunction
+    set FUNCNAME=%0
+    set FUNCNAME=DEPLOY_PROJECTS_GROUP
+    if defined DEBUG (
+        echo DEBUG: procedure !FUNCNAME! ...
+    )
+    set !FUNCNAME!=
+
+    set APROJECTS_GROUP=%~1
+    rem echo ..2.. APROJECTS_GROUP:!APROJECTS_GROUP!
+    set APROJECTS_GROUP_INI=%~2
+    rem echo ..2.. APROJECTS_GROUP_INI:!APROJECTS_GROUP_INI!
+
+    call :GetINIParametr "!APROJECTS_GROUP_INI!" PROJECTS_NAME "" PROJECTS_NAME
+    set /a kmax=!KeyNamesCount!
+    rem echo ..2.. kmax:!kmax!
+    
+    for /L %%i in (0,1,!kmax!) do (
+        echo ..2.. i:%%i
+        rem set LPROJECTS_NAME=!KeyNames[%%i]!
+        set LPROJECTS_NAME=!PROJECTS_NAME[%%i]!
+        rem echo ..2.. LPROJECTS_NAME:!LPROJECTS_NAME!
+
+        call :GetINIParametr "!APROJECTS_GROUP_INI!" PROJECTS_NAME !LPROJECTS_NAME!
+        if !KeyValue! EQU 1 (
+            rem echo ..2.. DEPLOY !APROJECTS_GROUP! !LPROJECTS_NAME!
+            call :DEPLOY_PROJECT !APROJECTS_GROUP! !LPROJECTS_NAME!
+        )
+    )
+
+    exit /b 0
+rem endfunction
+
+rem --------------------------------------------------------------------------------
+rem procedure DEPLOY_PROJECT (PROJECTS_GROUP PROJECT_NAME) -> None
 rem --------------------------------------------------------------------------------
 :DEPLOY_PROJECT
 rem beginfunction
@@ -144,6 +222,8 @@ rem beginfunction
             exit /b 0
         )    
     
+        rem echo ..3.. !GPROJECT_DIR!
+
         call :__REPO_WORK !GPROJECT_DIR!
     
         call :WriteBEGIN .... Стоп DEPLOY проекта !GPROJECTS_GROUP! !GPROJECT_NAME! ...
@@ -237,29 +317,33 @@ rem beginfunction
     rem ------------------------------------------------
     rem GPROJECT_DIR
     rem ------------------------------------------------
-    call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! PROJECT_DIR || exit /b 1
+    rem call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! PROJECT_DIR || exit /b 1
+    rem echo ..*.. !GPROJECTS_INI! !GPROJECT_NAME! PROJECT_DIR
+    call :GetINIParametr !GPROJECTS_INI! !GPROJECT_NAME! PROJECT_DIR "" || exit /b 1
     set GPROJECT_DIR=!KeyValue!
     rem echo GPROJECT_DIR:!GPROJECT_DIR!
 
     rem ------------------------------------------------
     rem GPROJECT_PATTERN_DIR
     rem ------------------------------------------------
-    rem echo !GPROJECTS_INI! !GPROJECT_NAME! PROJECT_PATTERN_DIR
-    call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! PROJECT_PATTERN_DIR || exit /b 1
+    rem call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! PROJECT_PATTERN_DIR || exit /b 1
+    call :GetINIParametr !GPROJECTS_INI! !GPROJECT_NAME! PROJECT_PATTERN_DIR || exit /b 1
     set GPROJECT_PATTERN_DIR=!KeyValue!
     rem echo GPROJECT_PATTERN_DIR:!GPROJECT_PATTERN_DIR!
 
     rem ------------------------------------------------
     rem Gurl_github
     rem ------------------------------------------------
-    call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! url || exit /b 1
+    rem call :GetINI !GPROJECTS_INI! !GPROJECT_NAME! url || exit /b 1
+    call :GetINIParametr !GPROJECTS_INI! !GPROJECT_NAME! url || exit /b 1
     set Gurl_github=!KeyValue!
     rem echo Gurl_github:!Gurl_github!
 
     rem ------------------------------------------------
     rem GPROJECT_DEPLOY
     rem ------------------------------------------------
-    call :GetINI !GPROJECTS_INI! PROJECTS_NAME !GPROJECT_NAME! || exit /b 1
+    rem call :GetINI !GPROJECTS_INI! PROJECTS_NAME !GPROJECT_NAME! || exit /b 1
+    call :GetINIParametr !GPROJECTS_INI! PROJECTS_NAME !GPROJECT_NAME! || exit /b 1
     if not defined KeyValue (
         set /a GPROJECT_DEPLOY=0
     ) else (
@@ -271,11 +355,7 @@ rem beginfunction
         rem ------------------------------------------------
         rem PROJECTS_PATTERN_DIR
         rem ------------------------------------------------
-        rem echo :GetINI !GPROJECTS_INI! general PROJECTS_PATTERN_DIR
-        call :GetINI !GPROJECTS_INI! general PROJECTS_PATTERN_DIR || exit /b 1
-        set GPROJECT_PATTERN_DIR=!KeyValue!
-        rem echo GPROJECT_PATTERN_DIR:!GPROJECT_PATTERN_DIR!
-
+        rem call :GetINI !GPROJECTS_INI! general PROJECTS_PATTERN_DIR || exit /b 1
         call :GetINIParametr !GPROJECTS_INI! general PROJECTS_PATTERN_DIR || exit /b 1
         set GPROJECT_PATTERN_DIR=!KeyValue!
         rem echo GPROJECT_PATTERN_DIR:!GPROJECT_PATTERN_DIR!
@@ -499,9 +579,11 @@ rem beginfunction
     )
     set !FUNCNAME!=
 
-    call :SetINI !GPROJECT_DIR!\PROJECT.ini general PROJECTS_GROUP !GPROJECTS_GROUP!
-    call :SetINI !GPROJECT_DIR!\PROJECT.ini general PROJECT_NAME !GPROJECT_NAME!
-    call :SetINI !GPROJECT_DIR!\PROJECT.ini general PROJECTS_DIR_ROOT !GPROJECTS_DIR_ROOT!
+    if exist !GPROJECT_DIR!\PROJECT.ini (
+        call :SetINI !GPROJECT_DIR!\PROJECT.ini general PROJECTS_GROUP !GPROJECTS_GROUP!
+        call :SetINI !GPROJECT_DIR!\PROJECT.ini general PROJECT_NAME !GPROJECT_NAME!
+        call :SetINI !GPROJECT_DIR!\PROJECT.ini general PROJECTS_DIR_ROOT !GPROJECTS_DIR_ROOT!
+    )
 
     exit /b 0
 rem endfunction
@@ -522,20 +604,22 @@ rem beginfunction
 
     call :WritePROCESS DEPLOY проекта [__REPO_WORK]: !PROJECT_NAME!
     
-    set ADirectory=%~1
-    rem echo ADirectory:!ADirectory!
-    if not exist "!ADirectory!"\ (
-        echo ERROR: Каталог !ADirectory! не существует ...
+    set ADirectory_WORK=%~1
+    rem echo ADirectory_WORK:!ADirectory_WORK!
+
+    if not exist "!ADirectory_WORK!"\ (
+        echo ERROR: Каталог !ADirectory_WORK! не существует ...
         exit /b 1
     )
     
-    cd /D "!ADirectory!"
+    cd /D "!ADirectory_WORK!"
     
     call :__CopyFromPATTERN_ALL !GPROJECT_PATTERN_DIR!
     call :__SetPROJECT_INI
     
-    cd /D "!ADirectory!"
-    
+    cd /D "!ADirectory_WORK!"
+    rem echo cd:!cd!
+
     if exist .git\ (
         call lyrgit_push_main.bat
     ) else (
@@ -1052,6 +1136,9 @@ exit /b 0
 %LIB_BAT%\LYRParserINI.bat %*
 exit /b 0
 :GetINIParametr
+%LIB_BAT%\LYRParserINI.bat %*
+exit /b 0
+:GetINIParametr2
 %LIB_BAT%\LYRParserINI.bat %*
 exit /b 0
 :GetFileParser

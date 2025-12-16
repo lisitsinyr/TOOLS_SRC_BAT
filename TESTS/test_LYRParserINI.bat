@@ -34,21 +34,37 @@ rem ----------------------------------------------------------------------------
 
     set /a LOG_FILE_ADD=0
 
-    rem call :test_SetINI PROJECT.ini general PROJECTS_GROUP 623476817
+    set LFILEINI_test01=BAT.ini 
+    set LFILEINI_test02=PROJECT.ini
 
-    rem call :test_GetINI PROJECT.ini general2 PROJECTS_GROUP2
-    rem call :test_GetINI PROJECT.ini general2
-    rem call :test_GetINI PROJECT.ini
+    rem call :test_SetINI !LFILEINI_test02! general PROJECTS_GROUP 623476817
 
-    rem call :test_GetINIParametr PROJECT.ini general2 PROJECTS_GROUP2
-    rem call :test_GetINIParametr PROJECT.ini general2
-    rem call :test_GetINIParametr PROJECT.ini
+    rem call :test_GetINI !LFILEINI_test02! general2 PROJECTS_GROUP2
+    rem call :test_GetINI !LFILEINI_test02! general2
+    rem call :test_GetINI !LFILEINI_test02!
 
-    rem call :test_GetINIPY PROJECT.ini general2 PROJECTS_GROUP2
-    call :test_GetINIPY PROJECT.ini general2
-    rem call :test_GetINIPY PROJECT.ini
+    rem call :test_GetINIParametr !LFILEINI_test02! general2 PROJECTS_GROUP2
+    rem call :test_GetINIParametr !LFILEINI_test02! general2
+    rem call :test_GetINIParametr !LFILEINI_test02!
+
+    rem call :test_GetINIPY !LFILEINI_test02! general2 PROJECTS_GROUP2
+    rem call :test_GetINIPY !LFILEINI_test02! general2
+    rem call :test_GetINIPY !LFILEINI_test02!
+
+
+    call :test_GetINIParametr !LFILEINI_test01! SCRIPTS_BAT PROJECT_DIR
     
-    rem call :test_GetFileParser
+    set PROJECTS_NAME=None
+
+    rem call :test_GetINI !LFILEINI_test01! PROJECTS_NAME "" PROJECTS_NAME
+
+    rem call :test_GetINIParametr !LFILEINI_test01! PROJECTS_NAME "" PROJECTS_NAME
+
+    rem call :test_GetINIParametr2 !LFILEINI_test01! PROJECTS_NAME "" PROJECTS_NAME
+
+    rem call :test_GetINIPY !LFILEINI_test01! PROJECTS_NAME "" PROJECTS_NAME
+    
+    rem call :test_GetFileParser !LFILEINI_test02!
 
     rem call :test_ PROJECT.ini
 
@@ -86,9 +102,9 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GetINI %1 %2 %3
-    rem echo KeyValue:!KeyValue!
-    rem echo GetINI:!GetINI!
+    echo "%~1" "%~2" "%~3" "%~4"
+
+    call :GetINI "%~1" "%~2" "%~3" "%~4"
 
     if !SectionsCount! GEQ 0 (
         echo SectionsCount:!SectionsCount!
@@ -102,8 +118,15 @@ rem beginfunction
     if !KeyNamesCount! GEQ 0 (
         echo KeyNamesCount:!KeyNamesCount!
         for /L %%i in (0, 1, !KeyNamesCount!) do (
-            set LKeyName=!KeyNames[%%i]!
-            echo !LKeyName! 
+            echo .... i:%%i ....
+            if defined PROJECTS_NAME (
+                rem set LPROJECTS_NAME=!KeyNames[%%i]!
+                set LPROJECTS_NAME=!PROJECTS_NAME[%%i]!
+                echo LPROJECTS_NAME:!LPROJECTS_NAME!
+            ) else (
+                set LKeyName=!KeyNames[%%i]!
+                echo LKeyName:!LKeyName! 
+            )
         )
     )
 
@@ -121,9 +144,9 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GetINIPY %1 %2 %3
-    rem echo KeyValue:!KeyValue!
-    rem echo GetINIPY:!GetINIPY!
+    echo "%~1" "%~2" "%~3" "%~4"
+
+    call :GetINIPY "%~1" "%~2" "%~3" "%~4"
 
     if !SectionsCount! GEQ 0 (
         echo SectionsCount:!SectionsCount!
@@ -137,8 +160,15 @@ rem beginfunction
     if !KeyNamesCount! GEQ 0 (
         echo KeyNamesCount:!KeyNamesCount!
         for /L %%i in (0, 1, !KeyNamesCount!) do (
-            set LKeyName=!KeyNames[%%i]!
-            echo !LKeyName! 
+            echo .... i:%%i ....
+            if defined PROJECTS_NAME (
+                rem set LPROJECTS_NAME=!KeyNames[%%i]!
+                set LPROJECTS_NAME=!PROJECTS_NAME[%%i]!
+                echo LPROJECTS_NAME:!LPROJECTS_NAME!
+            ) else (
+                set LKeyName=!KeyNames[%%i]!
+                echo LKeyName:!LKeyName! 
+            )
         )
     )
 
@@ -148,7 +178,7 @@ rem beginfunction
 rem endfunction
 
 rem --------------------------------------------------------------------------------
-rem procedure GetINIParametr (AFileName, ASection, AKeyName) -> None
+rem procedure test_GetINIParametr (AFileName, ASection, AKeyName, AKeyNames) -> None
 rem --------------------------------------------------------------------------------
 :test_GetINIParametr
 rem beginfunction
@@ -156,7 +186,18 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GetINIParametr %1 %2 %3
+    echo "%~1" "%~2" "%~3" "%~4"
+
+    call :GetINIParametr "%~1" "%~2" "%~3" "%~4"
+    echo KeyValue:!KeyValue!
+
+    echo ....test_GetINIParametr: Ok
+
+    rem call :GetLenArray !Sections!
+    rem echo GetLenArray:!GetLenArray!
+
+    exit /b 0
+rem endfunction
 
     if !SectionsCount! GEQ 0 (
         echo SectionsCount:!SectionsCount!
@@ -170,8 +211,55 @@ rem beginfunction
     if !KeyNamesCount! GEQ 0 (
         echo KeyNamesCount:!KeyNamesCount!
         for /L %%i in (0, 1, !KeyNamesCount!) do (
-            set LKeyName=!KeyNames[%%i]!
-            echo !LKeyName! 
+            echo .... i:%%i ....
+            if defined PROJECTS_NAME (
+                rem set LPROJECTS_NAME=!KeyNames[%%i]!
+                set LPROJECTS_NAME=!PROJECTS_NAME[%%i]!
+                echo LPROJECTS_NAME:!LPROJECTS_NAME!
+            ) else (
+                set LKeyName=!KeyNames[%%i]!
+                echo LKeyName:!LKeyName! 
+            )
+        )
+    )
+
+
+rem --------------------------------------------------------------------------------
+rem procedure test_GetINIParametr2 (AFileName, ASection, AKeyName, AKeyNames) -> None
+rem --------------------------------------------------------------------------------
+:test_GetINIParametr2
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    echo "%~1" "%~2" "%~3" "%~4"
+
+    call :GetINIParametr2 "%~1" "%~2" "%~3" "%~4"
+
+    set PROJECTS_NAME
+
+    if !SectionsCount! GEQ 0 (
+        echo SectionsCount:!SectionsCount!
+        rem for /L %%переменная in (начало, шаг, конец) do (оператор)
+        for /L %%i in (0, 1, !SectionsCount!) do (
+            set LSection=!Sections[%%i]!
+            echo !LSection! 
+        )
+    )
+
+    if !KeyNamesCount! GEQ 0 (
+        echo KeyNamesCount:!KeyNamesCount!
+        for /L %%i in (0, 1, !KeyNamesCount!) do (
+            echo .... i:%%i ....
+            if defined PROJECTS_NAME (
+                rem set LPROJECTS_NAME=!KeyNames[%%i]!
+                set LPROJECTS_NAME=!PROJECTS_NAME[%%i]!
+                echo LPROJECTS_NAME:!LPROJECTS_NAME!
+            ) else (
+                set LKeyName=!KeyNames[%%i]!
+                echo LKeyName:!LKeyName! 
+            )
         )
     )
 
@@ -179,6 +267,7 @@ rem beginfunction
 
     exit /b 0
 rem endfunction
+
 rem --------------------------------------------------------------------------------
 rem procedure GetFileParser (AFileName Adelims Atokens Aeol) -> None
 rem --------------------------------------------------------------------------------
@@ -188,7 +277,7 @@ rem beginfunction
     echo FUNCNAME%0
     echo --------------------------------------
 
-    call :GetFileParser PROJECT.ini "=" "1,2" "#"
+    call :GetFileParser %1 "=" "1,2" "#"
     echo GetFileParser:!GetFileParser!
 
     echo ....test_GetFileParser: Ok
@@ -294,6 +383,9 @@ exit /b 0
 %LIB_BAT%\LYRParserINI.bat %*
 exit /b 0
 :GetINIParametr
+%LIB_BAT%\LYRParserINI.bat %*
+exit /b 0
+:GetINIParametr2
 %LIB_BAT%\LYRParserINI.bat %*
 exit /b 0
 :GetFileParser
