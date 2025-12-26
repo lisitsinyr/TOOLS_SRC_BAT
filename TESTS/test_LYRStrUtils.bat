@@ -53,6 +53,8 @@ rem ----------------------------------------------------------------------------
 
     rem call :test_ListToStr 1 2 3
 
+    call :test_StrLen 1 2 3
+
     exit /b 0
 :end
 rem =================================================
@@ -180,6 +182,44 @@ rem beginfunction
     exit /b 0
 rem endfunction
 
+:len
+    set len=%~2
+    if not "%len%"=="" set /a %1+=1 & call :len %1 "%len:~1%"
+goto :eof
+
+rem --------------------------------------------------------------------------------
+rem function test_StrLen (ASTR*) -> ListToStr
+rem --------------------------------------------------------------------------------
+:test_StrLen
+rem beginfunction
+    echo ======================================
+    echo FUNCNAME%0
+    echo --------------------------------------
+
+    Set demo=some example string
+    call :StrLen demo length || exit /b 1
+    echo StrLen:!StrLen!
+    echo length:!length!
+
+    Set demo=some example string
+    call :StrLen2 "!demo!" length
+    echo StrLen2:!StrLen2!
+    echo length:!length!
+
+    Set demo=some example string
+    call :StrLen4 "!demo!" length
+    echo StrLen4:!StrLen4!
+    echo length:!length!
+
+    rem call :StrLen5 _demo _length || exit /b 1
+    rem echo StrLen:!StrLen!
+    rem echo _length:!_length!
+
+    echo ....test_ListToStr: Ok
+
+    exit /b 0
+rem endfunction
+
 rem =================================================
 rem ‘”Õ ÷»» LIB
 rem =================================================
@@ -237,5 +277,17 @@ exit /b 0
 %LIB_BAT%\LYRStrUtils.bat %*
 exit /b 0
 :ListToStr
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
+:StrLen
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
+:StrLen2
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
+:StrLen4
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
+:StrLen5
 %LIB_BAT%\LYRStrUtils.bat %*
 exit /b 0

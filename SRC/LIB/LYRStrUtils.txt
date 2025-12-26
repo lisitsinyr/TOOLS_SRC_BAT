@@ -25,3 +25,6 @@ exit /b 0
 :ListToStr
 %LIB_BAT%\LYRStrUtils.bat %*
 exit /b 0
+:StrLen
+%LIB_BAT%\LYRStrUtils.bat %*
+exit /b 0
