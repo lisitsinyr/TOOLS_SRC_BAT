@@ -202,18 +202,9 @@ rem beginfunction
     echo length:!length!
 
     Set demo=some example string
-    call :StrLen2 "!demo!" length
-    echo StrLen2:!StrLen2!
-    echo length:!length!
-
-    Set demo=some example string
-    call :StrLen4 "!demo!" length
+    call :StrLen4 demo length
     echo StrLen4:!StrLen4!
     echo length:!length!
-
-    rem call :StrLen5 _demo _length || exit /b 1
-    rem echo StrLen:!StrLen!
-    rem echo _length:!_length!
 
     echo ....test_ListToStr: Ok
 
@@ -282,12 +273,6 @@ exit /b 0
 :StrLen
 %LIB_BAT%\LYRStrUtils.bat %*
 exit /b 0
-:StrLen2
-%LIB_BAT%\LYRStrUtils.bat %*
-exit /b 0
 :StrLen4
-%LIB_BAT%\LYRStrUtils.bat %*
-exit /b 0
-:StrLen5
 %LIB_BAT%\LYRStrUtils.bat %*
 exit /b 0
