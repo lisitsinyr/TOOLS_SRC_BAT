@@ -182,11 +182,6 @@ rem beginfunction
     exit /b 0
 rem endfunction
 
-:len
-    set len=%~2
-    if not "%len%"=="" set /a %1+=1 & call :len %1 "%len:~1%"
-goto :eof
-
 rem --------------------------------------------------------------------------------
 rem function test_StrLen (ASTR*) -> ListToStr
 rem --------------------------------------------------------------------------------
@@ -197,12 +192,12 @@ rem beginfunction
     echo --------------------------------------
 
     Set demo=some example string
-    call :StrLen demo length || exit /b 1
+
+    call :StrLen "!demo!" length || exit /b 1
     echo StrLen:!StrLen!
     echo length:!length!
 
-    Set demo=some example string
-    call :StrLen4 demo length
+    call :StrLen4 "!demo!" length
     echo StrLen4:!StrLen4!
     echo length:!length!
 
